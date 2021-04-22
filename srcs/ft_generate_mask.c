@@ -6,13 +6,16 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 15:04:49 by acami             #+#    #+#             */
-/*   Updated: 2021/04/22 18:34:22 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/22 19:09:51 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 #include "../headers/ft_print_type.h"
 #include "../headers/libft.h"
+
+extern int	g_width;
+extern int	g_prescision;
 
 static int	ft_mask_specifier(const char *format_spec, uint32_t *mask)
 {
@@ -39,6 +42,7 @@ static int	ft_mask_specifier(const char *format_spec, uint32_t *mask)
 		*mask |= SPEC_PERCENT;
 	else
 		return (ft_mask_specifier_extra(format_spec, mask));
+	return (1);
 }
 
 static int	ft_mask_specifier_extra(const char *format_spec, uint32_t *mask)
@@ -74,9 +78,11 @@ uint32_t	ft_generate_mask(const char **format_spec)
 	elems_passed += ft_mask_length(*format_spec + elems_passed, &mask);
 	if (ft_mask_specifier(*format_spec + elems_passed, &mask) == -1)
 	{
-		write(1, *format_spec, elems_passed);
+		write(1, *format_spec, elems_passed + 1);
 		mask = 0;
+		g_width = -1;
+		g_prescision = -1;
 	}
-	*format_spec += elems_passed;
+	*format_spec += elems_passed + 1;
 	return (mask);
 }

@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 18:18:35 by acami             #+#    #+#             */
-/*   Updated: 2021/04/22 18:26:42 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/22 19:09:11 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ int	ft_mask_flags(const char *format_spec, uint32_t *mask)
 		else if (curr_elem == '+')
 			*mask |= SPEC_PLUS;
 		else if (curr_elem == ' ')
-			if (*mask & SPEC_PLUS == 0)
+		{
+			if ((*mask & SPEC_PLUS) == 0)
 				*mask |= SPEC_SPACE;
+		}
 		else if (curr_elem == '#')
 			*mask |= SPEC_HASHTAG;
 		else if (curr_elem == '0')
@@ -124,7 +126,7 @@ int	ft_mask_length(const char *format_spec, uint32_t *mask)
 		*mask |= SPEC_T;
 	else if (*format_spec == 'L')
 		*mask |= SPEC_L_UPPERCASE;
-	if (*mask & SPEC_HAS_LENGTH != 0)
+	if ((*mask & SPEC_HAS_LENGTH) != 0)
 		return (1);
 	return (0);
 }
