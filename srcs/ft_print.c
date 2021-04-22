@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 19:11:36 by acami             #+#    #+#             */
-/*   Updated: 2021/04/22 19:06:08 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/22 19:56:32 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,14 @@ int	ft_printf(const char *format_spec, ...)
 	while (*format_spec != '\0')
 	{
 		mask = ft_generate_mask(&format_spec);
-		count += ft_print_arg(arg_list, mask,
-				ft_find_corresponding_print(mask));
-		count += ft_print_till_percent(&format_spec);
+		if (mask == 0)
+			++count;
+		else
+		{
+			count += ft_print_arg(arg_list, mask,
+					ft_find_corresponding_print(mask));
+			count += ft_print_till_percent(&format_spec);
+		}
 	}
 	va_end(arg_list);
 	return (count);

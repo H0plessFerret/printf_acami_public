@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 15:04:49 by acami             #+#    #+#             */
-/*   Updated: 2021/04/22 19:09:51 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/22 19:55:46 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ uint32_t	ft_generate_mask(const char **format_spec)
 	elems_passed += ft_mask_length(*format_spec + elems_passed, &mask);
 	if (ft_mask_specifier(*format_spec + elems_passed, &mask) == -1)
 	{
-		write(1, *format_spec, elems_passed + 1);
+		write(1, *format_spec, 1);
 		mask = 0;
 		g_width = -1;
 		g_prescision = -1;
 	}
-	*format_spec += elems_passed + 1;
+	++(*format_spec);
 	return (mask);
 }
