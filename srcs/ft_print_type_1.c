@@ -6,20 +6,22 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 14:10:23 by acami             #+#    #+#             */
-/*   Updated: 2021/04/23 15:24:02 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/23 17:04:02 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_print_type.h"
 #include "../libft/libft.h"
 
-int	ft_print_char(void *elem)
+int	ft_print_char(void *elem, int prescision)
 {
+	(void)prescision;
 	return (write(1, *(int *)(elem), 1));
 }
 
-int	ft_print_string(void *elem)
+int	ft_print_string(void *elem, int prescision)
 {
+	(void)prescision;
 	char	*str;
 
 	str = (char *)elem;
