@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:56:26 by acami             #+#    #+#             */
-/*   Updated: 2021/04/23 17:02:08 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/23 19:08:08 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_print_hex_float(void *elem, int prescision);
 
 // Saves the amount of elements were printed by the current call of FT_PRINTF
 // to the elem
-int	ft_save_printed(void *elem, int prescision);
+int	ft_save_printed(void *elem, int saved);
 
 // Prints sym on standard output amount_of_times times
 int	ft_print_char_n(char sym, int amount_of_times);
