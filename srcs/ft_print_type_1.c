@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 14:10:23 by acami             #+#    #+#             */
-/*   Updated: 2021/04/23 17:04:02 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/23 21:01:41 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	ft_put_unsignednbr_base(size_t nbr, char *base)
 	return (write(1, res, count));
 }
 
-int	ft_put_abs_nbr_base(int nbr, char *base)
+int	ft_put_abs_nbr_base(int64_t nbr, char *base)
 {
 	size_t	count;
 	int		divider;

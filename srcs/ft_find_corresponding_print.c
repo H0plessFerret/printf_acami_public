@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 19:46:55 by acami             #+#    #+#             */
-/*   Updated: 2021/04/23 19:06:23 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/23 21:07:35 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int prescision)
 	if ((mask & SPEC_O) != 0)
 		return (ft_print_oct);
 	else if ((mask & SPEC_F) != 0)
-		return (ft_print_float);
+		return (ft_print_abs_float);
 	else if ((mask & SPEC_E) != 0)
 		return (ft_print_scientific);
 	else if ((mask & SPEC_G) != 0)

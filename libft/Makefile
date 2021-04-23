@@ -6,7 +6,7 @@
 #    By: acami <acami@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/17 15:17:44 by acami             #+#    #+#              #
-#    Updated: 2021/04/19 17:10:25 by acami            ###   ########.fr        #
+#    Updated: 2021/04/23 20:49:40 by acami            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ RM			= rm -f
 .c.o:		
 			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-$(NAME):	$(OBJS)
+$(NAME):	$(OBJS) $(HEADERS)
 			$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 			$(LIBRAN) $(NAME)
 

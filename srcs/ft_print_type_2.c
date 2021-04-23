@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 15:01:19 by acami             #+#    #+#             */
-/*   Updated: 2021/04/23 17:03:56 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/23 21:00:39 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_print_pointer(void *elem, int prescision)
 int	ft_print_abs_int(void *elem, int prescision)
 {
 	(void)prescision;
-	return (ft_put_abs_nbr_base(*(unsigned int *)elem, "0123456789"));
+	return (ft_put_abs_nbr_base(*(int *)elem, "0123456789"));
 }
 
 int	ft_print_uint(void *elem, int prescision)

@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:56:26 by acami             #+#    #+#             */
-/*   Updated: 2021/04/23 19:08:08 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/23 21:06:03 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_print_percent_sign(void *elem, int prescision);
 int	ft_print_oct(void *elem, int prescision);
 
 // Displays floating point number without the sign on stanrdard output
-int	ft_print_float(void *elem, int prescision);
+int	ft_print_abs_float(void *elem, int prescision);
 
 // Displays floating point number in scientific notation
 // without the sign on stanrdard output
@@ -67,6 +67,6 @@ int	ft_print_char_n(char sym, int amount_of_times);
 int	ft_put_unsignednbr_base(size_t nbr, char *base);
 
 // Prints an absolute value of a signed integer of the base on standard output
-int	ft_put_abs_nbr_base(int nbr, char *base);
+int	ft_put_abs_nbr_base(int64_t nbr, char *base);
 
 #endif
