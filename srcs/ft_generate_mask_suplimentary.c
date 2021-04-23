@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_generate_suplimentary.c                         :+:      :+:    :+:   */
+/*   ft_generate_mask_suplimentary.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 18:18:35 by acami             #+#    #+#             */
-/*   Updated: 2021/04/23 13:58:02 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/23 15:53:19 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,12 @@ int	ft_mask_prescision(const char *format_spec, uint32_t *mask)
 		return (0);
 	count = 1;
 	curr_elem = *(format_spec + count);
-	if (ft_isdigit(curr_elem))
+	if (curr_elem == '*')
+	{
+		*mask |= SPEC_DOTASTERISK;
+		++count;
+	}
+	else
 	{
 		*mask |= SPEC_DOTNUM;
 		g_prescision = 0;
@@ -93,11 +98,6 @@ int	ft_mask_prescision(const char *format_spec, uint32_t *mask)
 		g_prescision = 10 * g_prescision + curr_elem - '0';
 		++count;
 		curr_elem = *(format_spec + count);
-	}
-	if (curr_elem == '*')
-	{
-		*mask |= SPEC_DOTASTERISK;
-		++count;
 	}
 	return (count);
 }

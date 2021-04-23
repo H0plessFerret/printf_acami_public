@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_find_corresponding_print.c                      :+:      :+:    :+:   */
+/*   ft_print_type_bonus_1.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/22 19:46:55 by acami             #+#    #+#             */
-/*   Updated: 2021/04/23 15:04:54 by acami            ###   ########.fr       */
+/*   Created: 2021/04/23 15:32:19 by acami             #+#    #+#             */
+/*   Updated: 2021/04/23 15:49:22 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
 #include "../headers/ft_print_type.h"
+#include "../libft/libft.h"
 
-int			(*ft_find_corresponding_print(uint32_t mask))(void *)
+int	ft_print_oct(void *elem)
+{
+	return (ft_put_unsignednbr_base(*(unsigned int *)elem, "01234567"));
+}
+
+int	ft_print_float(void *elem)
 {
 	
 }
+
+int	ft_print_scientific(void *elem);
+
+int	ft_print_e_f(void *elem);
+
+int	ft_print_hex_float(void *elem);
+
+int	ft_save_printed(void *elem);
