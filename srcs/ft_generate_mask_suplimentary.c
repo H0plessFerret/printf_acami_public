@@ -6,12 +6,11 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 18:18:35 by acami             #+#    #+#             */
-/*   Updated: 2021/04/23 15:53:19 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/24 14:19:10 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
-#include "../headers/ft_print_type.h"
 #include "../libft/libft.h"
 
 extern int	g_width;

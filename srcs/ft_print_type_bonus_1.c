@@ -6,37 +6,29 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 15:32:19 by acami             #+#    #+#             */
-/*   Updated: 2021/04/23 21:10:17 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/24 15:35:22 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_print_type.h"
-#include "../libft/libft.h"
 
-int	ft_print_oct(void *elem, int prescision)
+extern int	g_prescision;
+
+int	ft_print_oct(void *elem)
 {
-	(void)prescision;
 	return (ft_put_unsignednbr_base(*(unsigned int *)elem, "01234567"));
 }
 
-int	ft_print_abs_float(void *elem, int prescision)
+static int	ft_print_mantis(double f_elem)
 {
-	double	f_elem;
-	int64_t	num;
-	int		count;
 	int		curr_pos;
+	int		count;
+	int64_t	num;
 	char	buff;
 
-	f_elem = *(double *)elem;
-	if (f_elem > 0)
-		f_elem *= -1;
-	num = (int64_t)f_elem;
-	count += ft_print_abs_int((void *)(&num), 0);
-	if (prescision != 0)
-		count += write(1, ".", 1);
+	count = 0;
 	curr_pos = 0;
-	f_elem -= num;
-	while (curr_pos < prescision)
+	while (curr_pos < g_prescision)
 	{
 		f_elem *= 10;
 		num = (int64_t)f_elem;
@@ -48,14 +40,34 @@ int	ft_print_abs_float(void *elem, int prescision)
 	return (count);
 }
 
-int	ft_print_scientific(void *elem, int prescision);
+int	ft_print_abs_float(void *elem)
+{
+	double	f_elem;
+	int64_t	num;
+	int		count;
 
-int	ft_print_e_f(void *elem, int prescision);
+	count = 0;
+	f_elem = *(double *)elem;
+	if (f_elem > 0)
+		f_elem *= -1;
+	num = (int64_t)f_elem;
+	if (num == 0)
+		count += write(1, "0", 1);
+	count += ft_print_abs_int((void *)(&num));
+	if (g_prescision != 0)
+		count += write(1, ".", 1);
+	f_elem -= num;
+	count += ft_print_mantis(f_elem);
+	return (count);
+}
 
-int	ft_print_hex_float(void *elem, int prescision)
+int	ft_print_scientific(void *elem);
+
+int	ft_print_e_f(void *elem);
+
+int	ft_print_hex_float(void *elem)
 {
 	(void)elem;
-	(void)prescision;
 	return (0);
 }
 

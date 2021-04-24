@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 19:15:25 by acami             #+#    #+#             */
-/*   Updated: 2021/04/23 19:24:44 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/24 16:01:00 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,19 @@
 extern int	g_width;
 extern int	g_prescision;
 
-static int	ft_print_suffix(void *data, uint32_t mask);
-static int	ft_print_postfix(void *data, uint32_t mask);
+// prints prefix to the actual data
+int	ft_print_prefix(uint32_t mask, char	sign);
 
-int	ft_print_by_arg(void *data, uint32_t mask, int (*func)(void *data,
-int prescision))
+// prints postfix to the actual data
+int	ft_print_postfix(uint32_t mask, int printed_already);
+
+int	ft_print_by_arg(va_list arg_list, uint32_t mask, int (*func)(void *data))
 {
-	int	count;
+	int		count;
+	char	sign;
+	void	*data;
 
 	count = 0;
-	count += ft_print_suffix(data, mask);
-	count += (*func)(data, g_prescision);
-	count += ft_print_postfix(data, mask);
+	data = ft_extract_info_from_arglist(arg_list, mask);
 	return (count);
 }

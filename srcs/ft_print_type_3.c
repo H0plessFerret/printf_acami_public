@@ -6,16 +6,14 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 15:06:19 by acami             #+#    #+#             */
-/*   Updated: 2021/04/23 17:03:42 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/24 20:07:15 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_print_type.h"
-#include "../libft/libft.h"
 
-int	ft_print_percent_sign(void *elem, int prescision)
+int	ft_print_percent_sign(void *elem)
 {
-	(void)prescision;
 	return (write(1, "%", 1));
 }
 

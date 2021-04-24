@@ -6,22 +6,22 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 14:10:23 by acami             #+#    #+#             */
-/*   Updated: 2021/04/23 21:01:41 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/24 20:04:29 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_print_type.h"
 #include "../libft/libft.h"
 
-int	ft_print_char(void *elem, int prescision)
+extern int	g_prescision;
+
+int	ft_print_char(void *elem)
 {
-	(void)prescision;
 	return (write(1, *(int *)(elem), 1));
 }
 
-int	ft_print_string(void *elem, int prescision)
+int	ft_print_string(void *elem)
 {
-	(void)prescision;
 	char	*str;
 
 	str = (char *)elem;
@@ -53,7 +53,7 @@ int	ft_put_unsignednbr_base(size_t nbr, char *base)
 
 	count = 0;
 	divider = ft_strlen(base);
-	if (nbr == 0)
+	if ((nbr == 0) && (g_prescision != 0))
 		return (write(1, "0", 1));
 	while (nbr != 0)
 	{
@@ -76,7 +76,7 @@ int	ft_put_abs_nbr_base(int64_t nbr, char *base)
 	divider = ft_strlen(base);
 	if (nbr > 0)
 		nbr = nbr * -1;
-	if (nbr == 0)
+	if ((nbr == 0) && (g_prescision != 0))
 		write(1, "0", 1);
 	while (nbr != 0)
 	{

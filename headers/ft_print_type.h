@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:56:26 by acami             #+#    #+#             */
-/*   Updated: 2021/04/23 21:06:03 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/24 15:17:34 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,45 +16,45 @@
 # include <unistd.h>
 
 // Displays char on stanrdard output
-int	ft_print_char(void *elem, int prescision);
+int	ft_print_char(void *elem);
 
 // Displays string on stanrdard output
-int	ft_print_string(void *elem, int prescision);
+int	ft_print_string(void *elem);
 
 // Displays pointer on stanrdard output
-int	ft_print_pointer(void *elem, int prescision);
+int	ft_print_pointer(void *elem);
 
 // Displays int without the sign on stanrdard output
-int	ft_print_abs_int(void *elem, int prescision);
+int	ft_print_abs_int(void *elem);
 
 // Displays unsigned int on stanrdard output
-int	ft_print_uint(void *elem, int prescision);
+int	ft_print_uint(void *elem);
 
 // Displays unsigned hexadecimal (lowercase) on stanrdard output
-int	ft_print_hex(void *elem, int prescision);
+int	ft_print_hex(void *elem);
 
 // Displays unsigned hexadecimal (uppercase) on stanrdard output
-int	ft_print_hex_upper(void *elem, int prescision);
+int	ft_print_hex_upper(void *elem);
 
 // Displays '%' symbol on stanrdard output
-int	ft_print_percent_sign(void *elem, int prescision);
+int	ft_print_percent_sign(void *elem);
 
 // Displays unsigned octal on stanrdard output
-int	ft_print_oct(void *elem, int prescision);
+int	ft_print_oct(void *elem);
 
 // Displays floating point number without the sign on stanrdard output
-int	ft_print_abs_float(void *elem, int prescision);
+int	ft_print_abs_float(void *elem);
 
 // Displays floating point number in scientific notation
 // without the sign on stanrdard output
-int	ft_print_scientific(void *elem, int prescision);
+int	ft_print_scientific(void *elem);
 
 // Displays floating point number in either normal or scientific notation,
 // depending which one is the shortest.
-int	ft_print_e_f(void *elem, int prescision);
+int	ft_print_e_f(void *elem);
 
 // Displays hexadecimal floating point number on stanrdard output
-int	ft_print_hex_float(void *elem, int prescision);
+int	ft_print_hex_float(void *elem);
 
 // Saves the amount of elements were printed by the current call of FT_PRINTF
 // to the elem
