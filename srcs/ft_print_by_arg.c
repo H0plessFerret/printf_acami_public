@@ -9,7 +9,7 @@
 /*   Updated: 2021/04/25 18:51:13 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <stdint.h>
 #include "../headers/ft_printf.h"
 #include "../headers/ft_print_type.h"
 
@@ -52,17 +52,14 @@ static int	ft_len_abs_nbr_base(long long int nbr, char *base, t_mask *mask)
 
 int	ft_print_prefix(t_mask *mask, void *data, char sign);
 
-int	ft_print_by_arg(va_list *arg_list, t_mask *mask, int (*func)(void *data,
-t_mask *mask))
+int	ft_print_by_arg(va_list *arg_list, t_mask *mask, t_print_fn func)
 {
 	int		count;
 	char	sign;
-	void	*data;
+	int64_t	data;
 
 	count = 0;
-	data = ft_extract_info_from_arglist(arg_list, mask);
-	if (data == NULL)
-		return (0);
+	data = ft_extract_info_from_arglist(arg_list, mask, &data);
 	sign = '+';
 	if (*(long long int *)data < 0)
 		sign = '-';

@@ -25,6 +25,8 @@ int	ft_print_string(void *elem, t_mask *mask)
 
 	str = *(char **)elem;
 	(void)mask;
+	if (str == NULL)
+		str = "(null)";
 	return (write(1, str, ft_strlen(str)));
 }
 
@@ -67,25 +69,26 @@ t_mask *mask)
 	return (write(1, res, count));
 }
 
-int	ft_put_abs_nbr_base(long long nbr, char *base, t_mask *mask)
+char	*ft_put_abs_nbr_base(long long nbr, int base, t_mask *mask)
 {
+	const char	*symbols = "0123456789abcdef";
 	size_t		count;
-	long long	divider;
-	char		res[65];
+	static char	res[65];
 
 	count = 0;
-	divider = ft_strlen(base);
 	if (nbr > 0)
 		nbr = nbr * -1;
 	if ((nbr == 0) && (mask->prescision != 0))
 		write(1, "0", 1);
 	while (nbr != 0)
 	{
-		*(res + count) = *(base - (nbr % divider));
-		nbr = (nbr / divider);
+		*(res + count) = symbols[-(nbr % base)];
+		nbr = (nbr / base);
 		++count;
 	}
 	*(res + count) = '\0';
 	ft_strrev(res, count);
-	return (write(1, res, count));
+	if (mask->mask & SPEC_X_UPPERCASE)
+		ft_toupper(res);
+	return (res);
 }

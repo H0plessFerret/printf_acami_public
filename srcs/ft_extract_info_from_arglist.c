@@ -30,14 +30,9 @@ static void	ft_set_width_prescision(va_list *arg_list, t_mask *mask)
 	}
 }
 
-void	*ft_extract_info_from_arglist(va_list *arg_list, t_mask *mask)
+void	*ft_extract_info_from_arglist(va_list *arg_list, t_mask *mask, void *data)
 {
-	void	*data;
-
 	ft_set_width_prescision(arg_list, mask);
-	data = malloc(8);
-	if (data == NULL)
-		return (NULL);
 	if ((mask->mask & SPEC_C) != 0)
 		*(char *)data = (char)va_arg(*arg_list, int);
 	else if ((mask->mask & SPEC_S) != 0)

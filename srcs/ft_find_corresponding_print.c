@@ -13,8 +13,7 @@
 #include "../headers/ft_printf.h"
 #include "../headers/ft_print_type.h"
 
-static int	(*ft_find_corresponding_print_bonus(t_mask *mask))(void *data,
-t_mask *mask)
+static t_print_fn	ft_find_corresponding_print_bonus(t_mask *mask)
 {
 	if ((mask->mask & SPEC_O) != 0)
 		return (ft_print_oct);
@@ -32,7 +31,7 @@ t_mask *mask)
 		return (NULL);
 }
 
-int	(*ft_find_corresponding_print(t_mask *mask))(void *data, t_mask *mask)
+t_print_fn	printft_find_corresponding_print(t_mask *mask)
 {
 	if ((mask->mask & SPEC_C) != 0)
 		return (ft_print_char);

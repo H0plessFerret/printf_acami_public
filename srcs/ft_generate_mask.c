@@ -74,10 +74,11 @@ t_mask	*ft_generate_mask(const char **format_spec, t_mask *mask)
 	if (ft_mask_specifier(*format_spec + elems_passed, mask) == -1)
 	{
 		write(1, *format_spec, 1);
+		elems_passed = 1;
 		mask->mask = 0;
 		mask->width = -1;
 		mask->prescision = -1;
 	}
-	++(*format_spec);
+	*format_spec += elems_passed;
 	return (mask);
 }

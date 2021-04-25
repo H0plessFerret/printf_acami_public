@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <unistd.h>
+# include <stdint.h>
 
 # define	SPEC_D_I			1
 # define	SPEC_U				2
@@ -58,12 +59,14 @@
 # define	SPEC_IS_UNSIGNED	30
 # define	SPEC_IS_NUMBER		2559
 
-typedef struct s_mask
-{
+typedef struct s_mask	t_mask;
+struct s_mask {
 	uint32_t	mask;
 	int			width;
 	int			prescision;
-}				t_mask;
+};
+
+typedef int	(*t_print_fn)(void *, t_mask *);
 
 int			ft_printf(const char *format_spec, ...);
 
@@ -92,10 +95,10 @@ int			ft_mask_length(const char *format_spec, t_mask *mask);
 t_mask		*ft_generate_mask(const char **format_spec, t_mask *mask);
 
 // returns a pointer to a function which will print the requested value
-int			(*ft_find_corresponding_print(t_mask *mask))(void *, t_mask *);
+t_print_fn	ft_find_corresponding_print(t_mask *mask);
 
 // returns void pointer to the next element from the stack
-void		*ft_extract_info_from_arglist(va_list *arg_list, t_mask *mask);
+void		*ft_extract_info_from_arglist(va_list *arg_list, t_mask *mask, void *data);
 
 // prints prefix to the actual data
 int			ft_print_prefix(t_mask *mask, void *data, char sign);

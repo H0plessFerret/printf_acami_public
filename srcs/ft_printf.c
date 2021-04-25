@@ -16,28 +16,24 @@
 int	ft_printf(const char *format_spec, ...)
 {
 	va_list	arg_list;
-	t_mask	*mask;
+	t_mask	mask;
 	int		count;
 
 	count = 0;
-	mask = malloc(sizeof(t_mask));
-	if (mask == NULL)
-		return (-1);
 	va_start(arg_list, format_spec);
 	count += ft_print_till_percent(&format_spec);
 	while (*format_spec != '\0')
 	{
-		mask = ft_generate_mask(&format_spec, mask);
-		if (mask->mask == 0)
+		ft_generate_mask(&format_spec, &mask);
+		if (mask.mask == 0)
 			++count;
 		else
 		{
-			count += ft_print_by_arg(&arg_list, mask,
-					ft_find_corresponding_print(mask));
+			count += ft_print_by_arg(&arg_list, &mask,
+					ft_find_corresponding_print(&mask));
 		}
 		count += ft_print_till_percent(&format_spec);
 	}
 	va_end(arg_list);
-	free(mask);
 	return (count);
 }

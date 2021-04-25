@@ -17,6 +17,61 @@
 # include <stddef.h>
 # include "ft_printf.h"
 
+int	ft_print_signed(va_list arg_list, t_mask *mask)
+{
+	intmax_t	num;
+	int			base;
+	char		*buff;
+	char		sign;
+
+	num = ft_pull_signed(arg_list, mask); //hh h l ll z j ...
+	if (num < 0)
+	{
+		buff = ft_put_unsignednbr_base(num * -1, 16, mask);
+		sign = '-';
+	}
+	else
+	{
+		buff = ft_put_unsignednbr_base(num, 16, mask);
+		sign = '+';
+	}
+	return (ft_magic_write(buff, ft_strlen(buff), mask));
+}
+
+int	ft_print_unsigned(va_list arg_list, t_mask *mask)
+{
+	uintmax_t	num;
+	int			base;
+	char		*buff;
+
+	num = ft_pull_unsigned(arg_list, mask); //hh h l ll z j ...
+	if (mask->mask & SPEC_X_UPPERCASE)
+		base = 16;
+	buff = ft_put_unsignednbr_base(num, 16, mask);
+	return (ft_magic_write(buff, ft_strlen(buff), mask));
+}
+
+int	ft_print_char(va_list arg_list, t_mask *mask)
+{
+	char	c;
+
+	c = va_arg(arg_list, int);
+	return (ft_magic_write(&c, 1, mask));
+}
+
+int	ft_print_string(va_list arg_list, t_mask *mask)
+{
+	char	*str;
+
+	str = va_arg(arg_list, char *);
+	if (str == NULL)
+		str = "(null)";
+	return (ft_magic_write(str, ft_strlen(str), mask));
+}
+
+int	ft_print_float(va_list arg_list, t_mask *mask);
+
+/*
 // Displays char on stanrdard output
 int	ft_print_char(void *elem, t_mask *mask);
 
@@ -70,5 +125,5 @@ int	ft_put_unsignednbr_base(unsigned long long nbr, char *base, t_mask *mask);
 
 // Prints an absolute value of a signed integer of the base on standard output
 int	ft_put_abs_nbr_base(long long int nbr, char *base, t_mask *mask);
-
+*/
 #endif

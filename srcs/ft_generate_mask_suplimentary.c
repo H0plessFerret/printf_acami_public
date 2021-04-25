@@ -54,14 +54,14 @@ int	ft_mask_width(const char *format_spec, t_mask *mask)
 	{
 		mask->mask |= SPEC_NUM;
 		mask->width = 0;
+		while (ft_isdigit(curr_elem))
+		{
+			mask->width = 10 * mask->width + curr_elem - '0';
+			++count;
+			curr_elem = *(format_spec + count);
+		}
 	}
-	while (ft_isdigit(curr_elem))
-	{
-		mask->width = 10 * mask->width + curr_elem - '0';
-		++count;
-		curr_elem = *(format_spec + count);
-	}
-	if (curr_elem == '*')
+	else if (curr_elem == '*')
 	{
 		mask->mask |= SPEC_ASTERISK;
 		++count;
@@ -84,17 +84,19 @@ int	ft_mask_prescision(const char *format_spec, t_mask *mask)
 		mask->mask |= SPEC_DOTASTERISK;
 		++count;
 	}
-	else
+	else if (ft_isdigit(curr_elem))
 	{
 		mask->mask |= SPEC_DOTNUM;
 		mask->prescision = 0;
+		while (ft_isdigit(curr_elem))
+		{
+			mask->prescision = 10 * mask->prescision + curr_elem - '0';
+			++count;
+			curr_elem = *(format_spec + count);
+		}
 	}
-	while (ft_isdigit(curr_elem))
-	{
-		mask->prescision = 10 * mask->prescision + curr_elem - '0';
-		++count;
-		curr_elem = *(format_spec + count);
-	}
+	else
+		return (0);
 	return (count);
 }
 

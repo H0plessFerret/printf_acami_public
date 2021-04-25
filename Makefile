@@ -30,7 +30,8 @@ RM			= rm -f
 .c.o:		
 			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-$(NAME):	$(OBJS) $(HEADERS)
+$(NAME):	$(OBJS)
+			@make -sC ./libft/ all
 			$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 			$(LIBRAN) $(NAME)
 
