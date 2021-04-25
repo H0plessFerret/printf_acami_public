@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:23:08 by acami             #+#    #+#             */
-/*   Updated: 2021/04/25 18:40:27 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/25 19:13:20 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,11 @@
 # define	SPEC_H				16777216
 # define	SPEC_L				33554432
 # define	SPEC_LL				67108864
-# define	SPEC_J				134217728
-# define	SPEC_Z				268435456
-# define	SPEC_T				536870912
-# define	SPEC_L_UPPERCASE	1073741824
 
 # define	SPEC_HAS_FLAGS		507904
 # define	SPEC_HAS_WIDTH		1572864
 # define	SPEC_HAS_PRESCISION	6291456
-# define	SPEC_HAS_LENGTH		2139095040
+# define	SPEC_HAS_LENGTH		125829120
 
 # define	SPEC_IS_FLOAT		480
 # define	SPEC_IS_UNSIGNED	30

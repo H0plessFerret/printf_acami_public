@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 18:18:35 by acami             #+#    #+#             */
-/*   Updated: 2021/04/25 15:32:23 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/25 19:12:21 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,14 +114,6 @@ int	ft_mask_length(const char *format_spec, t_mask *mask)
 		mask->mask |= SPEC_H;
 	else if (*format_spec == 'l')
 		mask->mask |= SPEC_L;
-	else if (*format_spec == 'j')
-		mask->mask |= SPEC_J;
-	else if (*format_spec == 'z')
-		mask->mask |= SPEC_Z;
-	else if (*format_spec == 't')
-		mask->mask |= SPEC_T;
-	else if (*format_spec == 'L')
-		mask->mask |= SPEC_L_UPPERCASE;
 	if ((mask->mask & SPEC_HAS_LENGTH) != 0)
 		return (1);
 	return (0);
