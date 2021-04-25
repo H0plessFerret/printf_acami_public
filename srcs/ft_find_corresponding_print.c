@@ -6,14 +6,15 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 19:46:55 by acami             #+#    #+#             */
-/*   Updated: 2021/04/25 15:46:06 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/25 18:10:28 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 #include "../headers/ft_print_type.h"
 
-static int	(*ft_find_corresponding_print_bonus(t_mask *mask))(void *data, t_mask *mask)
+static int	(*ft_find_corresponding_print_bonus(t_mask *mask))(void *data,
+t_mask *mask)
 {
 	if ((mask->mask & SPEC_O) != 0)
 		return (ft_print_oct);

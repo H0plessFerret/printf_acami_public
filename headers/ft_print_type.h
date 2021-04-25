@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:56:26 by acami             #+#    #+#             */
-/*   Updated: 2021/04/25 15:27:38 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/25 18:09:59 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ int	ft_save_printed(void *elem, int saved);
 int	ft_print_char_n(char sym, int amount_of_times);
 
 // Prints an unsigned integer of the base on the standard output
-int	ft_put_unsignednbr_base(size_t nbr, char *base, t_mask *mask);
+int	ft_put_unsignednbr_base(unsigned long long nbr, char *base, t_mask *mask);
 
 // Prints an absolute value of a signed integer of the base on standard output
-int	ft_put_abs_nbr_base(int64_t nbr, char *base, t_mask *mask);
+int	ft_put_abs_nbr_base(long long int nbr, char *base, t_mask *mask);
 
 #endif

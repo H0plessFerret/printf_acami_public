@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 14:10:23 by acami             #+#    #+#             */
-/*   Updated: 2021/04/25 15:37:57 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/25 18:09:36 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_print_string(void *elem, t_mask *mask)
 {
 	char	*str;
 
-	str = (char *)elem;
+	str = *(char **)elem;
 	(void)mask;
 	return (write(1, str, ft_strlen(str)));
 }
@@ -45,11 +45,11 @@ static void	ft_strrev(char *str, size_t len)
 	}
 }
 
-int	ft_put_unsignednbr_base(size_t nbr, char *base, t_mask *mask)
+int	ft_put_unsignednbr_base(unsigned long long nbr, char *base, t_mask *mask)
 {
-	size_t	count;
-	size_t	divider;
-	char	res[65];
+	size_t				count;
+	unsigned long long	divider;
+	char				res[65];
 
 	count = 0;
 	divider = ft_strlen(base);
@@ -66,11 +66,11 @@ int	ft_put_unsignednbr_base(size_t nbr, char *base, t_mask *mask)
 	return (write(1, res, count));
 }
 
-int	ft_put_abs_nbr_base(int64_t nbr, char *base, t_mask *mask)
+int	ft_put_abs_nbr_base(long long int nbr, char *base, t_mask *mask)
 {
-	size_t	count;
-	int		divider;
-	char	res[65];
+	size_t			count;
+	long long int	divider;
+	char			res[65];
 
 	count = 0;
 	divider = ft_strlen(base);

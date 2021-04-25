@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 19:15:25 by acami             #+#    #+#             */
-/*   Updated: 2021/04/25 16:45:25 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/25 18:11:54 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,8 @@ t_mask *mask))
 
 	count = 0;
 	data = ft_extract_info_from_arglist(arg_list, mask);
+	if (data == NULL)
+		return (0);
+	free(data);
 	return (count);
 }
