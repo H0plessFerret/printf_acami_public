@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:56:26 by acami             #+#    #+#             */
-/*   Updated: 2021/04/25 18:09:59 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/25 18:49:56 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	ft_print_hex_float(void *elem, t_mask *mask);
 int	ft_save_printed(void *elem, int saved);
 
 // Prints sym on standard output amount_of_times times
-int	ft_print_char_n(char sym, int amount_of_times);
+int	ft_print_char_n_times(char sym, int amount_of_times);
 
 // Prints an unsigned integer of the base on the standard output
 int	ft_put_unsignednbr_base(unsigned long long nbr, char *base, t_mask *mask);

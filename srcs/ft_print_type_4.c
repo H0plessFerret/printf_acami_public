@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/25 18:11:27 by acami             #+#    #+#             */
-/*   Updated: 2021/04/25 18:11:29 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/25 18:43:18 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	ft_print_oct(void *elem, t_mask *mask)
 {
-	return (ft_put_unsignednbr_base(*(unsigned int *)elem, "01234567", mask));
+	return (ft_put_unsignednbr_base(*(unsigned long long *)elem,
+			"01234567", mask));
 }
 
 static int	ft_print_mantis(double f_elem, t_mask *mask)

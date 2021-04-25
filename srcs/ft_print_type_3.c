@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 15:06:19 by acami             #+#    #+#             */
-/*   Updated: 2021/04/25 18:10:55 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/25 18:49:49 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_print_percent_sign(void *elem, t_mask *mask)
 	return (write(1, "%", 1));
 }
 
-int	ft_print_char_n(char sym, int amount_of_times)
+int	ft_print_char_n_times(char sym, int amount_of_times)
 {
 	int	count;
 
