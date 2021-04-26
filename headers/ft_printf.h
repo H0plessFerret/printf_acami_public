@@ -44,8 +44,10 @@ struct s_mask {
 	bool		free_space:	1;
 	bool		print_sign: 1;
 	bool		uppercase: 1;
+	bool		is_negative: 1;
 	int			width;
 	int			prescision;
+	int			symbols_printed;
 	char		specifier;
 	t_length	length_modifiers;
 };
