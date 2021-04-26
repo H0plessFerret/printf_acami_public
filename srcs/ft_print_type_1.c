@@ -13,23 +13,6 @@
 #include "../headers/ft_print_type.h"
 #include "../libft/libft.h"
 
-int	ft_print_char(void *elem, t_mask *mask)
-{
-	(void)mask;
-	return (write(1, *(int *)(elem), 1));
-}
-
-int	ft_print_string(void *elem, t_mask *mask)
-{
-	char	*str;
-
-	str = *(char **)elem;
-	(void)mask;
-	if (str == NULL)
-		str = "(null)";
-	return (write(1, str, ft_strlen(str)));
-}
-
 static void	ft_strrev(char *str, size_t len)
 {
 	size_t	count;
@@ -47,48 +30,82 @@ static void	ft_strrev(char *str, size_t len)
 	}
 }
 
-int	ft_put_unsignednbr_base(unsigned long long nbr, char *base,
-t_mask *mask)
+char	*ft_put_unsignednbr_base(uintmax_t nbr, int base, t_mask *mask)
 {
-	size_t				count;
-	unsigned long long	divider;
-	char				res[65];
-
-	count = 0;
-	divider = ft_strlen(base);
-	if ((nbr == 0) && (mask->prescision != 0))
-		return (write(1, "0", 1));
-	while (nbr != 0)
-	{
-		*(res + count) = *(base + (nbr % divider));
-		nbr = (nbr / divider);
-		++count;
-	}
-	*(res + count) = '\0';
-	ft_strrev(res, count);
-	return (write(1, res, count));
-}
-
-char	*ft_put_abs_nbr_base(long long nbr, int base, t_mask *mask)
-{
-	const char	*symbols = "0123456789abcdef";
+	const char	*base_symbols = "0123456789abcdef";
 	size_t		count;
 	static char	res[65];
 
 	count = 0;
-	if (nbr > 0)
-		nbr = nbr * -1;
 	if ((nbr == 0) && (mask->prescision != 0))
 		write(1, "0", 1);
 	while (nbr != 0)
 	{
-		*(res + count) = symbols[-(nbr % base)];
+		*(res + count) = base_symbols[nbr % base];
 		nbr = (nbr / base);
 		++count;
 	}
 	*(res + count) = '\0';
 	ft_strrev(res, count);
-	if (mask->mask & SPEC_X_UPPERCASE)
+	if (mask->uppercase)
 		ft_toupper(res);
 	return (res);
 }
+
+int	ft_print_signed(va_list arg_list, t_mask *mask)
+{
+	intmax_t	num;
+	int			base;
+	char		*buff;
+	char		sign;
+
+	num = ft_pull_signed(arg_list, mask); //hh h l ll z j ...
+	if (num < 0)
+	{
+		buff = ft_put_unsignednbr_base(num * -1, 16, mask);
+	}
+	else
+	{
+		buff = ft_put_unsignednbr_base(num, 16, mask);
+	}
+	return (ft_magic_write(buff, ft_strlen(buff), mask));
+}
+
+int	ft_print_unsigned(va_list arg_list, t_mask *mask)
+{
+	uintmax_t	num;
+	int			base;
+	char		*buff;
+
+	num = ft_pull_unsigned(arg_list, mask); //hh h l ll z j ...
+	if (mask->mask & SPEC_X_UPPERCASE)
+		base = 16;
+	buff = ft_put_unsignednbr_base(num, 16, mask);
+	return (ft_magic_write(buff, ft_strlen(buff), mask));
+}
+
+int	ft_print_percent_sign(va_list arg_list, t_mask *mask)
+{
+	(void)mask;
+	return (write(1, "%", 1));
+}
+
+int	ft_print_char(va_list arg_list, t_mask *mask)
+{
+	char	c;
+
+	c = va_arg(arg_list, int);
+	return (ft_magic_write(&c, 1, mask));
+}
+
+int	ft_print_string(va_list arg_list, t_mask *mask)
+{
+	char	*str;
+
+	str = va_arg(arg_list, char *);
+	if (str == NULL)
+		str = "(null)";
+	return (ft_magic_write(str, ft_strlen(str), mask));
+}
+
+int	ft_print_float(va_list arg_list, t_mask *mask);

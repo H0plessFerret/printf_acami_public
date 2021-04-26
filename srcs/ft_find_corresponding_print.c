@@ -13,42 +13,32 @@
 #include "../headers/ft_printf.h"
 #include "../headers/ft_print_type.h"
 
-static t_print_fn	ft_find_corresponding_print_bonus(t_mask *mask)
-{
-	if ((mask->mask & SPEC_O) != 0)
-		return (ft_print_oct);
-	else if ((mask->mask & SPEC_F) != 0)
-		return (ft_print_abs_float);
-	else if ((mask->mask & SPEC_E) != 0)
-		return (ft_print_scientific);
-	else if ((mask->mask & SPEC_G) != 0)
-		return (ft_print_e_f);
-	else if ((mask->mask & SPEC_N) != 0)
-		return (ft_save_printed);
-	else if ((mask->mask & SPEC_A) != 0)
-		return (ft_print_hex_float);
-	else
-		return (NULL);
-}
+# define ASCII_MAX 127
 
 t_print_fn	printft_find_corresponding_print(t_mask *mask)
 {
-	if ((mask->mask & SPEC_C) != 0)
-		return (ft_print_char);
-	else if ((mask->mask & SPEC_S) != 0)
-		return (ft_print_string);
-	else if ((mask->mask & SPEC_P) != 0)
-		return (ft_print_pointer);
-	else if ((mask->mask & SPEC_D_I) != 0)
-		return (ft_print_abs_int);
-	else if ((mask->mask & SPEC_U) != 0)
-		return (ft_print_uint);
-	else if ((mask->mask & SPEC_X) != 0)
-		return (ft_print_hex);
-	else if ((mask->mask & SPEC_X_UPPERCASE) != 0)
-		return (ft_print_hex_upper);
-	else if ((mask->mask & SPEC_PERCENT) != 0)
-		return (ft_print_percent_sign);
-	else
-		return (ft_find_corresponding_print_bonus(mask));
+	static const t_print_fn print_fns[ASCII_MAX] = {
+		['%'] = ft_print_percent,
+		['d'] = ft_print_signed,
+		['i'] = ft_print_signed,
+		['D'] = ft_print_signed,
+		['b'] = ft_print_unsigned,
+		['o'] = ft_print_unsigned,
+		['u'] = ft_print_unsigned,
+		['x'] = ft_print_unsigned,
+		['X'] = ft_print_unsigned,
+		['O'] = ft_print_unsigned,
+		['U'] = ft_print_unsigned,
+		['p'] = ft_print_pointer,
+		['f'] = ft_print_float,
+		['F'] = ft_print_float,
+		['e'] = ft_print_float,
+		['E'] = ft_print_float,
+		['g'] = ft_print_float,
+		['G'] = ft_print_float,
+		['s'] = ft_print_string,
+		['c'] = ft_print_char
+	};
+
+​	return (print_fns[c & ASCII_MAX]);
 }

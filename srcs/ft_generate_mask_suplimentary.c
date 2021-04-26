@@ -23,18 +23,18 @@ int	ft_mask_flags(const char *format_spec, t_mask *mask)
 	{
 		curr_elem = *(format_spec + count);
 		if (curr_elem == '-')
-			mask->mask |= SPEC_MINUS;
+			mask->left_adjusted = true;
 		else if (curr_elem == '+')
-			mask->mask |= SPEC_PLUS;
+			mask->print_sign = true;
 		else if (curr_elem == ' ')
 		{
-			if ((mask->mask & SPEC_PLUS) == 0)
-				mask->mask |= SPEC_SPACE;
+			if (mask->print_sign)
+				mask->free_space = true;
 		}
 		else if (curr_elem == '#')
-			mask->mask |= SPEC_HASHTAG;
+			mask->alternative_mode = true;
 		else if (curr_elem == '0')
-			mask->mask |= SPEC_ZERO;
+			mask->zero_padding = true;
 		else
 			break ;
 		++count;
@@ -42,17 +42,21 @@ int	ft_mask_flags(const char *format_spec, t_mask *mask)
 	return (count);
 }
 
-int	ft_mask_width(const char *format_spec, t_mask *mask)
+int	ft_mask_width(const char *format_spec, t_mask *mask, va_list *arg_list)
 {
 	char	curr_elem;
 	int		count;
 
 	count = 0;
-	mask->width = -1;
+	mask->width = NOT_SET;
 	curr_elem = *format_spec;
-	if (ft_isdigit(curr_elem))
+	if (curr_elem == '*')
 	{
-		mask->mask |= SPEC_NUM;
+		mask->width = va_arg(*arg_list, int);
+		++count;
+	}
+	else if (ft_isdigit(curr_elem))
+	{
 		mask->width = 0;
 		while (ft_isdigit(curr_elem))
 		{
@@ -61,42 +65,32 @@ int	ft_mask_width(const char *format_spec, t_mask *mask)
 			curr_elem = *(format_spec + count);
 		}
 	}
-	else if (curr_elem == '*')
-	{
-		mask->mask |= SPEC_ASTERISK;
-		++count;
-	}
 	return (count);
 }
 
-int	ft_mask_prescision(const char *format_spec, t_mask *mask)
+int	ft_mask_prescision(const char *format_spec, t_mask *mask, va_list *arg_list)
 {
 	char	curr_elem;
 	int		count;
 
-	mask->prescision = -1;
+	mask->prescision = NOT_SET;
 	if (*format_spec != '.')
 		return (0);
 	count = 1;
+	mask->prescision = 0;
 	curr_elem = *(format_spec + count);
 	if (curr_elem == '*')
 	{
-		mask->mask |= SPEC_DOTASTERISK;
+		mask->prescision = va_arg(*arg_list, int);
 		++count;
 	}
-	else if (ft_isdigit(curr_elem))
-	{
-		mask->mask |= SPEC_DOTNUM;
-		mask->prescision = 0;
+	else
 		while (ft_isdigit(curr_elem))
 		{
 			mask->prescision = 10 * mask->prescision + curr_elem - '0';
 			++count;
 			curr_elem = *(format_spec + count);
 		}
-	}
-	else
-		return (0);
 	return (count);
 }
 

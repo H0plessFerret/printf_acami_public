@@ -61,15 +61,15 @@ static int	ft_mask_specifier_extra(const char *format_spec, t_mask *mask)
 	return (1);
 }
 
-t_mask	*ft_generate_mask(const char **format_spec, t_mask *mask)
+t_mask	*ft_generate_mask(const char **format_spec, t_mask *mask, va_list *arg_list)
 {
 	int		elems_passed;
 
 	mask->mask = 0;
 	elems_passed = 1;
 	elems_passed += ft_mask_flags(*format_spec + elems_passed, mask);
-	elems_passed += ft_mask_width(*format_spec + elems_passed, mask);
-	elems_passed += ft_mask_prescision(*format_spec + elems_passed, mask);
+	elems_passed += ft_mask_width(*format_spec + elems_passed, mask, arg_list);
+	elems_passed += ft_mask_prescision(*format_spec + elems_passed, mask, arg_list);
 	elems_passed += ft_mask_length(*format_spec + elems_passed, mask);
 	if (ft_mask_specifier(*format_spec + elems_passed, mask) == -1)
 	{
