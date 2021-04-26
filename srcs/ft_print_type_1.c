@@ -33,9 +33,9 @@ static void	ft_strrev(char *str, size_t len)
 
 char	*ft_put_unsignednbr_base(uintmax_t nbr, int base, t_mask *mask)
 {
-	const char	*base_symbols = "0123456789abcdef";
-	size_t		count;
-	static char	res[65];
+	static const char	*base_symbols = "0123456789abcdef";
+	size_t				count;
+	static char			res[65];
 
 	count = 0;
 	if ((nbr == 0) && (mask->prescision != 0))
@@ -170,7 +170,7 @@ static int	ft_put_mantis(double f_elem, t_mask *mask)
 	return (count);
 }
 
-int	ft_put_abs_float(void *elem, t_mask *mask)
+int	ft_put_unsigned_float_base(void *elem, t_mask *mask)
 {
 	double	f_elem;
 	int64_t	num;
