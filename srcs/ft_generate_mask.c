@@ -21,6 +21,7 @@ static void		ft_initialize_mask(t_mask *mask)
 	mask->free_space = false;
 	mask->print_sign = false;
 	mask->uppercase = false;
+	mask->is_negative = false;
 	mask->width = NOT_SET;
 	mask->prescision = NOT_SET;
 	mask->specifier = NOT_SET;
@@ -31,7 +32,6 @@ static void		ft_initialize_mask(t_mask *mask)
 	mask->length_modifiers.is_L = false;
 	mask->length_modifiers.is_j = false;
 	mask->length_modifiers.is_z = false;
-	mask->length_modifiers.is_t = false;
 }
 
 bool	ft_generate_mask(const char **format_spec, t_mask *mask, va_list *arg_list)
@@ -39,7 +39,7 @@ bool	ft_generate_mask(const char **format_spec, t_mask *mask, va_list *arg_list)
 	int		elems_passed;
 	static char	*allowed_values;
 
-	allowed_values = "diouxXefgacspn%";
+	allowed_values = "%diouxXpfFeEgGscn";
 	ft_initialize_mask(mask);
 	elems_passed = 1;
 	elems_passed += ft_mask_flags(*format_spec + elems_passed, mask);

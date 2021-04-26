@@ -12,7 +12,7 @@
 
 #include "../headers/ft_printf.h"
 
-int	ft_print_till_percent(const char **format_spec)
+int	ft_dprint_till_percent(int fd, const char **format_spec)
 {
 	int	count;
 
@@ -20,7 +20,7 @@ int	ft_print_till_percent(const char **format_spec)
 	while (*(*format_spec + count) != '\0'
 		&& *(*format_spec + count) != '%')
 		++count;
-	write(1, *format_spec, count);
+	write(fd, *format_spec, count);
 	*format_spec += count;
 	return (count);
 }

@@ -116,8 +116,6 @@ int	ft_mask_length(const char *format_spec, t_mask *mask)
 		mask->length_modifiers.is_j = true;
 	else if (*format_spec == 'z')
 		mask->length_modifiers.is_z = true;
-	else if (*format_spec == 't')
-		mask->length_modifiers.is_t = true;
 	else
 		return (0);
 	return (1);

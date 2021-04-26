@@ -13,25 +13,18 @@
 #include "../headers/ft_printf.h"
 #include "../headers/ft_print_type.h"
 
-# define ASCII_MAX 127
-
 t_print_fn	printft_find_corresponding_print(t_mask *mask)
 {
 	static const t_print_fn print_fns[ASCII_MAX] = {
 		['%'] = ft_print_percent,
 		['d'] = ft_print_signed,
 		['i'] = ft_print_signed,
-		['D'] = ft_print_signed,
-		['b'] = ft_print_unsigned,
 		['o'] = ft_print_unsigned,
 		['u'] = ft_print_unsigned,
 		['x'] = ft_print_unsigned,
 		['X'] = ft_print_unsigned,
-		['O'] = ft_print_unsigned,
-		['U'] = ft_print_unsigned,
 		['p'] = ft_print_pointer,
 		['f'] = ft_print_float,
-		['F'] = ft_print_float,
 		['e'] = ft_print_float,
 		['E'] = ft_print_float,
 		['g'] = ft_print_float,

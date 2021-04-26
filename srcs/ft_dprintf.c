@@ -25,24 +25,23 @@ int	ft_dprintf(int fd, const char *format_spec, ...)
 
 int	ft_vdprintf(int fd, const char *format_spec, va_list arg_list)
 {
-	t_mask	mask;
-	int		count;
+	t_mask		mask;
+	t_print_fn	print_fn;
 
-	count = 0;
-	va_start(arg_list, format_spec);
-	count += ft_print_till_percent(&format_spec);
+	mask.symbols_printed = 0;
+	mask.symbols_printed += ft_dprint_till_percent(fd, &format_spec);
 	while (*format_spec != '\0')
 	{
 		ft_generate_mask(&format_spec, &mask, arg_list);
 		if (mask.specifier == NOT_SET)
-			++count;
+			++(mask.symbols_printed);
 		else
 		{
-			count += ft_print_by_arg(&arg_list, &mask,
-					ft_find_corresponding_print(&mask));
+			print_fn = ft_find_corresponding_print(&mask);
+			if (print_fn != NULL)
+				mask.symbols_printed += (*print_fn)(&arg_list, &mask);
 		}
-		count += ft_print_till_percent(&format_spec);
+		mask.symbols_printed += ft_print_till_percent(&format_spec);
 	}
-	va_end(arg_list);
-	return (count);
+	return (mask.symbols_printed);
 }

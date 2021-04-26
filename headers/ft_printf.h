@@ -19,10 +19,10 @@
 # include <stddef.h>
 # include <stdint.h>
 # include <stdbool.h>
+# include <wchar.h>
 
 # define	NOT_SET			-1
 # define	ASCII_MAX		127
-# define	SPECS_SUPPORTED	15
 
 typedef struct s_length	t_length;
 typedef struct s_mask	t_mask;
@@ -35,7 +35,6 @@ struct s_length {
 	bool	is_L: 1;
 	bool	is_j: 1;
 	bool	is_z: 1;
-	bool	is_t: 1;
 };
 
 struct s_mask {
@@ -51,15 +50,15 @@ struct s_mask {
 	t_length	length_modifiers;
 };
 
-typedef int	(*t_print_fn)(void *, t_mask *);
+typedef int	(*t_print_fn)(va_list *arg_list, t_mask *mask);
 
 int			ft_printf(const char *format_str, ...);
 int			ft_dprintf(int fd, const char *format, ...);
-int			ft_sprintf(char *str, const char *format, ...);
+//int			ft_sprintf(char *str, const char *format, ...);
 
-int			ft_vprintf(const char *format_str, ...);
-int			ft_dvprintf(int fd, const char *format, ...);
-int			ft_svprintf(char *str, const char *format, ...);
+int			ft_vprintf(const char *format_str, va_list arg_list);
+int			ft_dvprintf(int fd, const char *format, va_list arg_list);
+//int			ft_svprintf(char *str, const char *format, va_list arg_list);
 
 // prints symbols into standart output while % was not encountered
 // returns the amount of symbols printed
