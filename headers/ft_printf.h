@@ -20,7 +20,9 @@
 # include <stdint.h>
 # include <stdbool.h>
 
-# define	NOT_SET	-1
+# define	NOT_SET			-1
+# define	ASCII_MAX		127
+# define	SPECS_SUPPORTED	15
 
 typedef struct s_length	t_length;
 typedef struct s_mask	t_mask;
@@ -61,24 +63,20 @@ int			ft_svprintf(char *str, const char *format, ...);
 
 // prints symbols into standart output while % was not encountered
 // returns the amount of symbols printed
-int			ft_print_till_percent(const char **format_str);
+int			ft_dprint_till_percent(int fd, const char **format_str);
 
 // returns an integer - an amount of symbols read in format_str
-// modifies mask with all found flags
 int			ft_mask_flags(const char *format_str, t_mask *mask);
 
 // returns an integer - an amount of symbols read in format_str
-// modifies mask with all found width parameters
 int			ft_mask_width(const char *format_str, t_mask *mask,
 va_list *arg_list);
 
 // returns an integer - an amount of symbols read in format_str
-// modifies mask with all found prescision parameters
 int			ft_mask_prescision(const char *format_str, t_mask *mask,
 va_list *arg_list);
 
 // returns an integer - an amount of symbols read in format_str
-// modifies mask with all found length parameters
 int			ft_mask_length(const char *format_str, t_mask *mask);
 
 // returns 1 if masking process is successful, 0 otherwise

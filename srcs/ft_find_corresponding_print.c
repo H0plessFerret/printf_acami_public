@@ -39,6 +39,6 @@ t_print_fn	printft_find_corresponding_print(t_mask *mask)
 		['s'] = ft_print_string,
 		['c'] = ft_print_char
 	};
-
-​	return (print_fns[c & ASCII_MAX]);
+	
+	return (print_fns[mask->specifier & ASCII_MAX]);
 }

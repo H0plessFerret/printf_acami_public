@@ -98,19 +98,27 @@ int	ft_mask_length(const char *format_spec, t_mask *mask)
 {
 	if (*format_spec == 'h' && *(format_spec + 1) == 'h')
 	{
-		mask->mask |= SPEC_HH;
+		mask->length_modifiers.is_hh = true;
 		return (2);
 	}
 	if (*format_spec == 'l' && *(format_spec + 1) == 'l')
 	{
-		mask->mask |= SPEC_LL;
+		mask->length_modifiers.is_ll = true;
 		return (2);
 	}
 	if (*format_spec == 'h')
-		mask->mask |= SPEC_H;
+		mask->length_modifiers.is_h = true;
 	else if (*format_spec == 'l')
-		mask->mask |= SPEC_L;
-	if ((mask->mask & SPEC_HAS_LENGTH) != 0)
-		return (1);
-	return (0);
+		mask->length_modifiers.is_l = true;
+	else if (*format_spec == 'L')
+		mask->length_modifiers.is_L = true;
+	else if (*format_spec == 'j')
+		mask->length_modifiers.is_j = true;
+	else if (*format_spec == 'z')
+		mask->length_modifiers.is_z = true;
+	else if (*format_spec == 't')
+		mask->length_modifiers.is_t = true;
+	else
+		return (0);
+	return (1);
 }

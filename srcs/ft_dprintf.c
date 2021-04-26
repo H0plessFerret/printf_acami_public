@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_dprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 19:11:36 by acami             #+#    #+#             */
-/*   Updated: 2021/04/25 16:41:18 by acami            ###   ########.fr       */
+/*   Created: 2021/04/26 20:45:03 by acami             #+#    #+#             */
+/*   Updated: 2021/04/26 20:45:03 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
-#include "../headers/ft_print_type.h"
+#include "ft_printf.h"
 
-int	ft_printf(const char *format_spec, ...)
+int	ft_dprintf(int fd, const char *format_spec, ...)
 {
 	va_list	arg_list;
+	int		count;
+
+	va_start(arg_list, format_spec);
+	count = ft_vdprintf(fd, format_spec, arg_list);
+	va_end(arg_list);
+	return (count);
+}
+
+int	ft_vdprintf(int fd, const char *format_spec, va_list arg_list)
+{
 	t_mask	mask;
 	int		count;
 

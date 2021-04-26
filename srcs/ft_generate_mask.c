@@ -13,72 +13,46 @@
 #include "../headers/ft_printf.h"
 #include "../libft/libft.h"
 
-static int	ft_mask_specifier(const char *format_spec, t_mask *mask)
+static void		ft_initialize_mask(t_mask *mask)
 {
-	char	curr_elem;
-
-	curr_elem = *format_spec;
-	if (curr_elem == 'd' || curr_elem == 'i')
-		mask->mask |= SPEC_D_I;
-	else if (curr_elem == 'u')
-		mask->mask |= SPEC_U;
-	else if (curr_elem == 'x')
-		mask->mask |= SPEC_X;
-	else if (curr_elem == 'X')
-		mask->mask |= SPEC_X_UPPERCASE;
-	else if (curr_elem == 'c')
-		mask->mask |= SPEC_C;
-	else if (curr_elem == 's')
-		mask->mask |= SPEC_S;
-	else if (curr_elem == 'p')
-		mask->mask |= SPEC_P;
-	else if (curr_elem == 'n')
-		mask->mask |= SPEC_N;
-	else if (curr_elem == '%')
-		mask->mask |= SPEC_PERCENT;
-	else
-		return (ft_mask_specifier_extra(format_spec, mask));
-	return (1);
+	mask->alternative_mode = false;
+	mask->left_adjusted	= false;
+	mask->zero_padding = false;
+	mask->free_space = false;
+	mask->print_sign = false;
+	mask->uppercase = false;
+	mask->width = NOT_SET;
+	mask->prescision = NOT_SET;
+	mask->specifier = NOT_SET;
+	mask->length_modifiers.is_hh = false;
+	mask->length_modifiers.is_h = false;
+	mask->length_modifiers.is_l = false;
+	mask->length_modifiers.is_ll = false;
+	mask->length_modifiers.is_L = false;
+	mask->length_modifiers.is_j = false;
+	mask->length_modifiers.is_z = false;
+	mask->length_modifiers.is_t = false;
 }
 
-static int	ft_mask_specifier_extra(const char *format_spec, t_mask *mask)
-{
-	char	curr_elem;
-
-	curr_elem = *format_spec;
-	if (curr_elem == 'o')
-		mask->mask |= SPEC_O;
-	else if (curr_elem == 'f')
-		mask->mask |= SPEC_F;
-	else if (curr_elem == 'e')
-		mask->mask |= SPEC_E;
-	else if (curr_elem == 'g')
-		mask->mask |= SPEC_G;
-	else if (curr_elem == 'a')
-		mask->mask |= SPEC_A;
-	else
-		return (-1);
-	return (1);
-}
-
-t_mask	*ft_generate_mask(const char **format_spec, t_mask *mask, va_list *arg_list)
+bool	ft_generate_mask(const char **format_spec, t_mask *mask, va_list *arg_list)
 {
 	int		elems_passed;
+	static char	*allowed_values;
 
-	mask->mask = 0;
+	allowed_values = "diouxXefgacspn%";
+	ft_initialize_mask(mask);
 	elems_passed = 1;
 	elems_passed += ft_mask_flags(*format_spec + elems_passed, mask);
 	elems_passed += ft_mask_width(*format_spec + elems_passed, mask, arg_list);
 	elems_passed += ft_mask_prescision(*format_spec + elems_passed, mask, arg_list);
 	elems_passed += ft_mask_length(*format_spec + elems_passed, mask);
-	if (ft_mask_specifier(*format_spec + elems_passed, mask) == -1)
+	if (ft_strchr(allowed_values, (int)format_spec[elems_passed]) != NULL)
 	{
-		write(1, *format_spec, 1);
-		elems_passed = 1;
-		mask->mask = 0;
-		mask->width = -1;
-		mask->prescision = -1;
+		mask->width = NOT_SET;
+		mask->prescision = NOT_SET;
+		return (false);
 	}
-	*format_spec += elems_passed;
-	return (mask);
+	mask->specifier = *(format_spec + elems_passed);
+	*format_spec += elems_passed + 1;
+	return (true);
 }
