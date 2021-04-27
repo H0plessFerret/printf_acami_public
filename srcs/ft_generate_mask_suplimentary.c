@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 18:18:35 by acami             #+#    #+#             */
-/*   Updated: 2021/04/25 19:12:21 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/27 15:22:22 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,14 @@ int	ft_mask_prescision(const char *format_spec, t_mask *mask, va_list *arg_list)
 		++count;
 	}
 	else
+	{
 		while (ft_isdigit(curr_elem))
 		{
 			mask->prescision = 10 * mask->prescision + curr_elem - '0';
 			++count;
 			curr_elem = *(format_spec + count);
 		}
+	}
 	return (count);
 }
 

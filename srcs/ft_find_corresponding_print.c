@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 19:46:55 by acami             #+#    #+#             */
-/*   Updated: 2021/04/25 18:10:28 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/27 13:59:43 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 t_print_fn	printft_find_corresponding_print(t_mask *mask)
 {
-	static const t_print_fn print_fns[ASCII_MAX] = {
+	static const t_print_fn	print_fns[ASCII_MAX] = {
 		['%'] = ft_print_percent,
 		['d'] = ft_print_signed,
 		['i'] = ft_print_signed,
@@ -34,6 +34,6 @@ t_print_fn	printft_find_corresponding_print(t_mask *mask)
 		['c'] = ft_print_char,
 		['n'] = ft_save_counter
 	};
-	
+
 	return (print_fns[mask->specifier & ASCII_MAX]);
 }

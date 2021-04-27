@@ -6,14 +6,14 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 15:04:49 by acami             #+#    #+#             */
-/*   Updated: 2021/04/25 15:43:45 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/27 15:27:02 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 #include "../libft/libft.h"
 
-static void		ft_initialize_mask(t_mask *mask)
+static void	ft_initialize_mask(t_mask *mask)
 {
 	mask->alternative_mode = false;
 	mask->left_adjusted	= false;
