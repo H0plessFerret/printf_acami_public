@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 14:10:23 by acami             #+#    #+#             */
-/*   Updated: 2021/04/27 15:27:48 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/27 16:14:50 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	ft_strrev(char *str, size_t len)
 	}
 }
 
-char	*ft_put_unsignednbr_base(uintmax_t nbr, int base, t_mask *mask)
+char	*ft_put_unsignednbr_base(uintmax_t nbr, int8_t base, t_mask *mask)
 {
 	static const char	*base_symbols;
 	size_t				count;
@@ -130,11 +130,51 @@ int	ft_save_counter(va_list *arg_list, t_mask *mask)
 	intmax_t	*to_write;
 
 	to_write = ft_pull_pointer(arg_list, &(mask->length_modifiers));
-	*to_write = mask->symbols_printed;
+	*to_write = (intmax_t)mask->symbols_printed;
 	return (0);
 }
 
+static int8_t	ft_unify_double(long double *nbr, int8_t base)
+{
+	int8_t	nbr_power;
 
+	nbr_power = 0;
+	while (nbr > base)
+	{
+		*nbr /= base;
+		++nbr_power;
+	}
+	while (nbr < 1)
+	{
+		*nbr *= base;
+		--nbr_power;
+	}
+	return (nbr_power);
+}
+
+char	*ft_put_float_abs_base(long double nbr, int8_t base, t_mask *mask)
+{
+	static const char	*base_symbols;
+	size_t				count;
+	int8_t				nbr_power;
+	static char			res[512];
+
+	count = 0;
+	base_symbols = "0123456789abcdef";
+	nbr_power = ft_unify_double(&nbr, base);
+
+	while (nbr != 0)
+	{
+		res[count] = base_symbols[nbr % base];
+		nbr = (nbr / base);
+		++count;
+	}
+	res[count] = '\0';
+	ft_strrev(res, count);
+	if (mask->uppercase)
+		ft_toupper(res);
+	return (res);
+}
 
 
 
