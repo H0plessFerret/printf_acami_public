@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 18:18:35 by acami             #+#    #+#             */
-/*   Updated: 2021/04/28 17:10:19 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/28 17:22:31 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_mask_flags(const char *format_spec, t_mask *mask)
 			mask->print_sign = true;
 		else if (curr_elem == ' ')
 		{
-			if (mask->print_sign)
+			if (mask->print_sign != true)
 				mask->free_space = true;
 		}
 		else if (curr_elem == '#')
