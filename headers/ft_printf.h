@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:23:08 by acami             #+#    #+#             */
-/*   Updated: 2021/04/27 15:22:31 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/28 16:00:35 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ struct s_length
 struct s_mask
 {
 	bool		alternative_mode : 1;
-	bool		left_adjusted : 1;
+	bool		left_justified : 1;
 	bool		zero_padding : 1;
 	bool		free_space :	1;
 	bool		print_sign : 1;
@@ -57,11 +57,11 @@ struct s_mask
 typedef int	(*t_print_fn)(va_list *arg_list, t_mask *mask);
 
 int			ft_printf(const char *format_str, ...);
-int			ft_dprintf(int fd, const char *format, ...);
+//int			ft_dprintf(int fd, const char *format, ...);
 //int			ft_sprintf(char *str, const char *format, ...);
 
-int			ft_vprintf(const char *format_str, va_list arg_list);
-int			ft_dvprintf(int fd, const char *format, va_list arg_list);
+int			ft_vprintf(const char *format_str, va_list *arg_list);
+//int			ft_vdprintf(int fd, const char *format, va_list arg_list);
 //int			ft_svprintf(char *str, const char *format, va_list arg_list);
 
 // prints symbols into standart output while % was not encountered

@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 18:18:35 by acami             #+#    #+#             */
-/*   Updated: 2021/04/27 15:22:22 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/28 15:09:46 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_mask_flags(const char *format_spec, t_mask *mask)
 	{
 		curr_elem = *(format_spec + count);
 		if (curr_elem == '-')
-			mask->left_adjusted = true;
+			mask->left_justified = true;
 		else if (curr_elem == '+')
 			mask->print_sign = true;
 		else if (curr_elem == ' ')

@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 15:04:49 by acami             #+#    #+#             */
-/*   Updated: 2021/04/27 15:27:02 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/28 15:59:05 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 static void	ft_initialize_mask(t_mask *mask)
 {
 	mask->alternative_mode = false;
-	mask->left_adjusted	= false;
+	mask->left_justified = false;
 	mask->zero_padding = false;
 	mask->free_space = false;
 	mask->print_sign = false;
@@ -34,17 +34,21 @@ static void	ft_initialize_mask(t_mask *mask)
 	mask->length_modifiers.is_z = false;
 }
 
-bool	ft_generate_mask(const char **format_spec, t_mask *mask, va_list *arg_list)
+bool	ft_generate_mask(const char **format_spec, t_mask *mask,
+va_list *arg_list)
 {
-	int		elems_passed;
+	int			elems_passed;
 	static char	*allowed_values;
+	static char	*uppercase_values;
 
 	allowed_values = "%diouxXpfFeEgGscn";
+	uppercase_values = "XFEG";
 	ft_initialize_mask(mask);
 	elems_passed = 1;
 	elems_passed += ft_mask_flags(*format_spec + elems_passed, mask);
 	elems_passed += ft_mask_width(*format_spec + elems_passed, mask, arg_list);
-	elems_passed += ft_mask_prescision(*format_spec + elems_passed, mask, arg_list);
+	elems_passed += ft_mask_prescision(*format_spec + elems_passed,
+			mask, arg_list);
 	elems_passed += ft_mask_length(*format_spec + elems_passed, mask);
 	if (ft_strchr(allowed_values, (int)format_spec[elems_passed]) != NULL)
 	{
@@ -52,7 +56,9 @@ bool	ft_generate_mask(const char **format_spec, t_mask *mask, va_list *arg_list)
 		mask->prescision = NOT_SET;
 		return (false);
 	}
-	mask->specifier = *(format_spec + elems_passed);
+	if (ft_strchr(uppercase_values, (int)format_spec[elems_passed]) != NULL)
+		mask->uppercase = true;
+	mask->specifier = *(*format_spec + elems_passed);
 	*format_spec += elems_passed + 1;
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 14:10:23 by acami             #+#    #+#             */
-/*   Updated: 2021/04/27 16:14:50 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/28 16:12:41 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*ft_put_unsignednbr_base(uintmax_t nbr, int8_t base, t_mask *mask)
 	res[count] = '\0';
 	ft_strrev(res, count);
 	if (mask->uppercase)
-		ft_toupper(res);
+		ft_strtoupper(res);
 	return (res);
 }
 
@@ -58,12 +58,12 @@ int	ft_print_signed(va_list *arg_list, t_mask *mask)
 {
 	intmax_t	num;
 	char		*buff;
-	char		sign;
-
+	
 	num = ft_pull_signed(arg_list, &(mask->length_modifiers));
 	if (num < 0)
 	{
 		mask->is_negative = true;
+		mask->print_sign = true;
 		buff = ft_put_unsignednbr_base((uintmax_t)(num * -1), 10, mask);
 	}
 	else
@@ -108,7 +108,14 @@ int	ft_print_string(va_list *arg_list, t_mask *mask)
 
 	str = ft_pull_pointer(arg_list, &(mask->length_modifiers));
 	if (str == NULL)
-		str = "(null)";
+	{
+		if (mask->prescision > 5)
+			str = "(null)";
+		else
+			str = "";
+	}
+	else if (mask->prescision != NOT_SET)
+		return (ft_elem_write(str, mask->prescision, mask));
 	return (ft_elem_write(str, ft_strlen(str), mask));
 }
 
@@ -134,17 +141,25 @@ int	ft_save_counter(va_list *arg_list, t_mask *mask)
 	return (0);
 }
 
+int	ft_print_float(va_list *arg_list, t_mask *mask)
+{
+	(void)arg_list;
+	(void)mask;
+	return (0);
+}
+
+/*
 static int8_t	ft_unify_double(long double *nbr, int8_t base)
 {
 	int8_t	nbr_power;
 
 	nbr_power = 0;
-	while (nbr > base)
+	while (*nbr > base)
 	{
 		*nbr /= base;
 		++nbr_power;
 	}
-	while (nbr < 1)
+	while (*nbr < 1)
 	{
 		*nbr *= base;
 		--nbr_power;
@@ -152,27 +167,70 @@ static int8_t	ft_unify_double(long double *nbr, int8_t base)
 	return (nbr_power);
 }
 
-char	*ft_put_float_abs_base(long double nbr, int8_t base, t_mask *mask)
+char	*ft_put_float_scientific_base(long double nbr, int8_t base, t_mask *mask,
+int8_t nbr_power);
+
+char	*ft_put_float_normal_base(long double nbr, int8_t base, t_mask *mask,
+int8_t nbr_power)
 {
-	static const char	*base_symbols;
-	size_t				count;
-	int8_t				nbr_power;
-	static char			res[512];
+	int8_t		integer_part;
+	size_t		curr_elem;
+	size_t		count;
+	static char	*base_symbols;
+	static char	res[8192];
+
+	curr_elem = 0;
+	base_symbols = "0123456789abcdef";
+	while (nbr_power > 0)
+	{
+		integer_part = (int8_t)nbr;
+		res[curr_elem] = base_symbols[integer_part];
+		nbr = (nbr - integer_part) * base;
+		--nbr_power;
+		++curr_elem;
+	}
+	if (mask->prescision != 0)
+	{
+		res[curr_elem] = '.';
+		++curr_elem;
+		count = 0;
+		while (count < mask->prescision)
+		{
+			integer_part = (int8_t)nbr;
+			res[curr_elem] = base_symbols[integer_part];
+			nbr = (nbr - integer_part) * base;
+			--nbr_power;
+			++curr_elem;
+		}
+	}
+	res[curr_elem] = '\0';
+	return (res);
+}
+
+char	*ft_put_unsignedfloat_base(long double nbr, int8_t base, t_mask *mask)
+{
+	size_t		count;
+	int8_t		nbr_power;
+	static char	res[512];
+	char		*buff;
+	char		*buff_sci;
 
 	count = 0;
-	base_symbols = "0123456789abcdef";
 	nbr_power = ft_unify_double(&nbr, base);
-
-	while (nbr != 0)
-	{
-		res[count] = base_symbols[nbr % base];
-		nbr = (nbr / base);
-		++count;
-	}
-	res[count] = '\0';
-	ft_strrev(res, count);
+	if (mask->specifier == 'e' || mask->specifier == 'E'
+			|| mask->specifier == 'g' || mask->specifier == 'G')
+		buff_sci = ft_put_float_scientific_base(nbr, base, mask, nbr_power);
+	if (mask->specifier != 'e' && mask->specifier != 'E')
+		buff = ft_put_float_normal_base(nbr, base, mask, nbr_power);
 	if (mask->uppercase)
 		ft_toupper(res);
+	if (mask->specifier == 'g' || mask->specifier == 'G')
+	{
+		if (ft_strlen(buff) > ft_strlen(buff_sci))
+			return (buff_sci);
+		return (buff);
+	}
+		
 	return (res);
 }
 
@@ -189,3 +247,4 @@ int	ft_print_float(va_list *arg_list, t_mask *mask)
 	base = 10;
 	return (ft_elem_write(buff, ft_strlen(buff), mask));
 }
+*/

@@ -6,14 +6,14 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 19:46:55 by acami             #+#    #+#             */
-/*   Updated: 2021/04/27 13:59:43 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/28 16:11:24 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
 #include "../headers/ft_print_type.h"
 
-t_print_fn	printft_find_corresponding_print(t_mask *mask)
+t_print_fn	ft_find_corresponding_print(t_mask *mask)
 {
 	static const t_print_fn	print_fns[ASCII_MAX] = {
 		['%'] = ft_print_percent,
