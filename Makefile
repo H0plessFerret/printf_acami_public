@@ -6,7 +6,7 @@
 #    By: acami <acami@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/20 20:01:41 by acami             #+#    #+#              #
-#    Updated: 2021/04/28 16:13:44 by acami            ###   ########.fr        #
+#    Updated: 2021/04/28 20:07:26 by acami            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJS		= $(SRCS:.c=.o)
 BONUS_OBJS	= $(BONUS_SRCS:.c=.o)
 DEBUG_OBJS	= $(DEBUG_SRC:.c=.o)
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -I $(HEADERS)
+CFLAGS		= -Wall -Wextra -Werror -g -I $(HEADERS)
 AR			= ar
 ARFLAGS		= rc
 LIBRAN		= ranlib
