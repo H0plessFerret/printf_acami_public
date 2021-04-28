@@ -8,18 +8,49 @@ printf("alternative_mode = %d\nleft_justified = %d\nzero_padding = %d\nfree_spac
 
 int		main ()
 {
-	//char	str[] = "%.**f %d\n";
 	//printf(str, 5, 7, 10, 11);
 	//ft_printf("%+- 0#10.15d", -1);
-	ft_printf("Testing %d:\n");
-	ft_printf("%d\n", 0);
-	ft_printf("%d\n", 1);
-	ft_printf("%d\n", -1);
-	ft_printf("%+d\n", 0);
-	ft_printf("%+d\n", 1012);
-	ft_printf("%+d\n", -123);
-	ft_printf("% d\n", 0);
-	ft_printf("% d\n", 1012);
-	ft_printf("% d\n", -123);
+	signed char		hhd = -1;
+	short int		hd = -1;
+	long int		ld = -1;
+	long long int	lld = -1;
+	intmax_t		jd = -1;
+	ssize_t			zd = -1;
+
+	ft_printf("Testing %%d\n");
+	ft_printf("Expected:0 :%d\n", 0);
+	ft_printf("Expected:1 :%d\n", 1);
+	ft_printf("Expected:-1 :%d\n", -1);
+	
+	ft_printf("Expected:+0 :%+d\n", 0);
+	ft_printf("Expected:+1012 :%+d\n", 1012);
+	ft_printf("Expected:-123 :%+d\n", -123);
+
+	ft_printf("Expected: 0 :% d\n", 0);
+	ft_printf("Expected: 1012 :% d\n", 1012);
+	ft_printf("Expected:-123 :% d\n", -123);
+
+	ft_printf("Expected: '  123' :'%5d'\n", 123);
+	ft_printf("Expected: '123456789' :'%5d'\n", 123456789);
+
+	ft_printf("Expected: '123  ' :'%-5d'\n", 123);
+	ft_printf("Expected: '123456789' :'%-5d'\n", 123456789);
+
+	ft_printf("Expected: '00123' :'%05d'\n", 123);
+	ft_printf("Expected: '123456789' :'%05d'\n", 123456789);
+
+	ft_printf("Expected: '123  ' :'%-05d'\n", 123);
+	ft_printf("Expected: '123456789' :'%-05d'\n", 123456789);
+
+	ft_printf("Expected: '+123 ' :'%+-05d'\n", 123);
+	ft_printf("Expected: '+123456789' :'%+-05d'\n", 123456789);
+
+	ft_printf("Expected:-1 :%hhd\n", hhd);
+	ft_printf("Expected:-1 :%hd\n", hd);
+	ft_printf("Expected:-1 :%ld\n", ld);
+	ft_printf("Expected:-1 :%lld\n", lld);
+	ft_printf("Expected:-1 :%jd\n", jd);
+	ft_printf("Expected:-1 :%zd\n", zd);
+
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 15:32:51 by acami             #+#    #+#             */
-/*   Updated: 2021/04/28 17:09:43 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/28 19:09:07 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	ft_elem_write(char *str, size_t str_len, t_mask *mask)
 	}
 	else if (mask->free_space == true && space_was_inserted == false)
 		count += write(1, " ", 1);
-	if (mask->zero_padding == true && mask->width != NOT_SET)
+	if (mask->left_justified == false && mask->zero_padding == true
+		&& mask->width != NOT_SET)
 		while ((str_len + count) < (size_t)(mask->width))
 			count += write(1, "0", 1);
 	count += write(1, str, str_len);
