@@ -14,20 +14,20 @@
 
 int	ft_elem_write(char *str, size_t str_len, t_mask *mask)
 {
-	int8_t	symbols_for_sign;
+	int8_t	sign_length;
 	bool	space_was_inserted;
 	int		count;
 	char	sign;
 
 	count = 0;
-	symbols_for_sign = mask->print_sign;
+	sign_length = mask->print_sign;
 	space_was_inserted = false;
 	if (mask->specifier == 'p')
-		symbols_for_sign = 2;
+		sign_length = 2;
 	if (mask->left_justified == false && mask->zero_padding == false
 		&& mask->width != NOT_SET)
 	{
-		while ((str_len + symbols_for_sign + count) < (size_t)(mask->width))
+		while ((str_len + sign_length + count) < (size_t)(mask->width))
 		{
 			space_was_inserted = true;
 			count += write(1, " ", 1);
