@@ -9,14 +9,13 @@ printf("alternative_mode = %d\nleft_justified = %d\nzero_padding = %d\nfree_spac
 int		main ()
 {
 	//printf(str, 5, 7, 10, 11);
-	//ft_printf("%+- 0#10.15d", -1);
-	signed char		hhd = -1;
-	short int		hd = -1;
-	long int		ld = -1;
-	long long int	lld = -1;
-	intmax_t		jd = -1;
-	ssize_t			zd = -1;
 
+	char test;
+
+	test = 'a';
+	ft_printf("%p\n", &test);
+	printf("%p", &test);
+/*
 	ft_printf("Testing %%d\n");
 	ft_printf("Expected:0 :%d\n", 0);
 	ft_printf("Expected:1 :%d\n", 1);
@@ -44,6 +43,15 @@ int		main ()
 
 	ft_printf("Expected: '+123 ' :'%+-05d'\n", 123);
 	ft_printf("Expected: '+123456789' :'%+-05d'\n", 123456789);
+*/
+
+/*
+	signed char		hhd = -1;
+	short int		hd = -1;
+	long int		ld = -1;
+	long long int	lld = -1;
+	intmax_t		jd = -1;
+	ssize_t			zd = -1;
 
 	ft_printf("Expected:-1 :%hhd\n", hhd);
 	ft_printf("Expected:-1 :%hd\n", hd);
@@ -51,6 +59,6 @@ int		main ()
 	ft_printf("Expected:-1 :%lld\n", lld);
 	ft_printf("Expected:-1 :%jd\n", jd);
 	ft_printf("Expected:-1 :%zd\n", zd);
-
+*/
 	return (0);
 }

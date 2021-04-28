@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 15:32:51 by acami             #+#    #+#             */
-/*   Updated: 2021/04/28 19:09:07 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/28 19:16:33 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,12 @@ int	ft_elem_write(char *str, size_t str_len, t_mask *mask)
 			count += write(1, " ", 1);
 		}
 	}
-	if (mask->print_sign == true)
+	if (mask->specifier == 'p')
+			count += write(1, "0x", 2);
+	else if (mask->print_sign == true)
 	{
 		sign = "+-"[mask->is_negative];
-		if (mask->specifier == 'p')
-			count += write(1, "0x", 2);
-		else
-			count += write(1, &sign, 1);
+		count += write(1, &sign, 1);
 	}
 	else if (mask->free_space == true && space_was_inserted == false)
 		count += write(1, " ", 1);

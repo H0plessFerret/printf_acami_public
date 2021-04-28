@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 15:04:49 by acami             #+#    #+#             */
-/*   Updated: 2021/04/28 17:18:55 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/28 19:15:40 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ va_list *arg_list)
 		mask->prescision = NOT_SET;
 		return (false);
 	}
-	if (ft_strchr(uppercase_values, *(*format_spec + elems_passed)) == NULL)
+	if (ft_strchr(uppercase_values, *(*format_spec + elems_passed)) != NULL)
 		mask->uppercase = true;
 	mask->specifier = *(*format_spec + elems_passed);
 	*format_spec += elems_passed + 1;
