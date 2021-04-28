@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 14:10:23 by acami             #+#    #+#             */
-/*   Updated: 2021/04/28 16:12:41 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/28 17:10:33 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_put_unsignednbr_base(uintmax_t nbr, int8_t base, t_mask *mask)
 	count = 0;
 	base_symbols = "0123456789abcdef";
 	if ((nbr == 0) && (mask->prescision != 0))
-		write(1, "0", 1);
+		return ("0");
 	while (nbr != 0)
 	{
 		res[count] = base_symbols[nbr % base];
@@ -58,7 +58,7 @@ int	ft_print_signed(va_list *arg_list, t_mask *mask)
 {
 	intmax_t	num;
 	char		*buff;
-	
+
 	num = ft_pull_signed(arg_list, &(mask->length_modifiers));
 	if (num < 0)
 	{

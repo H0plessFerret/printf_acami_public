@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 19:11:36 by acami             #+#    #+#             */
-/*   Updated: 2021/04/28 16:01:36 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/28 16:24:20 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ int	ft_vprintf(const char *format_spec, va_list *arg_list)
 	{
 		ft_generate_mask(&format_spec, &mask, arg_list);
 		if (mask.specifier == NOT_SET)
-			++count;
+		{
+			count += ft_elem_write("%", 1, &mask);
+			++format_spec;
+		}
 		else
 		{
 			mask.symbols_printed = count;

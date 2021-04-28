@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 15:04:49 by acami             #+#    #+#             */
-/*   Updated: 2021/04/28 15:59:05 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/28 16:56:25 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ va_list *arg_list)
 	elems_passed += ft_mask_prescision(*format_spec + elems_passed,
 			mask, arg_list);
 	elems_passed += ft_mask_length(*format_spec + elems_passed, mask);
-	if (ft_strchr(allowed_values, (int)format_spec[elems_passed]) != NULL)
+	if (ft_strchr(allowed_values, *(*format_spec + elems_passed)) == NULL)
 	{
 		mask->width = NOT_SET;
 		mask->prescision = NOT_SET;
 		return (false);
 	}
-	if (ft_strchr(uppercase_values, (int)format_spec[elems_passed]) != NULL)
+	if (ft_strchr(uppercase_values, *(*format_spec + elems_passed)) == NULL)
 		mask->uppercase = true;
 	mask->specifier = *(*format_spec + elems_passed);
 	*format_spec += elems_passed + 1;

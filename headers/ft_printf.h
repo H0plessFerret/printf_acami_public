@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:23:08 by acami             #+#    #+#             */
-/*   Updated: 2021/04/28 16:00:35 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/28 17:08:23 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ struct s_mask
 	bool		alternative_mode : 1;
 	bool		left_justified : 1;
 	bool		zero_padding : 1;
-	bool		free_space :	1;
+	bool		free_space : 1;
 	bool		print_sign : 1;
 	bool		uppercase : 1;
 	bool		is_negative : 1;
@@ -54,7 +54,7 @@ struct s_mask
 	t_length	length_modifiers;
 };
 
-typedef int	(*t_print_fn)(va_list *arg_list, t_mask *mask);
+typedef int	(*t_print_fn)(va_list *, t_mask *);
 
 int			ft_printf(const char *format_str, ...);
 //int			ft_dprintf(int fd, const char *format, ...);

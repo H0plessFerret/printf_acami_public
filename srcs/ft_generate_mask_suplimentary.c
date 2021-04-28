@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 18:18:35 by acami             #+#    #+#             */
-/*   Updated: 2021/04/28 15:09:46 by acami            ###   ########.fr       */
+/*   Updated: 2021/04/28 17:10:19 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	ft_mask_width(const char *format_spec, t_mask *mask, va_list *arg_list)
 	int		count;
 
 	count = 0;
-	mask->width = NOT_SET;
 	curr_elem = *format_spec;
 	if (curr_elem == '*')
 	{
@@ -73,7 +72,6 @@ int	ft_mask_prescision(const char *format_spec, t_mask *mask, va_list *arg_list)
 	char	curr_elem;
 	int		count;
 
-	mask->prescision = NOT_SET;
 	if (*format_spec != '.')
 		return (0);
 	count = 1;
