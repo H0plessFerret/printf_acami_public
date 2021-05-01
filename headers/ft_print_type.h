@@ -35,6 +35,6 @@ int		ft_save_counter(va_list *arg_list, t_mask *mask);
 
 char	*ft_put_unsignednbr_base(uintmax_t nbr, int8_t base, t_mask *mask);
 
-char	*ft_put_float_abs_base(long double nbr, int8_t base, t_mask *mask);
+char	*ft_put_unsignedfloat_base(long double nbr, int8_t base, t_mask *mask);
 
 #endif

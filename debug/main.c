@@ -1,5 +1,6 @@
 #include "../headers/ft_printf.h"
 #include <stdio.h>
+#include <limits.h>
 
 //mask printer:
 /*
@@ -59,6 +60,8 @@ int		main ()
 
 	ft_printf("%100.150f\n", 1000000000000000.12);
 	printf("%100.150f", 1000000000000000.12);
+
+	printf("\n\n%d", __LDBL_MIN_10_EXP__);
 
 /*
 	signed char		hhd = -1;

@@ -16,11 +16,10 @@
 
 int	ft_print_char(va_list *arg_list, t_mask *mask)
 {
-	char	c[2];
-
-	c[0] = ft_pull_char(arg_list, &(mask->length_modifiers));
-	c[1] = '\0';
-	return (ft_elem_write(c, 1, mask));
+	char	buffer;
+	
+	buffer = ft_pull_char(arg_list, &(mask->length_modifiers));
+	return (ft_elem_write(&buffer, 1, mask));
 }
 
 int	ft_print_string(va_list *arg_list, t_mask *mask)

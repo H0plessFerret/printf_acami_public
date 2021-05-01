@@ -33,9 +33,9 @@ static void	ft_strrev(char *str, size_t len)
 
 char	*ft_put_unsignednbr_base(uintmax_t nbr, int8_t base, t_mask *mask)
 {
-	static const char	*base_symbols;
-	size_t				count;
-	static char			res[65];
+	const char	*base_symbols;
+	size_t		count;
+	static char	res[65];
 
 	count = 0;
 	base_symbols = "0123456789abcdef";
