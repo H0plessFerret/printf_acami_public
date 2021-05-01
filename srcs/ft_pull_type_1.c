@@ -15,9 +15,9 @@
 intmax_t	ft_pull_signed(va_list *arg_list, t_length *length_modifiers)
 {
 	if (length_modifiers->is_hh)
-		return ((intmax_t)va_arg(*arg_list, char));
+		return ((intmax_t)((char)va_arg(*arg_list, int)));
 	else if (length_modifiers->is_h)
-		return ((intmax_t)va_arg(*arg_list, short int));
+		return ((intmax_t)((short int)va_arg(*arg_list, int)));
 	else if (length_modifiers->is_l)
 		return ((intmax_t)va_arg(*arg_list, long int));
 	else if (length_modifiers->is_ll)
@@ -33,9 +33,9 @@ intmax_t	ft_pull_signed(va_list *arg_list, t_length *length_modifiers)
 uintmax_t	ft_pull_unsigned(va_list *arg_list, t_length *length_modifiers)
 {
 	if (length_modifiers->is_hh)
-		return ((intmax_t)va_arg(*arg_list, unsigned char));
+		return ((uintmax_t)((unsigned char)va_arg(*arg_list, int)));
 	else if (length_modifiers->is_h)
-		return ((intmax_t)va_arg(*arg_list, unsigned short int));
+		return ((uintmax_t)((unsigned short int)va_arg(*arg_list, int)));
 	else if (length_modifiers->is_l)
 		return ((uintmax_t)va_arg(*arg_list, unsigned long int));
 	else if (length_modifiers->is_ll)

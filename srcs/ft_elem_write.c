@@ -22,6 +22,8 @@ int	ft_elem_write(char *str, size_t str_len, t_mask *mask)
 	count = 0;
 	sign_length = mask->print_sign;
 	space_was_inserted = false;
+	if (mask->specifier == '%')
+		return (write(1, "%", 1));
 	if (mask->specifier == 'p')
 		sign_length = 2;
 	if (mask->left_justified == false && mask->zero_padding == false

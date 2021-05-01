@@ -60,7 +60,6 @@ int		main ()
 	ft_printf("%100.150f\n", 1000000000000000.12);
 	printf("%100.150f", 1000000000000000.12);
 
-
 /*
 	signed char		hhd = -1;
 	short int		hd = -1;
