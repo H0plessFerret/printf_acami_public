@@ -40,7 +40,10 @@ char	*ft_put_unsignednbr_base(uintmax_t nbr, int8_t base, t_mask *mask)
 	count = 0;
 	base_symbols = "0123456789abcdef";
 	if ((nbr == 0) && (mask->prescision != 0))
-		return ("0");
+	{
+		res[count] = '0';
+		++count;
+	}
 	while (nbr != 0)
 	{
 		res[count] = base_symbols[nbr % base];
@@ -64,10 +67,10 @@ int	ft_print_signed(va_list *arg_list, t_mask *mask)
 	{
 		mask->is_negative = true;
 		mask->print_sign = true;
-		buff = ft_put_unsignednbr_base((uintmax_t)(num * -1), 10, mask);
+		buff = ft_put_unsignednbr_base((uintmax_t)(num * -1), BASE_DECIMAL, mask);
 	}
 	else
-		buff = ft_put_unsignednbr_base((uintmax_t)num, 10, mask);
+		buff = ft_put_unsignednbr_base((uintmax_t)num, BASE_DECIMAL, mask);
 	return (ft_elem_write(buff, ft_strlen(buff), mask));
 }
 
@@ -78,11 +81,11 @@ int	ft_print_unsigned(va_list *arg_list, t_mask *mask)
 	char		*buff;
 
 	num = ft_pull_unsigned(arg_list, &(mask->length_modifiers));
-	base = 10;
+	base = BASE_DECIMAL;
 	if (mask->specifier == 'o')
-		base = 8;
+		base = BASE_OCTAL;
 	else if (mask->specifier == 'x' || mask->specifier == 'X')
-		base = 16;
+		base = BASE_HEX;
 	buff = ft_put_unsignednbr_base(num, base, mask);
 	return (ft_elem_write(buff, ft_strlen(buff), mask));
 }

@@ -29,17 +29,17 @@ static int8_t	ft_norm_down_float(long double *nbr, int8_t base)
 	return (nbr_power);
 }
 
-static char	*ft_put_mantis_base(long double nbr, int8_t base, t_mask *mask)
+static char	*ft_put_fraction_base(long double nbr, int8_t base, t_mask *mask)
 {
 	int8_t		current_digit;
 	size_t		count;
 	const char	*base_symbols;
-	static char	res[4940];
+	static char	res[DLENGTH_MAX];
 
 	res[0] = '.';
 	count = 1;
 	base_symbols = "0123456789abcdef";
-	while (count < (size_t)(mask->prescision))
+	while (count <= (size_t)(mask->prescision))
 	{
 		current_digit = (int8_t)nbr;
 		res[count] = base_symbols[current_digit];
@@ -50,14 +50,14 @@ static char	*ft_put_mantis_base(long double nbr, int8_t base, t_mask *mask)
 	return (res);
 }
 
-static char	*ft_put_float_normal_base(long double nbr, int8_t base, t_mask *mask,
-int8_t nbr_power)
+static char	*ft_put_float_normal_base(long double nbr, int8_t base,
+t_mask *mask, int8_t nbr_power)
 {
 	int8_t		integer_part;
 	size_t		curr_elem;
 	const char	*base_symbols;
 	char		*buffer;
-	static char	res[4940];
+	static char	res[DLENGTH_MAX];
 
 	curr_elem = 0;
 	base_symbols = "0123456789abcdef";
@@ -72,18 +72,18 @@ int8_t nbr_power)
 	res[curr_elem] = '\0';
 	if (mask->prescision != 0)
 	{
-		buffer = ft_put_mantis_base(nbr, base, mask);
-		ft_strlcat(res, buffer, 4940);
+		buffer = ft_put_fraction_base(nbr, base, mask);
+		ft_strlcat(res, buffer, DLENGTH_MAX);
 	}
 	return (res);
 }
 
-static char	*ft_put_float_scientific_base(long double nbr, int8_t base, t_mask *mask,
-int8_t nbr_power)
+static char	*ft_put_float_scientific_base(long double nbr, int8_t base,
+t_mask *mask, int8_t nbr_power)
 {
-	/*
-	static char	res[8192];
+	static char	res[DLENGTH_MAX];
 	char		*buff;
+	int8_t		curr_elem;
 	int8_t		count;
 
 	if (nbr_power == 0)
@@ -95,16 +95,25 @@ int8_t nbr_power)
 		}
 	}
 	buff = ft_put_float_normal_base(nbr, base, mask, 0);
-	count = ft_strlen(buff);
-	ft_strlcpy(res, buff, count + 1);
-	res[count] = 'e';
-	res[count + 1] = '\0';
-	*/
-	(void)nbr;
-	(void)nbr_power;
-	(void)mask;
-	(void)base;
-	return (NULL);
+	curr_elem = ft_strlen(buff);
+	ft_strlcpy(res, buff, DLENGTH_MAX);
+	res[curr_elem] = 'e';
+	if (nbr_power < 0)
+		res[curr_elem + 1] = '-';
+	else
+		res[curr_elem + 1] = '+';
+	curr_elem += 2;
+	buff = ft_put_unsignednbr_base(nbr_power, BASE_DECIMAL, mask);
+	count = 3 - ft_strlen(buff);
+	while (count > 0)
+	{
+		res[curr_elem] = '0';
+		++curr_elem;
+		--count;
+	}
+	res[curr_elem] = '\0';
+	ft_strlcat(res, buff, DLENGTH_MAX);
+	return (res);
 }
 
 char	*ft_put_unsignedfloat_base(long double nbr, int8_t base, t_mask *mask)
@@ -128,25 +137,4 @@ char	*ft_put_unsignedfloat_base(long double nbr, int8_t base, t_mask *mask)
 	if (buff != NULL)
 		return (buff);
 	return (buff_sci);
-}
-
-int	ft_print_float(va_list *arg_list, t_mask *mask)
-{
-	long double	num;
-	int			base;
-	char		*buff;
-
-	base = 10;
-	if (mask->prescision == NOT_SET)
-		mask->prescision = 6;
-	num = ft_pull_float(arg_list, &(mask->length_modifiers));
-	if (num < 0)
-	{
-		mask->is_negative = true;
-		mask->print_sign = true;
-		buff = ft_put_unsignedfloat_base(num * -1, base, mask);
-	}
-	else
-		buff = ft_put_unsignedfloat_base(num, base, mask);
-	return (ft_elem_write(buff, ft_strlen(buff), mask));
 }

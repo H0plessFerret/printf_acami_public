@@ -17,7 +17,7 @@
 int	ft_print_char(va_list *arg_list, t_mask *mask)
 {
 	char	buffer;
-	
+
 	buffer = ft_pull_char(arg_list, &(mask->length_modifiers));
 	return (ft_elem_write(&buffer, 1, mask));
 }
@@ -48,7 +48,7 @@ int	ft_print_pointer(va_list *arg_list, t_mask *mask)
 	if (ptr == NULL)
 		str = "(null)";
 	else
-		str = ft_put_unsignednbr_base((uintmax_t)ptr, 16, mask);
+		str = ft_put_unsignednbr_base((uintmax_t)ptr, BASE_HEX, mask);
 	return (ft_elem_write(str, ft_strlen(str), mask));
 }
 
@@ -59,4 +59,25 @@ int	ft_save_counter(va_list *arg_list, t_mask *mask)
 	to_write = ft_pull_pointer(arg_list, &(mask->length_modifiers));
 	*to_write = (intmax_t)mask->symbols_printed;
 	return (0);
+}
+
+int	ft_print_float(va_list *arg_list, t_mask *mask)
+{
+	long double	num;
+	int			base;
+	char		*buff;
+
+	base = BASE_DECIMAL;
+	if (mask->prescision == NOT_SET)
+		mask->prescision = 6;
+	num = ft_pull_float(arg_list, &(mask->length_modifiers));
+	if (num < 0)
+	{
+		mask->is_negative = true;
+		mask->print_sign = true;
+		buff = ft_put_unsignedfloat_base(num * -1, base, mask);
+	}
+	else
+		buff = ft_put_unsignedfloat_base(num, base, mask);
+	return (ft_elem_write(buff, ft_strlen(buff), mask));
 }

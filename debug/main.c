@@ -58,11 +58,19 @@ int		main ()
 	ft_printf("Expected: '-0123' :'% 05d'\n", -123);
 	ft_printf("Expected: ' 123456789' :'% 05d'\n", 123456789);
 
-	ft_printf("%100.150f\n", 1000000000000000.12);
-	printf("%100.150f", 1000000000000000.12);
+	// this case will be fixed when the circle buffer will be introduced
+	//ft_printf("%.15000f\n", 1000000000000000.12);
+	ft_printf("%g\n", 1234567890.1);
+	printf("%g\n", 1234567890.1);
+
+/*
+	int	a;
+	int b;
+	b = ft_printf("Haha I printed some words%n then printed some more!\n", &a);
+	printf("%d %d", a, b);
 
 	printf("\n\n%d", __LDBL_MIN_10_EXP__);
-
+*/
 /*
 	signed char		hhd = -1;
 	short int		hd = -1;

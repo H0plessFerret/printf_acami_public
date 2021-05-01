@@ -23,6 +23,10 @@
 
 # define	NOT_SET			-1
 # define	ASCII_MAX		127
+# define	DLENGTH_MAX		4940
+# define	BASE_OCTAL		8
+# define	BASE_DECIMAL	10
+# define	BASE_HEX		16
 
 typedef struct s_length	t_length;
 typedef struct s_mask	t_mask;
