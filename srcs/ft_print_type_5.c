@@ -32,8 +32,6 @@ long double	ft_pow_base(int8_t base, int8_t power)
 
 void	ft_correct_bad_prescision(long double *nbr, int8_t *nbr_power, int8_t base)
 {
-	if (ft_almost_equal(*nbr, 0))
-		return ;
 	if (*nbr < 1)
 	{
 		*nbr *= base;
