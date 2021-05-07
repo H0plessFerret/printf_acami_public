@@ -1,6 +1,8 @@
 README.md
 .vscode/
-a.out
+*.out
+*.exe
 *.o
 *.a
 *.debug
+funny*

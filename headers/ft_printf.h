@@ -20,6 +20,7 @@
 # include <stdint.h>
 # include <stdbool.h>
 # include <wchar.h>
+# include <limits.h>
 
 # define	NOT_SET			-1
 # define	ASCII_MAX		127

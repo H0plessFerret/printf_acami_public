@@ -13,7 +13,7 @@ int		main ()
 	//printf(str, 5, 7, 10, 11);
 	//ft_printf("%p\n", &test);
 	//printf("%p", &test);
-
+/*
 	ft_printf("Testing %%d\n");
 	ft_printf("Expected:0 :%d\n", 0);
 	ft_printf("Expected:1 :%d\n", 1);
@@ -57,11 +57,67 @@ int		main ()
 	ft_printf("Expected: ' 0123' :'% 05d'\n", 123);
 	ft_printf("Expected: '-0123' :'% 05d'\n", -123);
 	ft_printf("Expected: ' 123456789' :'% 05d'\n", 123456789);
-
+*/
 	// this case will be fixed when the circle buffer will be introduced
 	//ft_printf("%.15000f\n", 1000000000000000.12);
-	ft_printf("%g\n", 1234567890.1);
-	printf("%g\n", 1234567890.1);
+	ft_printf("%.10e\n", 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.1);
+	printf("%.10e\n", 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.1);
+
+	ft_printf("%f\n", 1234567.123456789);
+	ft_printf("%e\n", 1234567.123456789);
+	ft_printf("%g\n\n", 1234567.123456789);
+
+	ft_printf("%f\n", 12345.123456789);
+	ft_printf("%e\n", 12345.123456789);
+	ft_printf("%g\n\n", 12345.123456789);
+
+	ft_printf("%f\n", 1234.123456789);
+	ft_printf("%e\n", 1234.123456789);
+	ft_printf("%g\n\n", 1234.123456789);
+
+	ft_printf("%f\n", 123.123456789);
+	ft_printf("%e\n", 123.123456789);
+	ft_printf("%g\n\n", 123.123456789);
+
+	ft_printf("%f\n", 12.123456789);
+	ft_printf("%e\n", 12.123456789);
+	ft_printf("%g\n\n", 12.123456789);
+
+	ft_printf("%f\n", 1.123456789);
+	ft_printf("%e\n", 1.123456789);
+	ft_printf("%g\n\n", 1.123456789);
+
+	ft_printf("%f\n", 0.123456789);
+	ft_printf("%e\n", 0.123456789);
+	ft_printf("%g\n\n", 0.123456789);
+
+	ft_printf("%f\n", 0.0123456789);
+	ft_printf("%e\n", 0.0123456789);
+	ft_printf("%g\n\n", 0.0123456789);
+
+	ft_printf("%f\n", 0.00123456789);
+	ft_printf("%e\n", 0.00123456789);
+	ft_printf("%g\n\n", 0.00123456789);
+
+	ft_printf("%f\n", 0.000123456789);
+	ft_printf("%e\n", 0.000123456789);
+	ft_printf("%g\n\n", 0.000123456789);
+
+	ft_printf("%f\n", 0.0000123456789);
+	ft_printf("%e\n", 0.0000123456789);
+	ft_printf("%g\n\n", 0.0000123456789);
+	
+	ft_printf("%f\n", 0.00000123456789);
+	ft_printf("%e\n", 0.00000123456789);
+	ft_printf("%g\n\n", 0.00000123456789);
+
+	ft_printf("%.4f\n", 0.000123456789);
+	ft_printf("%.4e\n", 0.000123456789);
+	ft_printf("%.4g\n\n", 0.000123456789);
+
+	ft_printf("%.3f\n", 0.00000000);
+	ft_printf("%.3e\n", 0.00000000);
+	ft_printf("%.3g\n\n", 0.00000000);
 
 /*
 	int	a;
