@@ -55,7 +55,7 @@ int8_t	ft_find_power(long double nbr, int8_t base)
 	int8_t	nbr_power;
 
 	nbr_power = 0;
-	if (ft_almost_equal(nbr, 0))
+	if (nbr == 0.)
 		return (nbr_power);
 	while (nbr < 1)
 	{

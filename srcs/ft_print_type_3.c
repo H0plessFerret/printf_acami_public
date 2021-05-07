@@ -85,11 +85,6 @@ char	*ft_put_fraction_base(long double nbr, int8_t base, t_mask *mask)
 char	*ft_put_float_g_base(long double nbr, int8_t base, t_mask *mask,
 int8_t nbr_power)
 {
-	if (ft_almost_equal(nbr, 0))
-	{
-		mask->prescision = 1;
-		return(ft_put_unsignednbr_base(0, base, mask));
-	}
 	if (nbr_power < -4 || nbr_power >= mask->prescision)
 	{
 		if (mask->prescision > 1)
