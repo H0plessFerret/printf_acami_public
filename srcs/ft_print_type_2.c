@@ -42,7 +42,8 @@ int	ft_print_string(va_list *arg_list, t_mask *mask)
 		else
 			str = "";
 	}
-	else if (mask->prescision != NOT_SET && mask->prescision < ft_strlen(str))
+	else if (mask->prescision != NOT_SET 
+			&& (uintmax_t)(mask->prescision) < ft_strlen(str))
 		return (ft_elem_write(str, mask->prescision, mask));
 	return (ft_elem_write(str, ft_strlen(str), mask));
 }
