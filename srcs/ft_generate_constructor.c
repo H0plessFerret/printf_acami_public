@@ -45,11 +45,10 @@ t_string_constructor *str_const)
 	str_const->sign_len = ft_strlen(str_const->sign);
 }
 
-static void ft_generate_right_fillers(size_t str_len, t_mask *mask,
+static void ft_generate_right_zeroes(t_mask *mask,
 t_string_constructor *str_const)
 {
 	int	prescision;
-	int	symbols_printed;
 
 	prescision = mask->prescision;
 	if (ft_strchr("fFeE", mask->specifier) != NULL)
@@ -57,13 +56,6 @@ t_string_constructor *str_const)
 		{
 			++(str_const->back_zeros);
 			++prescision;
-		}
-	symbols_printed = mask->zero_padding + str_len + mask->print_sign;
-	if (mask->left_justified)
-		while (symbols_printed < mask->width)
-		{
-			++(str_const->back_spaces);
-			++symbols_printed;
 		}
 }
 
@@ -92,11 +84,27 @@ t_string_constructor *str_const)
 	}
 }
 
+
+static void ft_generate_right_spaces(size_t str_len, t_mask *mask,
+t_string_constructor *str_const)
+{
+	int symbols_printed;
+
+	symbols_printed = mask->zero_padding + str_len + mask->print_sign;
+	if (mask->left_justified)
+		while (symbols_printed < mask->width - str_const->front_zeros)
+		{
+			++(str_const->back_spaces);
+			++symbols_printed;
+		}
+}
+
 void	ft_generate_constructor(char *str, size_t str_len, t_mask *mask,
 t_string_constructor *str_const)
 {
 	ft_initialize_constructor(str_const);
 	ft_generate_sign_info(str, mask, str_const);
-	ft_generate_right_fillers(str_len, mask, str_const);
+	ft_generate_right_zeroes(mask, str_const);
 	ft_generate_left_fillers(str_len, mask, str_const);
+	ft_generate_right_spaces(str_len, mask, str_const);
 }
