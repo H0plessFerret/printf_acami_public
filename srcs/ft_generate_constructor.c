@@ -90,7 +90,7 @@ t_string_constructor *str_const)
 {
 	int symbols_printed;
 
-	symbols_printed = mask->zero_padding + str_len + mask->print_sign;
+	symbols_printed = mask->zero_padding + str_len + str_const->sign_len;
 	if (mask->left_justified)
 		while (symbols_printed < mask->width - str_const->front_zeros)
 		{

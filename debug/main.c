@@ -144,6 +144,6 @@ int		main ()
 	ft_printf("Expected:-1 :%jd\n", jd);
 	ft_printf("Expected:-1 :%zd\n", zd);
 */
-	ft_printf("%04i", -4825);
+	ft_printf("%p", -4825);
 	return (0);
 }
