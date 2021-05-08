@@ -87,11 +87,13 @@ int8_t nbr_power)
 		if (mask->prescision > 1)
 			--(mask->prescision);
 		buff = ft_put_float_scientific_base(nbr, base, mask, nbr_power);
-		ft_trim_insignificant_digits(buff);
+		if (mask->alternative_mode == false)
+			ft_trim_insignificant_digits(buff);
 		return (buff);
 	}
-	mask->prescision = mask->prescision - nbr_power;
+	mask->prescision = mask->prescision - ft_abs(nbr_power);
 	buff = ft_put_float_normal_base(nbr, base, mask, nbr_power);
-	ft_trim_insignificant_digits(buff);
+	if (mask->alternative_mode == false)
+		ft_trim_insignificant_digits(buff);
 	return (buff);
 }

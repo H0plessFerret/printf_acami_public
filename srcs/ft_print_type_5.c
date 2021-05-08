@@ -70,9 +70,11 @@ int8_t	ft_find_power(long double nbr, int8_t base)
 	return (nbr_power);
 }
 
-bool	ft_almost_equal(long double nbr1, long double nbr2)
+uintmax_t	ft_abs(intmax_t num)
 {
-	if ((nbr1 - __FLT_EPSILON__ < nbr2) && (nbr1 + __FLT_EPSILON__ > nbr2))
-		return (true);
-	return (false);
+	if (num == INTMAX_MIN)
+		return ((uintmax_t)INTMAX_MAX + 1);
+	if (num < 0)
+		return (num * -1);
+	return (num);
 }

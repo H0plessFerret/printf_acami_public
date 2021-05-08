@@ -44,19 +44,15 @@ int8_t nbr_power)
 	base_symbols = "0123456789abcdef";
 	if (nbr_power > 0)
 		ft_norm_float_base(&nbr, &nbr_power, base);
-	if (nbr_power < 0)
-	{
-		res[curr_elem++] = '0';
-		nbr *= base;
-	}
-	while (nbr_power-- >= 0)
+	while (nbr_power >= 0 || curr_elem == 0)
 	{
 		integer_part = (int8_t)nbr;
 		res[curr_elem++] = base_symbols[integer_part];
 		nbr = (nbr - integer_part) * base;
+		--nbr_power;
 	}
 	res[curr_elem] = '\0';
-	if (mask->prescision != 0)
+	if (mask->prescision != 0 || mask->alternative_mode == true)
 	{
 		buffer = ft_put_fraction_base(nbr, base, mask);
 		ft_strlcat(res, buffer, DLENGTH_MAX);

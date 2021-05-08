@@ -15,7 +15,8 @@ DEBUG_SRC	= ./debug/main.c
 SRC_DIR		= ./srcs/
 HEADERS		= ./headers/
 SRC_F		= ft_dprint_till_percent.c  ft_find_corresponding_print.c  ft_generate_mask_suplimentary.c  ft_print_type_2.c  ft_printf.c       ft_pull_type_2.c \
-ft_elem_write.c           ft_generate_mask.c             ft_print_type_1.c                ft_print_type_3.c  ft_pull_type_1.c ft_print_type_4.c  ft_print_type_5.c 
+ft_elem_write.c           ft_generate_mask.c             ft_print_type_1.c                ft_print_type_3.c  ft_pull_type_1.c ft_print_type_4.c  ft_print_type_5.c \
+ft_generate_constructor.c
 SRCS		= $(addprefix $(SRC_DIR), $(SRC_F))
 OBJS		= $(SRCS:.c=.o)
 BONUS_OBJS	= $(BONUS_SRCS:.c=.o)

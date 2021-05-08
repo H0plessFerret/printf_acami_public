@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <inttypes.h>
 
 int		main(void)
 {
@@ -101,5 +102,8 @@ int		main(void)
 	printf("%.2f\n", 0.00000123456789);
 	printf("%.2e\n", 0.00000123456789);
 	printf("%.2g\n\n", 0.00000123456789);
+
+	printf("% c", 'a');
+
 	return (0);
 }

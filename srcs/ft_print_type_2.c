@@ -18,6 +18,10 @@ int	ft_print_char(va_list *arg_list, t_mask *mask)
 {
 	char	buffer;
 
+	mask->alternative_mode = false;
+	mask->free_space = false;
+	mask->print_sign = false;
+	mask->zero_padding = false;
 	buffer = ft_pull_char(arg_list, &(mask->length_modifiers));
 	return (ft_elem_write(&buffer, 1, mask));
 }
@@ -27,6 +31,10 @@ int	ft_print_string(va_list *arg_list, t_mask *mask)
 	char	*str;
 
 	str = ft_pull_pointer(arg_list, &(mask->length_modifiers));
+	mask->alternative_mode = false;
+	mask->free_space = false;
+	mask->print_sign = false;
+	mask->zero_padding = false;
 	if (str == NULL)
 	{
 		if (mask->prescision > 5)
@@ -45,6 +53,10 @@ int	ft_print_pointer(va_list *arg_list, t_mask *mask)
 	char	*str;
 
 	ptr = ft_pull_pointer(arg_list, &(mask->length_modifiers));
+	mask->alternative_mode = true;
+	mask->free_space = false;
+	mask->print_sign = false;
+	mask->zero_padding = false;
 	if (ptr == NULL)
 		str = "(null)";
 	else

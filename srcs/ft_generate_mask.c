@@ -39,10 +39,8 @@ va_list *arg_list)
 {
 	int			elems_passed;
 	static char	*allowed_values;
-	static char	*uppercase_values;
 
 	allowed_values = "%diouxXpfFeEgGscn";
-	uppercase_values = "XFEG";
 	ft_initialize_mask(mask);
 	elems_passed = 1;
 	elems_passed += ft_mask_flags(*format_spec + elems_passed, mask);
@@ -56,7 +54,7 @@ va_list *arg_list)
 		mask->prescision = NOT_SET;
 		return (false);
 	}
-	if (ft_strchr(uppercase_values, *(*format_spec + elems_passed)) != NULL)
+	if (ft_strchr("XFEG", *(*format_spec + elems_passed)) != NULL)
 		mask->uppercase = true;
 	mask->specifier = *(*format_spec + elems_passed);
 	*format_spec += elems_passed + 1;

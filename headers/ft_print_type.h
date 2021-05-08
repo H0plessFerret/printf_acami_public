@@ -59,6 +59,6 @@ t_mask *mask, int8_t nbr_power);
 char		*ft_put_float_g_base(long double nbr, int8_t base,
 t_mask *mask, int8_t nbr_power);
 
-bool	ft_almost_equal(long double nbr1, long double nbr2);
+uintmax_t	ft_abs(intmax_t num);
 
 #endif

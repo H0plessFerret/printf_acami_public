@@ -31,6 +31,7 @@
 
 typedef struct s_length	t_length;
 typedef struct s_mask	t_mask;
+typedef struct s_string_constructor t_string_constructor;
 
 struct s_length
 {
@@ -57,6 +58,16 @@ struct s_mask
 	int			symbols_printed;
 	char		specifier;
 	t_length	length_modifiers;
+};
+
+struct s_string_constructor
+{
+	intmax_t	front_spaces;
+	char		sign[3];
+	int8_t		sign_len;
+	intmax_t	front_zeros;
+	intmax_t	back_zeros;
+	intmax_t	back_spaces;
 };
 
 typedef int	(*t_print_fn)(va_list *, t_mask *);
@@ -93,5 +104,8 @@ bool		ft_generate_mask(const char **format_str, t_mask *mask,
 
 // returns a pointer to a function which will print the requested value
 t_print_fn	ft_find_corresponding_print(t_mask *mask);
+
+void		ft_generate_constructor(char *str, size_t str_len, t_mask *mask,
+				t_string_constructor *str_const);
 
 #endif

@@ -63,11 +63,14 @@ int	ft_print_signed(va_list *arg_list, t_mask *mask)
 	char		*buff;
 	
 	num = ft_pull_signed(arg_list, &(mask->length_modifiers));
+	mask->alternative_mode = false;
+	if (mask->prescision != NOT_SET || mask->left_justified)
+		mask->zero_padding = false;
 	if (num < 0)
 	{
 		mask->is_negative = true;
 		mask->print_sign = true;
-		buff = ft_put_unsignednbr_base((uintmax_t)(num * -1), BASE_DECIMAL, mask);
+		buff = ft_put_unsignednbr_base(ft_abs(num), BASE_DECIMAL, mask);
 	}
 	else
 		buff = ft_put_unsignednbr_base((uintmax_t)num, BASE_DECIMAL, mask);
@@ -80,11 +83,19 @@ int	ft_print_unsigned(va_list *arg_list, t_mask *mask)
 	int			base;
 	char		*buff;
 
-	num = ft_pull_unsigned(arg_list, &(mask->length_modifiers));
-	base = BASE_DECIMAL;
-	if (mask->specifier == 'o')
+	num = ft_pull_unsigned(arg_list, &(mask->length_modifiers));\
+	mask->print_sign = false;
+	mask->free_space = false;
+	if (mask->prescision != NOT_SET || mask->left_justified)
+		mask->zero_padding = false;
+	if (mask->specifier == 'u')
+	{
+		base = BASE_DECIMAL;
+		mask->alternative_mode = false;
+	}
+	else if (mask->specifier == 'o')
 		base = BASE_OCTAL;
-	else if (mask->specifier == 'x' || mask->specifier == 'X')
+	else
 		base = BASE_HEX;
 	buff = ft_put_unsignednbr_base(num, base, mask);
 	return (ft_elem_write(buff, ft_strlen(buff), mask));
