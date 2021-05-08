@@ -45,7 +45,10 @@ int8_t nbr_power)
 	if (nbr_power > 0)
 		ft_norm_float_base(&nbr, &nbr_power, base);
 	if (nbr_power < 0)
+	{
 		res[curr_elem++] = '0';
+		nbr *= base;
+	}
 	while (nbr_power-- >= 0)
 	{
 		integer_part = (int8_t)nbr;
@@ -71,7 +74,7 @@ char	*ft_put_fraction_base(long double nbr, int8_t base, t_mask *mask)
 	res[0] = '.';
 	count = 1;
 	base_symbols = "0123456789abcdef";
-	while (count <= (size_t)(mask->prescision))
+	while (count <= (size_t)(mask->prescision) && count < DLENGTH_MAX - 1)
 	{
 		current_digit = (int8_t)nbr;
 		res[count] = base_symbols[current_digit];
@@ -80,17 +83,4 @@ char	*ft_put_fraction_base(long double nbr, int8_t base, t_mask *mask)
 	}
 	res[count] = '\0';
 	return (res);
-}
-
-char	*ft_put_float_g_base(long double nbr, int8_t base, t_mask *mask,
-int8_t nbr_power)
-{
-	if (nbr_power < -4 || nbr_power >= mask->prescision)
-	{
-		if (mask->prescision > 1)
-			--(mask->prescision);
-		return (ft_put_float_scientific_base(nbr, base, mask, nbr_power));
-	}
-	mask->prescision = mask->prescision - nbr_power;
-	return (ft_put_float_normal_base(nbr, base, mask, nbr_power));
 }
