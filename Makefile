@@ -27,7 +27,6 @@ SRCS		= $(addprefix $(SRC_DIR), $(SRC_F))
 SRCS_LIB	= $(addprefix $(SRC_DIR_LIB), $(SRCS_F_LIB))
 OBJS		= $(SRCS:.c=.o)
 OBJS_LIB	= $(SRCS_LIB:.c=.o)
-BONUS_OBJS	= $(BONUS_SRCS:.c=.o)
 DEBUG_OBJS	= $(DEBUG_SRC:.c=.o)
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror -g -I $(HEADERS)
@@ -40,16 +39,13 @@ DEPENDS		= $(SRCS) $(HEADERS) Makefile
 .c.o:		
 			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-debug:		$(OBJS) $(DEBUG_OBJS) $(DEPENDS)
+debug:		$(OBJS) $(DEBUG_OBJS) $(OBJS_LIB) $(DEPENDS)
 			@make -sC ./libft/ all
-			$(CC) $(OBJS) $(DEBUG_OBJS) ./libft/libft.a -o test.debug
+			$(CC) $(OBJS) $(DEBUG_OBJS) $(OBJS_LIB) ./libft/libft.a -o test.debug
 
 $(NAME):	$(OBJS) $(OBJS_LIB) $(DEPENDS)
+			@make -sC ./libft/ all
 			$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(OBJS_LIB)
-			$(LIBRAN) $(NAME)
-
-bonus:		$(OBJS) $(BONUS_OBJS)
-			$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(BONUS_OBJS)
 			$(LIBRAN) $(NAME)
 
 all:		$(NAME)
