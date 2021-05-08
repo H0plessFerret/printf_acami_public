@@ -13,7 +13,7 @@
 #include "../headers/ft_printf.h"
 #include "../libft/libft.h"
 
-static void	ft_initialize_mask(t_mask *mask)
+void	ft_initialize_mask(t_mask *mask)
 {
 	mask->alternative_mode = false;
 	mask->left_justified = false;
