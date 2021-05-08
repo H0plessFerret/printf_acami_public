@@ -80,6 +80,8 @@ int	ft_mask_prescision(const char *format_spec, t_mask *mask, va_list *arg_list)
 	if (curr_elem == '*')
 	{
 		mask->prescision = va_arg(*arg_list, int);
+		if (mask->prescision < 0)
+			mask->prescision = NOT_SET;
 		++count;
 	}
 	else
