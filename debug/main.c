@@ -13,7 +13,7 @@ int		main ()
 	//printf(str, 5, 7, 10, 11);
 	//ft_printf("%p\n", &test);
 	//printf("%p", &test);
-
+/*
 	ft_printf("Testing %%d\n");
 	ft_printf("Expected:0 :%d\n", 0);
 	ft_printf("Expected:1 :%d\n", 1);
@@ -57,7 +57,7 @@ int		main ()
 	ft_printf("Expected: ' 0123' :'% 05d'\n", 123);
 	ft_printf("Expected: '-0123' :'% 05d'\n", -123);
 	ft_printf("Expected: ' 123456789' :'% 05d'\n", 123456789);
-
+*/
 	// this case will be fixed when the circle buffer will be introduced
 	//ft_printf("%.15000f\n", 1000000000000000.12);
 	/*
@@ -144,5 +144,6 @@ int		main ()
 	ft_printf("Expected:-1 :%jd\n", jd);
 	ft_printf("Expected:-1 :%zd\n", zd);
 */
+	ft_printf("%04i", -4825);
 	return (0);
 }
