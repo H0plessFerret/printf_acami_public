@@ -72,6 +72,9 @@ t_string_constructor *str_const)
 {
 	int	symbols_printed;
 
+	if ((mask->specifier == 'd' || mask->specifier == 'i'))
+		while (str_len < mask->prescision)
+			++(str_const->front_zeros);
 	symbols_printed = str_const->sign_len + str_len;
 	if (mask->left_justified == false)
 	{
