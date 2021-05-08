@@ -85,13 +85,15 @@ t_string_constructor *str_const)
 {
 	int symbols_printed;
 
-	symbols_printed = mask->zero_padding + str_len + str_const->sign_len;
 	if (mask->left_justified)
-		while (symbols_printed < mask->width - str_const->front_zeros)
+	{
+		symbols_printed = str_const->sign_len + str_const->front_zeros + str_len;
+		while (symbols_printed < mask->width)
 		{
 			++(str_const->back_spaces);
 			++symbols_printed;
 		}
+	}
 }
 
 void	ft_generate_constructor(char *str, size_t str_len, t_mask *mask,
