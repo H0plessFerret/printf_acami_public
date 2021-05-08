@@ -104,5 +104,7 @@ int	ft_print_unsigned(va_list *arg_list, t_mask *mask)
 int	ft_print_percent(va_list *arg_list, t_mask *mask)
 {
 	(void)arg_list;
+	ft_initialize_mask(mask);
+	mask->specifier = '%';
 	return (ft_elem_write("%", 1, mask));
 }

@@ -84,6 +84,8 @@ int			ft_vprintf(const char *format_str, va_list *arg_list);
 // returns the amount of symbols printed
 int			ft_dprint_till_percent(int fd, const char **format_str);
 
+void		ft_initialize_mask(t_mask *mask);
+
 // returns an integer - an amount of symbols read in format_str
 int			ft_mask_flags(const char *format_str, t_mask *mask);
 
