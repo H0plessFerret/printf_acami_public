@@ -26,7 +26,7 @@ int	ft_elem_write(char *str, size_t str_len, t_mask *mask)
 	while ((str_const.front_zeros)-- > 0)
 		res += write(1, "0", 1);
 	res += write(1, str, str_len);
-	while ((str_const.front_zeros)-- > 0)
+	while ((str_const.back_zeros)-- > 0)
 		res += write(1, "0", 1);
 	while ((str_const.back_spaces)-- > 0)
 		res += write(1, " ", 1);
