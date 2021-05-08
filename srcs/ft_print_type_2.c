@@ -37,8 +37,8 @@ int	ft_print_string(va_list *arg_list, t_mask *mask)
 	mask->zero_padding = false;
 	if (str == NULL)
 	{
-		if (mask->prescision > 4 || mask->prescision == NOT_SET)
-			str = "(nil)";
+		if (mask->prescision > 5 || mask->prescision == NOT_SET)
+			str = "(null)";
 		else
 			str = "";
 	}
@@ -59,7 +59,7 @@ int	ft_print_pointer(va_list *arg_list, t_mask *mask)
 	mask->print_sign = false;
 	mask->zero_padding = false;
 	if (ptr == NULL)
-		str = "(null)";
+		str = "(nil)";
 	else
 		str = ft_put_unsignednbr_base((uintmax_t)ptr, BASE_HEX, mask);
 	return (ft_elem_write(str, ft_strlen(str), mask));
