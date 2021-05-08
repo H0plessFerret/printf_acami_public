@@ -74,7 +74,10 @@ t_string_constructor *str_const)
 
 	if (ft_strchr("diouxX", mask->specifier) != NULL && mask->prescision != NOT_SET)
 		while (str_len < (uintmax_t)(mask->prescision))
+		{
 			++(str_const->front_zeros);
+			++str_len;
+		}
 	symbols_printed = str_const->sign_len + str_len;
 	if (mask->left_justified == false)
 	{
