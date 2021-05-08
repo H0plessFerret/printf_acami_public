@@ -45,18 +45,13 @@ t_string_constructor *str_const)
 	str_const->sign_len = ft_strlen(str_const->sign);
 }
 
+//FIX THIS PLEASE!
 static void ft_generate_right_zeroes(t_mask *mask,
 t_string_constructor *str_const)
 {
-	int	prescision;
-
-	prescision = mask->prescision;
-	if (ft_strchr("fFeE", mask->specifier) != NULL)
-		while (DLENGTH_MAX < prescision)
-		{
-			++(str_const->back_zeros);
-			++prescision;
-		}
+	if (ft_strchr("fFeE", mask->specifier) != NULL
+		&& DLENGTH_MAX < mask->prescision)
+		str_const->back_zeros = ft_mask_prescision - DLENGTH_MAX;
 }
 
 static void ft_generate_left_fillers(size_t str_len, t_mask *mask,
