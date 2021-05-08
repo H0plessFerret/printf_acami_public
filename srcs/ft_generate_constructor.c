@@ -79,7 +79,6 @@ t_string_constructor *str_const)
 	}
 }
 
-
 static void ft_generate_right_spaces(size_t str_len, t_mask *mask,
 t_string_constructor *str_const)
 {
