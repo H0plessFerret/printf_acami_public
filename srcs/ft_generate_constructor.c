@@ -37,7 +37,7 @@ t_string_constructor *str_const)
 		str_const->sign[0] = '0';
 		str_const->sign[1] = mask->specifier;
 	}
-	else if (mask->specifier == 'p' && ft_strncmp(str, "(null)", 7) != 0)
+	else if (mask->specifier == 'p' && ft_strncmp(str, "(nil)", 6) != 0)
 	{
 		str_const->sign[0] = '0';
 		str_const->sign[1] = 'x';
