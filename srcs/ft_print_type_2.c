@@ -37,7 +37,7 @@ int	ft_print_string(va_list *arg_list, t_mask *mask)
 	mask->zero_padding = false;
 	if (str == NULL)
 	{
-		if (mask->prescision > 5)
+		if (mask->prescision > 5 || mask->prescision == NOT_SET)
 			str = "(null)";
 		else
 			str = "";
