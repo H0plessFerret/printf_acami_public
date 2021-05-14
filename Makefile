@@ -15,7 +15,7 @@ DEBUG_SRC	= ./debug/main.c
 SRC_DIR_LIB	= ./libft/
 SRC_DIR		= ./srcs/
 HEADERS		= ./headers/
-SRC_F		= ft_dprint_till_percent.c  ft_find_corresponding_print.c  ft_generate_mask_suplimentary.c  ft_print_type_2.c  ft_printf.c       ft_pull_type_2.c \
+SRC_F		= ft_print_till_percent.c  ft_find_corresponding_print.c  ft_generate_mask_suplimentary.c  ft_print_type_2.c  ft_printf.c       ft_pull_type_2.c \
 ft_elem_write.c           ft_generate_mask.c             ft_print_type_1.c                ft_print_type_3.c  ft_pull_type_1.c ft_print_type_4.c  ft_print_type_5.c \
 ft_generate_constructor.c
 SRCS_F_LIB	= ft_atoi.c       ft_isalpha.c    ft_itoa.c       ft_memcpy.c     ft_putendl_fd.c ft_strchr.c     ft_strlcpy.c    ft_strnstr.c    ft_tolower.c \

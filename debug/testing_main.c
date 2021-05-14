@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <inttypes.h>
+#include <unistd.h>
+#include <math.h>
 
 int		main(void)
 {
+/*
 	int		test;
 	char	*teststr;
 
@@ -102,8 +105,26 @@ int		main(void)
 	printf("%.2f\n", 0.00000123456789);
 	printf("%.2e\n", 0.00000123456789);
 	printf("%.2g\n\n", 0.00000123456789);
-
-	printf("% c", 'a');
+*/
 
 	return (0);
 }
+
+// dtoa = 2 ^ ... * (1 + E 0/1 * 2 ^ ...)
+/*
+	1 << <POS>; ->
+*/
+// itoa
+// utoa ()
+/*-1 + 2
+-1 -> -1
+2 -> 2
+1 -> 1*/
+
+// exp(ln(a)) = a
+// ln(10^2.2) = 2.2*ln(10)
+// ln(1+x) = x - (x^2)/2 + (x^3)/3 - ... + ...
+// exp(x) = 1 + x + (x^2)/2 + ...
+
+// 10 ^ 2.2 = exp(ln(10 ^ 2.2)) = exp(2.2 * ln(10)) = exp(1.231231231231231231231)
+// 1 + 1.231231231231231231231 + (1.231231231231231231231)^2/2 + 
