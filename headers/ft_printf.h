@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:23:08 by acami             #+#    #+#             */
-/*   Updated: 2021/05/15 14:09:28 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/15 17:08:51 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int			ft_vprintf(const char *format_str, va_list *arg_list);
 
 // prints symbols into standart output while % was not encountered
 // returns the amount of symbols printed
-int			ft_dprint_till_percent(int fd, const char **format_str);
+int			ft_print_till_percent(int fd, const char **format_str);
 
 void		ft_initialize_mask(t_mask *mask);
 

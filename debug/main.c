@@ -195,5 +195,6 @@ int		main ()
 	ft_printf("Expected:-1 :%jd\n", jd);
 	ft_printf("Expected:-1 :%zd\n", zd);
 */
+	ft_printf("%#.0x", 0);
 	return (0);
 }

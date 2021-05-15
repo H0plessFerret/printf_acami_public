@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 00:27:25 by acami             #+#    #+#             */
-/*   Updated: 2021/05/15 14:03:47 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/15 17:50:35 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,8 @@ int	ft_print_string(va_list *arg_list, t_mask *mask)
 	mask->print_sign = false;
 	mask->zero_padding = false;
 	if (str == NULL)
-	{
-		if (mask->prescision > 5 || mask->prescision == NOT_SET)
-			str = "(null)";
-		else
-			str = "";
-	}
-	else if (mask->prescision != NOT_SET
+		str = "(null)";
+	if (mask->prescision != NOT_SET
 		&& (uintmax_t)(mask->prescision) < ft_strlen(str))
 		return (ft_elem_write(str, mask->prescision, mask));
 	return (ft_elem_write(str, ft_strlen(str), mask));
@@ -58,10 +53,7 @@ int	ft_print_pointer(va_list *arg_list, t_mask *mask)
 	mask->free_space = false;
 	mask->print_sign = false;
 	mask->zero_padding = false;
-	if (ptr == NULL)
-		str = "(nil)";
-	else
-		str = ft_put_unsignednbr_base((uintmax_t)ptr, BASE_HEX, mask);
+	str = ft_put_unsignednbr_base((uintmax_t)ptr, BASE_HEX, mask);
 	return (ft_elem_write(str, ft_strlen(str), mask));
 }
 
