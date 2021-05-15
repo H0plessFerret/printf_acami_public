@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 15:18:16 by acami             #+#    #+#             */
-/*   Updated: 2021/05/15 18:03:34 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/15 19:16:29 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ t_string_constructor *str_const)
 		str_const->sign[0] = "+-"[mask->is_negative];
 	else if (mask->free_space)
 		str_const->sign[0] = ' ';
-	else if (mask->alternative_mode && mask->specifier == 'o' && *str != '0'
-		&& *str != '\0')
+	else if (mask->alternative_mode && mask->specifier == 'o' && *str != '0')
 		str_const->sign[0] = '0';
 	else if (mask->alternative_mode && ft_tolower(mask->specifier) == 'x'
 		&& *str != '0' && *str != '\0')
@@ -69,6 +68,8 @@ t_string_constructor *str_const)
 			++(str_const->front_zeros);
 			++str_len;
 		}
+		if (!ft_strncmp(str_const->sign, "0", 2) && str_const->front_zeros != 0)
+			str_const->sign_len = 0;
 	}
 	symbols_printed = str_const->sign_len + str_len;
 	if (mask->left_justified == false)
