@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 14:10:23 by acami             #+#    #+#             */
-/*   Updated: 2021/04/28 17:39:54 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/15 14:06:48 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_print_signed(va_list *arg_list, t_mask *mask)
 {
 	intmax_t	num;
 	char		*buff;
-	
+
 	num = ft_pull_signed(arg_list, &(mask->length_modifiers));
 	mask->alternative_mode = false;
 	if (mask->prescision != NOT_SET || mask->left_justified)
@@ -83,7 +83,7 @@ int	ft_print_unsigned(va_list *arg_list, t_mask *mask)
 	int			base;
 	char		*buff;
 
-	num = ft_pull_unsigned(arg_list, &(mask->length_modifiers));\
+	num = ft_pull_unsigned(arg_list, &(mask->length_modifiers));
 	mask->print_sign = false;
 	mask->free_space = false;
 	if (mask->prescision != NOT_SET || mask->left_justified)

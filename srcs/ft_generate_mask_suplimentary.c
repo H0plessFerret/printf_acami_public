@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 18:18:35 by acami             #+#    #+#             */
-/*   Updated: 2021/04/28 17:22:31 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/15 14:06:30 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ int	ft_mask_width(const char *format_spec, t_mask *mask, va_list *arg_list)
 		while (ft_isdigit(curr_elem))
 		{
 			mask->width = 10 * mask->width + curr_elem - '0';
-			++count;
-			curr_elem = *(format_spec + count);
+			curr_elem = *(format_spec + count++);
 		}
 	}
 	return (count);

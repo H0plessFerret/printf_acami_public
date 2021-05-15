@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 00:27:25 by acami             #+#    #+#             */
-/*   Updated: 2021/04/29 00:27:25 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/15 14:03:47 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	ft_print_string(va_list *arg_list, t_mask *mask)
 		else
 			str = "";
 	}
-	else if (mask->prescision != NOT_SET 
-			&& (uintmax_t)(mask->prescision) < ft_strlen(str))
+	else if (mask->prescision != NOT_SET
+		&& (uintmax_t)(mask->prescision) < ft_strlen(str))
 		return (ft_elem_write(str, mask->prescision, mask));
 	return (ft_elem_write(str, ft_strlen(str), mask));
 }

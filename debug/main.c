@@ -1,12 +1,9 @@
 #include "../headers/ft_printf.h"
-<<<<<<< HEAD
 #include <string.h>
 #include <stdlib.h>
 
-=======
 #include <stdio.h>
 #include <limits.h>
->>>>>>> e82efd4c0906e0943cd8df122f48d9ea7b112c78
 
 //mask printer:
 /*
@@ -17,7 +14,6 @@ printf("alternative_mode = %d\nleft_justified = %d\nzero_padding = %d\nfree_spac
 int		main ()
 {
 	//printf(str, 5, 7, 10, 11);
-<<<<<<< HEAD
 
 	//char test;
 
@@ -66,10 +62,8 @@ int		main ()
 			printf("\n");
 	}
 */
-=======
 	//ft_printf("%p\n", &test);
 	//printf("%p", &test);
->>>>>>> e82efd4c0906e0943cd8df122f48d9ea7b112c78
 /*
 	ft_printf("Testing %%d\n");
 	ft_printf("Expected:0 :%d\n", 0);

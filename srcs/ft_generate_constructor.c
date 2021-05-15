@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 15:18:16 by acami             #+#    #+#             */
-/*   Updated: 2021/05/08 15:18:16 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/15 14:05:33 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_string_constructor *str_const)
 }
 
 //FIX THIS PLEASE!
-static void ft_generate_right_zeroes(t_mask *mask,
+static void	ft_generate_right_zeroes(t_mask *mask,
 t_string_constructor *str_const)
 {
 	if (ft_strchr("fFeE", mask->specifier) != NULL
@@ -54,17 +54,20 @@ t_string_constructor *str_const)
 		str_const->back_zeros = ft_mask_prescision - DLENGTH_MAX;
 }
 
-static void ft_generate_left_fillers(size_t str_len, t_mask *mask,
+static void	ft_generate_left_fillers(size_t str_len, t_mask *mask,
 t_string_constructor *str_const)
 {
 	int	symbols_printed;
 
-	if (ft_strchr("diouxX", mask->specifier) != NULL && mask->prescision != NOT_SET)
+	if (ft_strchr("diouxX", mask->specifier) != NULL
+		&& mask->prescision != NOT_SET)
+	{
 		while (str_len < (uintmax_t)(mask->prescision))
 		{
 			++(str_const->front_zeros);
 			++str_len;
 		}
+	}
 	symbols_printed = str_const->sign_len + str_len;
 	if (mask->left_justified == false)
 	{
@@ -79,14 +82,15 @@ t_string_constructor *str_const)
 	}
 }
 
-static void ft_generate_right_spaces(size_t str_len, t_mask *mask,
+static void	ft_generate_right_spaces(size_t str_len, t_mask *mask,
 t_string_constructor *str_const)
 {
-	int symbols_printed;
+	int	symbols_printed;
 
 	if (mask->left_justified)
 	{
-		symbols_printed = str_const->sign_len + str_const->front_zeros + str_len;
+		symbols_printed = str_const->sign_len + str_const->front_zeros
+			+ str_len;
 		while (symbols_printed < mask->width)
 		{
 			++(str_const->back_spaces);

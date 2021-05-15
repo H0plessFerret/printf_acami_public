@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:23:08 by acami             #+#    #+#             */
-/*   Updated: 2021/04/28 17:08:23 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/15 14:09:28 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 # define	BASE_DECIMAL	10
 # define	BASE_HEX		16
 
-typedef struct s_length	t_length;
-typedef struct s_mask	t_mask;
-typedef struct s_string_constructor t_string_constructor;
+typedef struct s_length				t_length;
+typedef struct s_mask				t_mask;
+typedef struct s_string_constructor	t_string_constructor;
 
 struct s_length
 {

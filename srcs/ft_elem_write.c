@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 15:32:51 by acami             #+#    #+#             */
-/*   Updated: 2021/04/28 19:16:33 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/15 14:04:04 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 int	ft_elem_write(char *str, size_t str_len, t_mask *mask)
 {
-	int res;
-	t_string_constructor str_const;
+	int						res;
+	t_string_constructor	str_const;
 
 	ft_generate_constructor(str, str_len, mask, &str_const);
 	res = 0;

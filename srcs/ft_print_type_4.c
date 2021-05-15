@@ -6,15 +6,15 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 23:35:22 by acami             #+#    #+#             */
-/*   Updated: 2021/05/07 23:35:22 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/15 14:07:31 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_print_type.h"
 #include "../libft/libft.h"
 
-char	*ft_put_float_scientific_base(long double nbr, int8_t base, t_mask *mask,
-int8_t nbr_power)
+char	*ft_put_float_scientific_base(long double nbr, int8_t base,
+t_mask *mask, int8_t nbr_power)
 {
 	static char	res[DLENGTH_MAX];
 	char		*buff;
@@ -75,13 +75,15 @@ static void	ft_trim_insignificant_digits(char *number)
 		}
 		++count;
 	}
-	ft_memmove(number + insignificant_pos, number + insignificant_pos + insignificant_len, 7);
+	ft_memmove(number + insignificant_pos,
+		number + insignificant_pos + insignificant_len, 7);
 }
 
 char	*ft_put_float_g_base(long double nbr, int8_t base, t_mask *mask,
 int8_t nbr_power)
 {
 	char	*buff;
+
 	if (nbr_power < -4 || nbr_power >= mask->prescision)
 	{
 		if (mask->prescision > 1)
