@@ -1,8 +1,10 @@
 README.md
 .vscode/
-a.out
+*.out
+*.exe
 *.o
 *.a
 *.debug
 txt2
 file.txt
+funny*

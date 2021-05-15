@@ -52,6 +52,11 @@ int	ft_mask_width(const char *format_spec, t_mask *mask, va_list *arg_list)
 	if (curr_elem == '*')
 	{
 		mask->width = va_arg(*arg_list, int);
+		if (mask->width < 0)
+		{
+			mask->width *= -1;
+			mask->left_justified = true;
+		}
 		++count;
 	}
 	else if (ft_isdigit(curr_elem))
@@ -80,6 +85,8 @@ int	ft_mask_prescision(const char *format_spec, t_mask *mask, va_list *arg_list)
 	if (curr_elem == '*')
 	{
 		mask->prescision = va_arg(*arg_list, int);
+		if (mask->prescision < 0)
+			mask->prescision = NOT_SET;
 		++count;
 	}
 	else

@@ -1,7 +1,12 @@
 #include "../headers/ft_printf.h"
+<<<<<<< HEAD
 #include <string.h>
 #include <stdlib.h>
 
+=======
+#include <stdio.h>
+#include <limits.h>
+>>>>>>> e82efd4c0906e0943cd8df122f48d9ea7b112c78
 
 //mask printer:
 /*
@@ -12,6 +17,7 @@ printf("alternative_mode = %d\nleft_justified = %d\nzero_padding = %d\nfree_spac
 int		main ()
 {
 	//printf(str, 5, 7, 10, 11);
+<<<<<<< HEAD
 
 	//char test;
 
@@ -60,11 +66,18 @@ int		main ()
 			printf("\n");
 	}
 */
+=======
+	//ft_printf("%p\n", &test);
+	//printf("%p", &test);
+>>>>>>> e82efd4c0906e0943cd8df122f48d9ea7b112c78
 /*
 	ft_printf("Testing %%d\n");
 	ft_printf("Expected:0 :%d\n", 0);
 	ft_printf("Expected:1 :%d\n", 1);
 	ft_printf("Expected:-1 :%d\n", -1);
+
+	ft_printf("Expected: '0' :'%.1d'\n", 0);
+	ft_printf("Expected: '' :'%.0d'\n", 0);
 	
 	ft_printf("Expected:+0 :%+d\n", 0);
 	ft_printf("Expected:+1012 :%+d\n", 1012);
@@ -75,21 +88,104 @@ int		main ()
 	ft_printf("Expected:-123 :% d\n", -123);
 
 	ft_printf("Expected: '  123' :'%5d'\n", 123);
+	ft_printf("Expected: ' -123' :'%5d'\n", -123);
 	ft_printf("Expected: '123456789' :'%5d'\n", 123456789);
 
 	ft_printf("Expected: '123  ' :'%-5d'\n", 123);
+	ft_printf("Expected: '-123 ' :'%-5d'\n", -123);
 	ft_printf("Expected: '123456789' :'%-5d'\n", 123456789);
 
 	ft_printf("Expected: '00123' :'%05d'\n", 123);
+	ft_printf("Expected: '-0123' :'%05d'\n", -123);
 	ft_printf("Expected: '123456789' :'%05d'\n", 123456789);
 
 	ft_printf("Expected: '123  ' :'%-05d'\n", 123);
+	ft_printf("Expected: '-123 ' :'%-05d'\n", -123);
 	ft_printf("Expected: '123456789' :'%-05d'\n", 123456789);
 
 	ft_printf("Expected: '+123 ' :'%+-05d'\n", 123);
+	ft_printf("Expected: '-123 ' :'%+-05d'\n", -123);
 	ft_printf("Expected: '+123456789' :'%+-05d'\n", 123456789);
-*/
 
+	ft_printf("Expected: ' 123 ' :'%- 05d'\n", 123);
+	ft_printf("Expected: '-123 ' :'%- 05d'\n", -123);
+	ft_printf("Expected: ' 123456789' :'%- 05d'\n", 123456789);
+
+	ft_printf("Expected: ' 0123' :'% 05d'\n", 123);
+	ft_printf("Expected: '-0123' :'% 05d'\n", -123);
+	ft_printf("Expected: ' 123456789' :'% 05d'\n", 123456789);
+*/
+	// this case will be fixed when the circle buffer will be introduced
+	//ft_printf("%.15000f\n", 1000000000000000.12);
+	/*
+	ft_printf("%.10e\n", 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.1);
+	printf("%.10e\n", 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.1);
+
+	ft_printf("%f\n", 1234567.123456789);
+	ft_printf("%e\n", 1234567.123456789);
+	ft_printf("%g\n\n", 1234567.123456789);
+
+	ft_printf("%f\n", 12345.123456789);
+	ft_printf("%e\n", 12345.123456789);
+	ft_printf("%g\n\n", 12345.123456789);
+
+	ft_printf("%f\n", 1234.123456789);
+	ft_printf("%e\n", 1234.123456789);
+	ft_printf("%g\n\n", 1234.123456789);
+
+	ft_printf("%f\n", 123.123456789);
+	ft_printf("%e\n", 123.123456789);
+	ft_printf("%g\n\n", 123.123456789);
+
+	ft_printf("%f\n", 12.123456789);
+	ft_printf("%e\n", 12.123456789);
+	ft_printf("%g\n\n", 12.123456789);
+
+	ft_printf("%f\n", 1.123456789);
+	ft_printf("%e\n", 1.123456789);
+	ft_printf("%g\n\n", 1.123456789);
+
+	ft_printf("%f\n", 0.123456789);
+	ft_printf("%e\n", 0.123456789);
+	ft_printf("%g\n\n", 0.123456789);
+
+	ft_printf("%f\n", 0.0123456789);
+	ft_printf("%e\n", 0.0123456789);
+	ft_printf("%g\n\n", 0.0123456789);
+
+	ft_printf("%f\n", 0.00123456789);
+	ft_printf("%e\n", 0.00123456789);
+	ft_printf("%g\n\n", 0.00123456789);
+
+	ft_printf("%f\n", 0.000123456789);
+	ft_printf("%e\n", 0.000123456789);
+	ft_printf("%g\n\n", 0.000123456789);
+
+	ft_printf("%f\n", 0.0000123456789);
+	ft_printf("%e\n", 0.0000123456789);
+	ft_printf("%g\n\n", 0.0000123456789);
+	
+	ft_printf("%f\n", 0.00000123456789);
+	ft_printf("%e\n", 0.00000123456789);
+	ft_printf("%g\n\n", 0.00000123456789);
+
+	ft_printf("%.4f\n", 0.000123456789);
+	ft_printf("%.4e\n", 0.000123456789);
+	ft_printf("%.4g\n\n", 0.000123456789);
+
+	ft_printf("%.7f\n", 0.123456789);
+	ft_printf("%.7e\n", 0.123456789);
+	ft_printf("%.7g\n\n", 0.123456789);
+	*/
+
+/*
+	int	a;
+	int b;
+	b = ft_printf("Haha I printed some words%n then printed some more!\n", &a);
+	printf("%d %d", a, b);
+
+	printf("\n\n%d", __LDBL_MIN_10_EXP__);
+*/
 /*
 	signed char		hhd = -1;
 	short int		hd = -1;

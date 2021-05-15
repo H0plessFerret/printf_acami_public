@@ -12,13 +12,21 @@
 
 NAME		= libftprintf.a
 DEBUG_SRC	= ./debug/main.c
+SRC_DIR_LIB	= ./libft/
 SRC_DIR		= ./srcs/
 HEADERS		= ./headers/
-SRC_F		= ft_dprint_till_percent.c        ft_find_corresponding_print.c   ft_print_type_1.c    ft_pull_type_2.c \
-ft_generate_mask.c    ft_printf.c ft_elem_write.c    ft_generate_mask_suplimentary.c ft_pull_type_1.c
+SRC_F		= ft_print_till_percent.c  ft_find_corresponding_print.c  ft_generate_mask_suplimentary.c  ft_print_type_2.c  ft_printf.c       ft_pull_type_2.c \
+ft_elem_write.c           ft_generate_mask.c             ft_print_type_1.c                ft_print_type_3.c  ft_pull_type_1.c ft_print_type_4.c  ft_print_type_5.c \
+ft_generate_constructor.c
+SRCS_F_LIB	= ft_atoi.c       ft_isalpha.c    ft_itoa.c       ft_memcpy.c     ft_putendl_fd.c ft_strchr.c     ft_strlcpy.c    ft_strnstr.c    ft_tolower.c \
+ft_bzero.c      ft_isascii.c    ft_memccpy.c    ft_memmove.c    ft_putnbr_fd.c  ft_strdup.c     ft_strlen.c     ft_strrchr.c    ft_toupper.c \
+ft_calloc.c     ft_isdigit.c    ft_memchr.c     ft_memset.c     ft_putstr_fd.c  ft_strjoin.c    ft_strmapi.c    ft_strtrim.c \
+ft_isalnum.c    ft_isprint.c    ft_memcmp.c     ft_putchar_fd.c ft_split.c      ft_strlcat.c    ft_strncmp.c    ft_substr.c \
+ft_strtoupper.c
 SRCS		= $(addprefix $(SRC_DIR), $(SRC_F))
+SRCS_LIB	= $(addprefix $(SRC_DIR_LIB), $(SRCS_F_LIB))
 OBJS		= $(SRCS:.c=.o)
-BONUS_OBJS	= $(BONUS_SRCS:.c=.o)
+OBJS_LIB	= $(SRCS_LIB:.c=.o)
 DEBUG_OBJS	= $(DEBUG_SRC:.c=.o)
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror -g -I $(HEADERS)
@@ -31,17 +39,13 @@ DEPENDS		= $(SRCS) $(HEADERS) Makefile
 .c.o:		
 			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-debug:		$(OBJS) $(DEBUG_OBJS) $(DEPENDS)
-			make -sC ./libft/ all
-			$(CC) $(OBJS) $(DEBUG_OBJS) ./libft/libft.a -o test.debug
+debug:		$(OBJS) $(DEBUG_OBJS) $(OBJS_LIB) $(DEPENDS)
+			@make -sC ./libft/ all
+			$(CC) $(OBJS) $(DEBUG_OBJS) $(OBJS_LIB) ./libft/libft.a -o test.debug
 
-$(NAME):	$(OBJS) $(DEPENDS)
-			make -sC ./libft/ all
-			$(AR) $(ARFLAGS) $(NAME) $(OBJS)
-			$(LIBRAN) $(NAME)
-
-bonus:		$(OBJS) $(BONUS_OBJS)
-			$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(BONUS_OBJS)
+$(NAME):	$(OBJS) $(OBJS_LIB) $(DEPENDS)
+			@make -sC ./libft/ all
+			$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(OBJS_LIB)
 			$(LIBRAN) $(NAME)
 
 all:		$(NAME)

@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_till_percent.c                            :+:      :+:    :+:   */
+/*   mathft.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 19:55:52 by acami             #+#    #+#             */
-/*   Updated: 2021/04/24 14:19:33 by acami            ###   ########.fr       */
+/*   Created: 2021/05/11 19:18:29 by acami             #+#    #+#             */
+/*   Updated: 2021/05/11 19:18:29 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_printf.h"
+#ifndef MATHFT_H
+# define MATHFT_H
 
-int	ft_dprint_till_percent(int fd, const char **format_spec)
+# include <inttypes.h>
+
+typedef union u_128double	t_128double;
+
+typedef union u_128double
 {
-	int	count;
+	uint64_t	mask[2];
+	long double	number;
+};
 
-	count = 0;
-	while (*(*format_spec + count) != '\0'
-		&& *(*format_spec + count) != '%')
-		++count;
-	write(fd, *format_spec, count);
-	*format_spec += count;
-	return (count);
-}
+#endif

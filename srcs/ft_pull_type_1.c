@@ -14,7 +14,11 @@
 
 intmax_t	ft_pull_signed(va_list *arg_list, t_length *length_modifiers)
 {
-	if (length_modifiers->is_l)
+	if (length_modifiers->is_hh)
+		return ((intmax_t)((char)va_arg(*arg_list, int)));
+	else if (length_modifiers->is_h)
+		return ((intmax_t)((short int)va_arg(*arg_list, int)));
+	else if (length_modifiers->is_l)
 		return ((intmax_t)va_arg(*arg_list, long int));
 	else if (length_modifiers->is_ll)
 		return ((intmax_t)va_arg(*arg_list, long long int));
@@ -28,7 +32,11 @@ intmax_t	ft_pull_signed(va_list *arg_list, t_length *length_modifiers)
 
 uintmax_t	ft_pull_unsigned(va_list *arg_list, t_length *length_modifiers)
 {
-	if (length_modifiers->is_l)
+	if (length_modifiers->is_hh)
+		return ((uintmax_t)((unsigned char)va_arg(*arg_list, int)));
+	else if (length_modifiers->is_h)
+		return ((uintmax_t)((unsigned short int)va_arg(*arg_list, int)));
+	else if (length_modifiers->is_l)
 		return ((uintmax_t)va_arg(*arg_list, unsigned long int));
 	else if (length_modifiers->is_ll)
 		return ((uintmax_t)va_arg(*arg_list, unsigned long long int));
@@ -39,10 +47,11 @@ uintmax_t	ft_pull_unsigned(va_list *arg_list, t_length *length_modifiers)
 	return ((uintmax_t)va_arg(*arg_list, unsigned int));
 }
 
+/*change int to wint_t when actually on mac, windows is funny*/
 wint_t	ft_pull_char(va_list *arg_list, t_length *length_modifiers)
 {
 	if (length_modifiers->is_l)
-		return (va_arg(*arg_list, wint_t));
+		return (va_arg(*arg_list, int));
 	return ((wint_t)va_arg(*arg_list, int));
 }
 
