@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:23:08 by acami             #+#    #+#             */
-/*   Updated: 2021/05/15 17:08:51 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/16 16:21:37 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ struct s_mask
 	bool		print_sign : 1;
 	bool		uppercase : 1;
 	bool		is_negative : 1;
-	int			width;
-	int			prescision;
-	int			symbols_printed;
+	int32_t		width;
+	int32_t		prescision;
+	int32_t		symbols_printed;
 	char		specifier;
 	t_length	length_modifiers;
 };
