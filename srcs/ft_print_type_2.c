@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 00:27:25 by acami             #+#    #+#             */
-/*   Updated: 2021/05/16 16:01:22 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/17 14:01:54 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	ft_print_string(va_list *arg_list, t_mask *mask)
 	mask->zero_padding = false;
 	if (str == NULL)
 		str = "(null)";
-	if (mask->prescision != NOT_SET
-		&& (uintmax_t)(mask->prescision) < ft_strlen(str))
-		return (ft_elem_write(str, mask->prescision, mask));
+	if (mask->precision != NOT_SET
+		&& (uintmax_t)(mask->precision) < ft_strlen(str))
+		return (ft_elem_write(str, mask->precision, mask));
 	return (ft_elem_write(str, ft_strlen(str), mask));
 }
 
@@ -73,8 +73,8 @@ int	ft_print_float(va_list *arg_list, t_mask *mask)
 	char		*buff;
 
 	base = BASE_DECIMAL;
-	if (mask->prescision == NOT_SET)
-		mask->prescision = 6;
+	if (mask->precision == NOT_SET)
+		mask->precision = 6;
 	num = ft_pull_float(arg_list, &(mask->length_modifiers));
 	if (num < 0)
 	{

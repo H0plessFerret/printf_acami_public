@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 23:35:22 by acami             #+#    #+#             */
-/*   Updated: 2021/05/15 14:07:31 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/17 14:01:59 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,16 @@ int8_t nbr_power)
 {
 	char	*buff;
 
-	if (nbr_power < -4 || nbr_power >= mask->prescision)
+	if (nbr_power < -4 || nbr_power >= mask->precision)
 	{
-		if (mask->prescision > 1)
-			--(mask->prescision);
+		if (mask->precision > 1)
+			--(mask->precision);
 		buff = ft_put_float_scientific_base(nbr, base, mask, nbr_power);
 		if (mask->alternative_mode == false)
 			ft_trim_insignificant_digits(buff);
 		return (buff);
 	}
-	mask->prescision = mask->prescision - ft_abs(nbr_power);
+	mask->precision = mask->precision - ft_abs(nbr_power);
 	buff = ft_put_float_normal_base(nbr, base, mask, nbr_power);
 	if (mask->alternative_mode == false)
 		ft_trim_insignificant_digits(buff);

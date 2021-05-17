@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 18:18:35 by acami             #+#    #+#             */
-/*   Updated: 2021/05/15 17:21:23 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/17 14:02:09 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	ft_mask_width(const char *format_spec, t_mask *mask, va_list *arg_list)
 	return (count);
 }
 
-int	ft_mask_prescision(const char *format_spec, t_mask *mask, va_list *arg_list)
+int	ft_mask_precision(const char *format_spec, t_mask *mask, va_list *arg_list)
 {
 	char	curr_elem;
 	int		count;
@@ -79,20 +79,20 @@ int	ft_mask_prescision(const char *format_spec, t_mask *mask, va_list *arg_list)
 	if (*format_spec != '.')
 		return (0);
 	count = 1;
-	mask->prescision = 0;
+	mask->precision = 0;
 	curr_elem = *(format_spec + count);
 	if (curr_elem == '*')
 	{
-		mask->prescision = va_arg(*arg_list, int);
-		if (mask->prescision < 0)
-			mask->prescision = NOT_SET;
+		mask->precision = va_arg(*arg_list, int);
+		if (mask->precision < 0)
+			mask->precision = NOT_SET;
 		++count;
 	}
 	else
 	{
 		while (ft_isdigit(curr_elem))
 		{
-			mask->prescision = 10 * mask->prescision + curr_elem - '0';
+			mask->precision = 10 * mask->precision + curr_elem - '0';
 			++count;
 			curr_elem = *(format_spec + count);
 		}

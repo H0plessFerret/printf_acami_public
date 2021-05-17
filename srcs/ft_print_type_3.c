@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 00:28:16 by acami             #+#    #+#             */
-/*   Updated: 2021/04/29 00:28:16 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/17 14:02:00 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int8_t nbr_power)
 		--nbr_power;
 	}
 	res[curr_elem] = '\0';
-	if (mask->prescision != 0 || mask->alternative_mode == true)
+	if (mask->precision != 0 || mask->alternative_mode == true)
 	{
 		buffer = ft_put_fraction_base(nbr, base, mask);
 		ft_strlcat(res, buffer, DLENGTH_MAX);
@@ -70,7 +70,7 @@ char	*ft_put_fraction_base(long double nbr, int8_t base, t_mask *mask)
 	res[0] = '.';
 	count = 1;
 	base_symbols = "0123456789abcdef";
-	while (count <= (size_t)(mask->prescision) && count < DLENGTH_MAX - 1)
+	while (count <= (size_t)(mask->precision) && count < DLENGTH_MAX - 1)
 	{
 		current_digit = (int8_t)nbr;
 		res[count] = base_symbols[current_digit];

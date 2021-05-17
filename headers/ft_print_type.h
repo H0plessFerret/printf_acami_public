@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:56:26 by acami             #+#    #+#             */
-/*   Updated: 2021/05/15 14:08:48 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/17 14:02:13 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char		*ft_put_unsignedfloat_base(long double nbr, int8_t base,
 
 long double	ft_pow_base(int8_t base, int8_t power);
 
-void		ft_correct_bad_prescision(long double *nbr, int8_t *nbr_power,
+void		ft_correct_bad_precision(long double *nbr, int8_t *nbr_power,
 				int8_t base);
 
 void		ft_norm_float_base(long double *nbr, int8_t *nbr_power,

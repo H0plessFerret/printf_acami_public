@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:23:08 by acami             #+#    #+#             */
-/*   Updated: 2021/05/16 16:21:37 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/17 14:02:11 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ struct s_mask
 	bool		uppercase : 1;
 	bool		is_negative : 1;
 	int32_t		width;
-	int32_t		prescision;
+	int32_t		precision;
 	int32_t		symbols_printed;
 	char		specifier;
 	t_length	length_modifiers;
@@ -94,7 +94,7 @@ int			ft_mask_width(const char *format_str, t_mask *mask,
 				va_list *arg_list);
 
 // returns an integer - an amount of symbols read in format_str
-int			ft_mask_prescision(const char *format_str, t_mask *mask,
+int			ft_mask_precision(const char *format_str, t_mask *mask,
 				va_list *arg_list);
 
 // returns an integer - an amount of symbols read in format_str

@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 23:35:24 by acami             #+#    #+#             */
-/*   Updated: 2021/05/15 14:07:42 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/17 14:01:58 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ long double	ft_pow_base(int8_t base, int8_t power)
 	return (res);
 }
 
-void	ft_correct_bad_prescision(long double *nbr, int8_t *nbr_power,
+void	ft_correct_bad_precision(long double *nbr, int8_t *nbr_power,
 int8_t base)
 {
 	if (*nbr < 1)
@@ -48,7 +48,7 @@ int8_t base)
 void	ft_norm_float_base(long double *nbr, int8_t *nbr_power, int8_t base)
 {
 	*nbr /= ft_pow_base(base, *nbr_power);
-	ft_correct_bad_prescision(nbr, nbr_power, base);
+	ft_correct_bad_precision(nbr, nbr_power, base);
 }
 
 int8_t	ft_find_power(long double nbr, int8_t base)

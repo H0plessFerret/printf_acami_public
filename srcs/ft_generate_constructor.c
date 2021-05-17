@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 15:18:16 by acami             #+#    #+#             */
-/*   Updated: 2021/05/15 19:16:29 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/17 14:02:07 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static void	ft_generate_right_zeroes(t_mask *mask,
 t_string_constructor *str_const)
 {
 	if (ft_strchr("fFeE", mask->specifier) != NULL
-		&& DLENGTH_MAX < mask->prescision)
-		str_const->back_zeros = mask->prescision - DLENGTH_MAX;
+		&& DLENGTH_MAX < mask->precision)
+		str_const->back_zeros = mask->precision - DLENGTH_MAX;
 }
 
 static void	ft_generate_left_fillers(size_t str_len, t_mask *mask,
@@ -61,9 +61,9 @@ t_string_constructor *str_const)
 	int	symbols_printed;
 
 	if (ft_strchr("diouxX", mask->specifier) != NULL
-		&& mask->prescision != NOT_SET)
+		&& mask->precision != NOT_SET)
 	{
-		while (str_len < (uintmax_t)(mask->prescision))
+		while (str_len < (uintmax_t)(mask->precision))
 		{
 			++(str_const->front_zeros);
 			++str_len;

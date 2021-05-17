@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 15:04:49 by acami             #+#    #+#             */
-/*   Updated: 2021/05/15 19:55:48 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/17 14:02:10 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_initialize_mask(t_mask *mask)
 	mask->uppercase = false;
 	mask->is_negative = false;
 	mask->width = NOT_SET;
-	mask->prescision = NOT_SET;
+	mask->precision = NOT_SET;
 	mask->specifier = NOT_SET;
 	mask->length_modifiers.is_hh = false;
 	mask->length_modifiers.is_h = false;
@@ -45,14 +45,14 @@ va_list *arg_list)
 	elems_passed = 1;
 	elems_passed += ft_mask_flags(*format_spec + elems_passed, mask);
 	elems_passed += ft_mask_width(*format_spec + elems_passed, mask, arg_list);
-	elems_passed += ft_mask_prescision(*format_spec + elems_passed,
+	elems_passed += ft_mask_precision(*format_spec + elems_passed,
 			mask, arg_list);
 	elems_passed += ft_mask_length(*format_spec + elems_passed, mask);
 	if (*(*format_spec + elems_passed) == '\0'
 		|| ft_strchr(allowed_values, *(*format_spec + elems_passed)) == NULL)
 	{
 		mask->width = NOT_SET;
-		mask->prescision = NOT_SET;
+		mask->precision = NOT_SET;
 		return (false);
 	}
 	if (ft_strchr("XFEG", *(*format_spec + elems_passed)) != NULL)

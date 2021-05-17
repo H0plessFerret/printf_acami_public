@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 14:10:23 by acami             #+#    #+#             */
-/*   Updated: 2021/05/15 17:22:38 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/17 14:02:02 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_put_unsignednbr_base(uintmax_t nbr, int8_t base, t_mask *mask)
 
 	count = 0;
 	base_symbols = "0123456789abcdef";
-	if ((nbr == 0) && (mask->prescision != 0))
+	if ((nbr == 0) && (mask->precision != 0))
 	{
 		res[count] = '0';
 		++count;
@@ -64,7 +64,7 @@ int	ft_print_signed(va_list *arg_list, t_mask *mask)
 
 	num = ft_pull_signed(arg_list, &(mask->length_modifiers));
 	mask->alternative_mode = false;
-	if (mask->prescision != NOT_SET || mask->left_justified)
+	if (mask->precision != NOT_SET || mask->left_justified)
 		mask->zero_padding = false;
 	if (num < 0)
 	{
@@ -86,7 +86,7 @@ int	ft_print_unsigned(va_list *arg_list, t_mask *mask)
 	num = ft_pull_unsigned(arg_list, &(mask->length_modifiers));
 	mask->print_sign = false;
 	mask->free_space = false;
-	if (mask->prescision != NOT_SET || mask->left_justified)
+	if (mask->precision != NOT_SET || mask->left_justified)
 		mask->zero_padding = false;
 	if (mask->specifier == 'u')
 	{
