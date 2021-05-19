@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 13:58:19 by acami             #+#    #+#             */
-/*   Updated: 2021/05/15 18:54:09 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/19 14:43:23 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,15 @@ wint_t	ft_pull_char(va_list *arg_list, t_length *length_modifiers)
 	return ((wint_t)va_arg(*arg_list, int));
 }
 
-wchar_t	*ft_pull_string(va_list *arg_list, t_length *length_modifiers)
-{
-	if (length_modifiers->is_l)
-		return (va_arg(*arg_list, wchar_t *));
-	return ((wchar_t *)va_arg(*arg_list, char *));
-}
-
 long double	ft_pull_float(va_list *arg_list, t_length *length_modifiers)
 {
 	if (length_modifiers->is_L)
 		return (va_arg(*arg_list, long double));
 	return ((long double)va_arg(*arg_list, double));
+}
+
+void	*ft_pull_pointer(va_list *arg_list, t_length *length_modifiers)
+{
+	(void)length_modifiers;
+	return (va_arg(*arg_list, void *));
 }

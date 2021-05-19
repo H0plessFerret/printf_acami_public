@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_generate_constructor.c                          :+:      :+:    :+:   */
+/*   ft_generate_strconst_suplimentary.c                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 15:18:16 by acami             #+#    #+#             */
-/*   Updated: 2021/05/17 14:02:07 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/19 16:35:19 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_print_type.h"
 #include "../libft/libft.h"
 
-static void	ft_initialize_constructor(t_string_constructor *str_const)
+void	ft_initialize_constructor(t_string_constructor *str_const)
 {
 	str_const->front_spaces = 0;
 	ft_bzero(str_const->sign, 3);
@@ -23,7 +23,7 @@ static void	ft_initialize_constructor(t_string_constructor *str_const)
 	str_const->back_spaces = 0;
 }
 
-static void	ft_generate_sign_info(char *str, t_mask *mask,
+void	ft_generate_sign_info(char *str, t_mask *mask,
 t_string_constructor *str_const)
 {
 	if (mask->print_sign)
@@ -47,7 +47,7 @@ t_string_constructor *str_const)
 }
 
 //FIX THIS PLEASE!
-static void	ft_generate_right_zeroes(t_mask *mask,
+void	ft_generate_right_zeroes(t_mask *mask,
 t_string_constructor *str_const)
 {
 	if (ft_strchr("fFeE", mask->specifier) != NULL
@@ -55,7 +55,7 @@ t_string_constructor *str_const)
 		str_const->back_zeros = mask->precision - DLENGTH_MAX;
 }
 
-static void	ft_generate_left_fillers(size_t str_len, t_mask *mask,
+void	ft_generate_left_fillers(size_t str_len, t_mask *mask,
 t_string_constructor *str_const)
 {
 	int	symbols_printed;
@@ -85,7 +85,7 @@ t_string_constructor *str_const)
 	}
 }
 
-static void	ft_generate_right_spaces(size_t str_len, t_mask *mask,
+void	ft_generate_right_spaces(size_t str_len, t_mask *mask,
 t_string_constructor *str_const)
 {
 	int	symbols_printed;
@@ -100,14 +100,4 @@ t_string_constructor *str_const)
 			++symbols_printed;
 		}
 	}
-}
-
-void	ft_generate_constructor(char *str, size_t str_len, t_mask *mask,
-t_string_constructor *str_const)
-{
-	ft_initialize_constructor(str_const);
-	ft_generate_sign_info(str, mask, str_const);
-	ft_generate_right_zeroes(mask, str_const);
-	ft_generate_left_fillers(str_len, mask, str_const);
-	ft_generate_right_spaces(str_len, mask, str_const);
 }

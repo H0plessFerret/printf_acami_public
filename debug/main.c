@@ -1,7 +1,8 @@
 #include "../headers/ft_printf.h"
 #include <string.h>
 #include <stdlib.h>
-
+#include <unistd.h>
+#include <fcntl.h>
 #include <stdio.h>
 #include <limits.h>
 
@@ -195,6 +196,13 @@ int		main ()
 	ft_printf("Expected:-1 :%jd\n", jd);
 	ft_printf("Expected:-1 :%zd\n", zd);
 */
-	ft_printf("%#05o", 43);
+	char *tmp = "%ls";
+	wchar_t	 s[] = {' ', u'࿚', u'ƀ', u'ɏ', u'ɐ', ' ', u'ʯ', ' ', u'ʰ', u'˿', ' ', u'ୟ', ' ', u'௫', ' ', ' ', u'࿚', 0};
+	
+	printf("%zu\n", sizeof(s));
+	printf("%ls\n", s);
+
+	ft_printf(tmp, L"(null)");
+
 	return (0);
 }

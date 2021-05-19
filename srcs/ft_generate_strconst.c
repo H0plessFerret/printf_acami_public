@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pull_type_2.c                                   :+:      :+:    :+:   */
+/*   ft_generate_strconst.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/27 15:52:24 by acami             #+#    #+#             */
-/*   Updated: 2021/04/28 15:56:00 by acami            ###   ########.fr       */
+/*   Created: 2021/05/19 16:31:15 by acami             #+#    #+#             */
+/*   Updated: 2021/05/19 16:31:28 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/ft_pull_type.h"
+#include "../headers/ft_print_type.h"
+#include "../libft/libft.h"
 
-void	*ft_pull_pointer(va_list *arg_list, t_length *length_modifiers)
+void	ft_generate_constructor(char *str, size_t str_len, t_mask *mask,
+t_string_constructor *str_const)
 {
-	(void)length_modifiers;
-	return (va_arg(*arg_list, void *));
-}
-
-intmax_t	*ft_pull_counter(va_list *arg_list, t_length *length_modifiers)
-{
-	(void)length_modifiers;
-	return (va_arg(*arg_list, intmax_t *));
+	ft_initialize_constructor(str_const);
+	ft_generate_sign_info(str, mask, str_const);
+	ft_generate_right_zeroes(mask, str_const);
+	ft_generate_left_fillers(str_len, mask, str_const);
+	ft_generate_right_spaces(str_len, mask, str_const);
 }

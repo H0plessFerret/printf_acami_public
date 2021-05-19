@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 00:27:25 by acami             #+#    #+#             */
-/*   Updated: 2021/05/17 14:01:54 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/19 16:21:17 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 int	ft_print_char(va_list *arg_list, t_mask *mask)
 {
-	char	buffer;
+	wint_t	buffer;
 
 	mask->alternative_mode = false;
 	mask->free_space = false;
 	mask->print_sign = false;
 	mask->zero_padding = false;
 	buffer = ft_pull_char(arg_list, &(mask->length_modifiers));
-	return (ft_elem_write(&buffer, 1, mask));
+	return (ft_elem_write((char *)(&buffer), 1, mask));
 }
 
 int	ft_print_string(va_list *arg_list, t_mask *mask)
@@ -59,10 +59,23 @@ int	ft_print_pointer(va_list *arg_list, t_mask *mask)
 
 int	ft_save_counter(va_list *arg_list, t_mask *mask)
 {
-	intmax_t	*to_write;
+	void	*to_write;
 
 	to_write = ft_pull_pointer(arg_list, &(mask->length_modifiers));
-	*to_write = (intmax_t)mask->symbols_printed;
+	if (mask->length_modifiers.is_hh)
+		*(signed char *)to_write = (signed char)(mask->symbols_printed);
+	else if (mask->length_modifiers.is_h)
+		*(short int *)to_write = (short int)(mask->symbols_printed);
+	else if (mask->length_modifiers.is_l)
+		*(long int *)to_write = (long int)(mask->symbols_printed);
+	else if (mask->length_modifiers.is_ll)
+		*(long long int *)to_write = (long long int)(mask->symbols_printed);
+	else if (mask->length_modifiers.is_j)
+		*(intmax_t *)to_write = (intmax_t)(mask->symbols_printed);
+	else if (mask->length_modifiers.is_z)
+		*(size_t *)to_write = (size_t)(mask->symbols_printed);
+	else
+		*(int *)to_write = (int)(mask->symbols_printed);
 	return (0);
 }
 

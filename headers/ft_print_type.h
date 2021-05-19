@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:56:26 by acami             #+#    #+#             */
-/*   Updated: 2021/05/17 14:02:13 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/19 16:34:53 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,21 @@ int			ft_save_counter(va_list *arg_list, t_mask *mask);
 
 char		*ft_put_unsignednbr_base(uintmax_t nbr, int8_t base, t_mask *mask);
 
+void		ft_initialize_constructor(t_string_constructor *str_const);
+
+void		ft_generate_sign_info(char *str, t_mask *mask,
+				t_string_constructor *str_const);
+
+void		ft_generate_right_zeroes(t_mask *mask,
+				t_string_constructor *str_const);
+
+void		ft_generate_left_fillers(size_t str_len, t_mask *mask,
+				t_string_constructor *str_const);
+
+void		ft_generate_right_spaces(size_t str_len, t_mask *mask,
+				t_string_constructor *str_const);
+
+///////////////// AMMA FIRIN MAH LAZOR
 char		*ft_put_unsignedfloat_base(long double nbr, int8_t base,
 				t_mask *mask);
 
