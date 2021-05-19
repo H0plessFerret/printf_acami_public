@@ -25,12 +25,12 @@ static size_t	ft_wcharlen(wchar_t character)
 	return (0);
 }
 
-size_t	ft_wint_convertion(char *res, wint_t character, t_mask *mask)
+size_t	ft_wint_convertion(char *res, wint_t character, int32_t len_allowed)
 {
 	size_t	char_len;
 
 	char_len = ft_wcharlen((wchar_t)character);
-	if (char_len > mask->precision || char_len > MB_CUR_MAX)
+	if (char_len > len_allowed || char_len > MB_CUR_MAX)
 		return (0);
 	if (char_len == 1)
 		res[0] = character;
@@ -57,6 +57,7 @@ size_t	ft_wint_convertion(char *res, wint_t character, t_mask *mask)
 size_t	ft_wstr_convertion(char *res, wchar_t *str, t_mask *mask)
 {
 	(void)res;
+	(void)mask;
 	if (*str < 5)
 	{
 		return (0);

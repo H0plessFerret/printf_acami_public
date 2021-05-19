@@ -26,7 +26,7 @@ int	ft_print_char(va_list *arg_list, t_mask *mask)
 	mask->print_sign = false;
 	mask->zero_padding = false;
 	character = ft_pull_char(arg_list, &(mask->length_modifiers));
-	len = ft_wint_convertion(buffer, character, mask);
+	len = ft_wint_convertion(buffer, character, mask->precision);
 	return (ft_elem_write(buffer, len, mask));
 }
 
