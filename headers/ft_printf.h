@@ -124,7 +124,7 @@ void		ft_generate_right_spaces(size_t str_len, t_mask *mask,
 void		ft_generate_constructor(char *str, size_t str_len, t_mask *mask,
 				t_string_constructor *str_const);
 
-size_t		ft_wint_convertion(wint_t character, char *res);
-size_t		ft_wstr_convertion(wchar_t *str, char *res);
+size_t		ft_wint_convertion(char *res, wint_t character, t_mask *mask);
+size_t		ft_wstr_convertion(char *res, wchar_t *str, t_mask *mask);
 
 #endif

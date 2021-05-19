@@ -12,17 +12,49 @@
 
 #include "../headers/ft_printf.h"
 
-size_t	ft_wint_convertion(wint_t character, char *res)
+static size_t	ft_wcharlen(wchar_t character)
 {
-	(void)res;
-	if (character < 5)
-	{
-		return (0);
-	}
-	return (1);
+	if ((int64_t)character < 128LL)
+		return (1);
+	else if ((int64_t)character < 2048LL)
+		return (2);
+	else if ((int64_t)character < 65536LL)
+		return (3);
+	else if ((int64_t)character < 2097152LL)
+		return (4);
+	return (0);
 }
 
-size_t	ft_wstr_convertion(wchar_t *str, char *res)
+size_t	ft_wint_convertion(char *res, wint_t character, t_mask *mask)
+{
+	size_t	char_len;
+
+	char_len = ft_wcharlen((wchar_t)character);
+	if (char_len > mask->precision || char_len > MB_CUR_MAX)
+		return (0);
+	if (char_len == 1)
+		res[0] = character;
+	else
+	{
+		if (char_len == 2)
+			res[0] = ((character >> 6) & 31) | 192;
+		else
+		{
+			if (char_len == 3)
+				res[0] = ((character >> 12) & 15) | 224;
+			else
+			{
+				res[0] = ((character >> 18) & 7) | 240;
+				res[1] = ((character >> 12) & 63) | 128;
+			}
+			res[char_len - 2] = ((character >> 6) & 63) | 128;
+		}
+		res[char_len - 1] = (character & 63) | 128;
+	}
+	return (char_len);
+}
+
+size_t	ft_wstr_convertion(char *res, wchar_t *str, t_mask *mask)
 {
 	(void)res;
 	if (*str < 5)

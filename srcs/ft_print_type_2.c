@@ -17,21 +17,17 @@
 
 int	ft_print_char(va_list *arg_list, t_mask *mask)
 {
-	wint_t	num;
-	char	*buffer;
+	wint_t	character;
+	char	buffer[4];
 	size_t	len;
-	int		elems_printed;
 
 	mask->alternative_mode = false;
 	mask->free_space = false;
 	mask->print_sign = false;
 	mask->zero_padding = false;
-	num = ft_pull_char(arg_list, &(mask->length_modifiers));
-	buffer = NULL;
-	len = ft_wint_convertion(num, buffer);
-	elems_printed = ft_elem_write((char *)(&buffer), len, mask);
-	free(buffer);
-	return (elems_printed);
+	character = ft_pull_char(arg_list, &(mask->length_modifiers));
+	len = ft_wint_convertion(buffer, character, mask);
+	return (ft_elem_write(buffer, len, mask));
 }
 
 int	ft_print_string(va_list *arg_list, t_mask *mask)
@@ -51,7 +47,7 @@ int	ft_print_string(va_list *arg_list, t_mask *mask)
 	if (mask->length_modifiers.is_l && str != NULL)
 	{
 		buffer = NULL;
-		len = ft_wstr_convertion((wchar_t *)str, buffer);
+		len = ft_wstr_convertion(buffer, (wchar_t *)str, mask);
 		elems_printed = ft_elem_write(buffer, len, mask);
 		free(buffer);
 		return (elems_printed);
