@@ -6,29 +6,40 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 00:27:25 by acami             #+#    #+#             */
-/*   Updated: 2021/05/19 16:21:17 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/19 20:22:46 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_print_type.h"
 #include "../headers/ft_pull_type.h"
+#include "../headers/ft_printf.h"
 #include "../libft/libft.h"
 
 int	ft_print_char(va_list *arg_list, t_mask *mask)
 {
-	wint_t	buffer;
+	wint_t	num;
+	char	*buffer;
+	size_t	len;
+	int		elems_printed;
 
 	mask->alternative_mode = false;
 	mask->free_space = false;
 	mask->print_sign = false;
 	mask->zero_padding = false;
-	buffer = ft_pull_char(arg_list, &(mask->length_modifiers));
-	return (ft_elem_write((char *)(&buffer), 1, mask));
+	num = ft_pull_char(arg_list, &(mask->length_modifiers));
+	buffer = NULL;
+	len = ft_wint_convertion(num, buffer);
+	elems_printed = ft_elem_write((char *)(&buffer), len, mask);
+	free(buffer);
+	return (elems_printed);
 }
 
 int	ft_print_string(va_list *arg_list, t_mask *mask)
 {
 	char	*str;
+	char	*buffer;
+	size_t	len;
+	int		elems_printed;
 
 	str = ft_pull_pointer(arg_list, &(mask->length_modifiers));
 	mask->alternative_mode = false;
@@ -37,10 +48,20 @@ int	ft_print_string(va_list *arg_list, t_mask *mask)
 	mask->zero_padding = false;
 	if (str == NULL)
 		str = "(null)";
-	if (mask->precision != NOT_SET
+	if (mask->length_modifiers.is_l && str != NULL)
+	{
+		buffer = NULL;
+		len = ft_wstr_convertion((wchar_t *)str, buffer);
+		elems_printed = ft_elem_write(buffer, len, mask);
+		free(buffer);
+		return (elems_printed);
+	}
+	else if (mask->precision != NOT_SET
 		&& (uintmax_t)(mask->precision) < ft_strlen(str))
-		return (ft_elem_write(str, mask->precision, mask));
-	return (ft_elem_write(str, ft_strlen(str), mask));
+		len = mask->precision;
+	else
+		len = ft_strlen(str);
+	return (ft_elem_write(str, len, mask));
 }
 
 int	ft_print_pointer(va_list *arg_list, t_mask *mask)

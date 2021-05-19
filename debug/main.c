@@ -196,13 +196,15 @@ int		main ()
 	ft_printf("Expected:-1 :%jd\n", jd);
 	ft_printf("Expected:-1 :%zd\n", zd);
 */
-	char *tmp = "%ls";
+	char *tmp = "%#x   ";
+	int	i = 0;
 	wchar_t	 s[] = {' ', u'࿚', u'ƀ', u'ɏ', u'ɐ', ' ', u'ʯ', ' ', u'ʰ', u'˿', ' ', u'ୟ', ' ', u'௫', ' ', ' ', u'࿚', 0};
-	
-	printf("%zu\n", sizeof(s));
-	printf("%ls\n", s);
 
-	ft_printf(tmp, L"(null)");
+	while (i < 18)
+	{
+		printf(tmp, *(s + i));
+		++i;
+	}
 
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:23:08 by acami             #+#    #+#             */
-/*   Updated: 2021/05/17 14:02:11 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/19 19:05:57 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,24 @@ bool		ft_generate_mask(const char **format_str, t_mask *mask,
 // returns a pointer to a function which will print the requested value
 t_print_fn	ft_find_corresponding_print(t_mask *mask);
 
+void		ft_initialize_constructor(t_string_constructor *str_const);
+
+void		ft_generate_sign_info(char *str, t_mask *mask,
+				t_string_constructor *str_const);
+
+void		ft_generate_right_zeroes(t_mask *mask,
+				t_string_constructor *str_const);
+
+void		ft_generate_left_fillers(size_t str_len, t_mask *mask,
+				t_string_constructor *str_const);
+
+void		ft_generate_right_spaces(size_t str_len, t_mask *mask,
+				t_string_constructor *str_const);
+
 void		ft_generate_constructor(char *str, size_t str_len, t_mask *mask,
 				t_string_constructor *str_const);
+
+size_t		ft_wint_convertion(wint_t character, char *res);
+size_t		ft_wstr_convertion(wchar_t *str, char *res);
 
 #endif
