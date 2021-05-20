@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../headers/ft_printf.h"
+#include "../libft/libft.h"
 
 static size_t	ft_wcharlen(wchar_t character)
 {
@@ -54,13 +55,42 @@ size_t	ft_wint_convertion(char *res, wint_t character, int32_t len_allowed)
 	return (char_len);
 }
 
-size_t	ft_wstr_convertion(char *res, wchar_t *str, t_mask *mask)
+static size_t	ft_wstrlen(wchar_t *str)
 {
-	(void)res;
-	(void)mask;
-	if (*str < 5)
+	size_t	count;
+
+	count = 0;
+	while (*str != '\0')
 	{
-		return (0);
+		count += ft_wcharlen(*str);
+		++str;
 	}
-	return (1);
+	return (count);
+}
+
+size_t	ft_wstr_convertion(char *res, wchar_t *str, int32_t max_len)
+{
+	size_t	str_pos;
+	size_t	count;
+	size_t	max_str_len;
+	size_t	curr_sym_len;
+	char	buff[4];
+
+	max_str_len = ft_wstrlen(str);
+	if (max_str_len <max_len)
+		max_str_len = max_len;
+	res = malloc(max_str_len);
+	if (res == NULL)
+		return (0);
+	str_pos = 0;
+	count = 0;
+	curr_sym_len = ft_wint_convertion(buff, str[str_pos], max_str_len - count);
+	while (curr_sym_len != 0)
+	{
+		ft_memcpy(res + count, buff, 4);
+		count += curr_sym_len;
+		++str_pos;
+		curr_sym_len = ft_wint_convertion(buff, str[str_pos], max_str_len - count);
+	}
+	return (count);
 }

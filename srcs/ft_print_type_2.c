@@ -34,7 +34,6 @@ int	ft_print_string(va_list *arg_list, t_mask *mask)
 {
 	char	*str;
 	char	*buffer;
-	size_t	len;
 	int		elems_printed;
 
 	str = ft_pull_pointer(arg_list, &(mask->length_modifiers));
@@ -44,20 +43,18 @@ int	ft_print_string(va_list *arg_list, t_mask *mask)
 	mask->zero_padding = false;
 	if (str == NULL)
 		str = "(null)";
-	if (mask->length_modifiers.is_l && str != NULL)
+	else if (mask->length_modifiers.is_l)
 	{
 		buffer = NULL;
-		len = ft_wstr_convertion(buffer, (wchar_t *)str, mask);
-		elems_printed = ft_elem_write(buffer, len, mask);
+		elems_printed = ft_elem_write(buffer,
+			ft_wstr_convertion(buffer, (wchar_t *)str, mask->precision), mask);
 		free(buffer);
 		return (elems_printed);
 	}
-	else if (mask->precision != NOT_SET
+	if (mask->precision != NOT_SET
 		&& (uintmax_t)(mask->precision) < ft_strlen(str))
-		len = mask->precision;
-	else
-		len = ft_strlen(str);
-	return (ft_elem_write(str, len, mask));
+		return (ft_elem_write(str, mask->precision, mask));
+	return (ft_elem_write(str, ft_strlen(str), mask));
 }
 
 int	ft_print_pointer(va_list *arg_list, t_mask *mask)

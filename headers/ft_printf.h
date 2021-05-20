@@ -125,6 +125,6 @@ void		ft_generate_constructor(char *str, size_t str_len, t_mask *mask,
 				t_string_constructor *str_const);
 
 size_t		ft_wint_convertion(char *res, wint_t character, int32_t len_allowed);
-size_t		ft_wstr_convertion(char *res, wchar_t *str, t_mask *mask);
+size_t		ft_wstr_convertion(char *res, wchar_t *str, int32_t max_len);
 
 #endif
