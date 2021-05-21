@@ -196,11 +196,6 @@ int		main ()
 	ft_printf("Expected:-1 :%jd\n", jd);
 	ft_printf("Expected:-1 :%zd\n", zd);
 */
-	ft_printf("Hello how does");
-	ft_printf("this even work?\n");
-	ft_printf("lmao");
-	printf("Hello how does");
-	printf("this even work?\n");
-	printf("lmao");
+	ft_printf(" %c ", '0');
 	return (0);
 }
