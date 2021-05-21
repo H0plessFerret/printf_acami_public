@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 19:11:36 by acami             #+#    #+#             */
-/*   Updated: 2021/05/19 14:13:39 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/21 23:13:04 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,25 @@ int	ft_vprintf(const char *format_spec, va_list *arg_list)
 	t_mask		mask;
 	int			count;
 	t_print_fn	print_fn;
+	t_cbuffer	*cbuffer;
 
 	count = 0;
-	count += ft_print_till_percent(1, &format_spec);
+	cbuffer = ft_init_cbuffer(CBUFFER_LEN, STDOUT_FILENO);
+	count += ft_print_till_percent(cbuffer, &format_spec);
 	while (*format_spec != '\0')
 	{
-		ft_generate_mask(&format_spec, &mask, arg_list);
-		if (mask.specifier == NOT_SET)
-		{
-			count += ft_elem_write("%", 1, &mask);
-			++format_spec;
-		}
+		if (ft_generate_mask(&format_spec, &mask, arg_list) == false
+			&& format_spec++)
+			count += ft_elem_write(cbuffer, "%", 1, &mask);
 		else
 		{
 			mask.symbols_printed = count;
 			print_fn = ft_find_corresponding_print(&mask);
 			if (print_fn != NULL)
-				count += (*print_fn)(arg_list, &mask);
+				count += (*print_fn)(cbuffer, arg_list, &mask);
 		}
-		count += ft_print_till_percent(1, &format_spec);
+		count += ft_print_till_percent(cbuffer, &format_spec);
 	}
+	count += ft_close_cbuffer(cbuffer);
 	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 14:10:23 by acami             #+#    #+#             */
-/*   Updated: 2021/05/17 14:02:02 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/21 21:55:27 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_put_unsignednbr_base(uintmax_t nbr, int8_t base, t_mask *mask)
 
 	count = 0;
 	base_symbols = "0123456789abcdef";
-	if ((nbr == 0) && (mask->precision != 0))
+	if (nbr == 0 && mask->precision != 0)
 	{
 		res[count] = '0';
 		++count;
@@ -57,7 +57,7 @@ char	*ft_put_unsignednbr_base(uintmax_t nbr, int8_t base, t_mask *mask)
 	return (res);
 }
 
-int	ft_print_signed(va_list *arg_list, t_mask *mask)
+int	ft_print_signed(t_cbuffer *cbuffer, va_list *arg_list, t_mask *mask)
 {
 	intmax_t	num;
 	char		*buff;
@@ -74,10 +74,10 @@ int	ft_print_signed(va_list *arg_list, t_mask *mask)
 	}
 	else
 		buff = ft_put_unsignednbr_base((uintmax_t)num, BASE_DECIMAL, mask);
-	return (ft_elem_write(buff, ft_strlen(buff), mask));
+	return (ft_elem_write(cbuffer, buff, ft_strlen(buff), mask));
 }
 
-int	ft_print_unsigned(va_list *arg_list, t_mask *mask)
+int	ft_print_unsigned(t_cbuffer *cbuffer, va_list *arg_list, t_mask *mask)
 {
 	uintmax_t	num;
 	int			base;
@@ -98,11 +98,11 @@ int	ft_print_unsigned(va_list *arg_list, t_mask *mask)
 	else
 		base = BASE_HEX;
 	buff = ft_put_unsignednbr_base(num, base, mask);
-	return (ft_elem_write(buff, ft_strlen(buff), mask));
+	return (ft_elem_write(cbuffer, buff, ft_strlen(buff), mask));
 }
 
-int	ft_print_percent(va_list *arg_list, t_mask *mask)
+int	ft_print_percent(t_cbuffer *cbuffer, va_list *arg_list, t_mask *mask)
 {
 	(void)arg_list;
-	return (ft_elem_write("%", 1, mask));
+	return (ft_elem_write(cbuffer, "%", 1, mask));
 }

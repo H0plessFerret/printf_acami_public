@@ -6,7 +6,7 @@
 #    By: acami <acami@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/20 20:01:41 by acami             #+#    #+#              #
-#    Updated: 2021/05/19 20:23:12 by acami            ###   ########.fr        #
+#    Updated: 2021/05/21 22:06:44 by acami            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ ft_print_type_4.c \
 ft_print_type_5.c \
 ft_printf.c \
 ft_pull_type.c \
-ft_widechar_support.c
+ft_widechar_support.c\
+ft_cbuff.c
 SRCS_F_LIB	= ft_atoi.c       ft_isalpha.c    ft_itoa.c       ft_memcpy.c     ft_putendl_fd.c ft_strchr.c     ft_strlcpy.c    ft_strnstr.c    ft_tolower.c \
 ft_bzero.c      ft_isascii.c    ft_memccpy.c    ft_memmove.c    ft_putnbr_fd.c  ft_strdup.c     ft_strlen.c     ft_strrchr.c    ft_toupper.c \
 ft_calloc.c     ft_isdigit.c    ft_memchr.c     ft_memset.c     ft_putstr_fd.c  ft_strjoin.c    ft_strmapi.c    ft_strtrim.c \
@@ -69,7 +70,6 @@ fclean:		clean
 re:			fclean all
 
 debug:		$(OBJS) $(DEBUG_OBJS) $(OBJS_LIB) $(DEPENDS)
-			@make -sC ./libft/ all
 			$(CC) $(OBJS) $(DEBUG_OBJS) $(OBJS_LIB) ./libft/libft.a -o test.debug
 
 

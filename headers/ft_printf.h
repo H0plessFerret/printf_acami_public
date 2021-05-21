@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:23:08 by acami             #+#    #+#             */
-/*   Updated: 2021/05/21 15:58:44 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/21 22:01:58 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@
 # include <stdbool.h>
 # include <wchar.h>
 # include <limits.h>
+# include "ft_cbuff.h"
 
 # define	NOT_SET			-1
 # define	ASCII_MAX		127
 # define	DLENGTH_MAX		4940
+# define	CBUFFER_LEN		256
 # define	BASE_OCTAL		8
 # define	BASE_DECIMAL	10
 # define	BASE_HEX		16
@@ -70,7 +72,7 @@ struct s_string_constructor
 	intmax_t	back_spaces;
 };
 
-typedef int	(*t_print_fn)(va_list *, t_mask *);
+typedef int	(*t_print_fn)(t_cbuffer *, va_list *, t_mask *);
 
 int			ft_printf(const char *format_str, ...);
 //int			ft_dprintf(int fd, const char *format, ...);
@@ -80,9 +82,10 @@ int			ft_vprintf(const char *format_str, va_list *arg_list);
 //int			ft_vdprintf(int fd, const char *format, va_list arg_list);
 //int			ft_svprintf(char *str, const char *format, va_list arg_list);
 
-// prints symbols into standart output while % was not encountered
+// Print symbols onto standart output while % was not encountered
 // returns the amount of symbols printed
-int			ft_print_till_percent(int fd, const char **format_str);
+int			ft_print_till_percent(t_cbuffer *cbuffer,
+				const char **format_spec);
 
 void		ft_initialize_mask(t_mask *mask);
 
@@ -124,7 +127,8 @@ void		ft_generate_right_spaces(size_t str_len, t_mask *mask,
 void		ft_generate_constructor(char *str, size_t str_len, t_mask *mask,
 				t_string_constructor *str_const);
 
-size_t		ft_wint_convertion(char *res, wint_t character, int32_t len_allowed);
+size_t		ft_wint_convertion(char *res, wint_t character,
+				int32_t len_allowed);
 size_t		ft_wstr_convertion(char **res, wchar_t *str, int32_t max_len);
 
 #endif

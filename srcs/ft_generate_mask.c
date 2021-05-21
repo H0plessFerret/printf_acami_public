@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 15:04:49 by acami             #+#    #+#             */
-/*   Updated: 2021/05/17 14:02:10 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/21 23:09:13 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ va_list *arg_list)
 	if (*(*format_spec + elems_passed) == '\0'
 		|| ft_strchr(allowed_values, *(*format_spec + elems_passed)) == NULL)
 	{
-		mask->width = NOT_SET;
-		mask->precision = NOT_SET;
+		ft_initialize_mask(mask);
 		return (false);
 	}
 	if (ft_strchr("XFEG", *(*format_spec + elems_passed)) != NULL)

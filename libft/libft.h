@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 16:44:07 by acami             #+#    #+#             */
-/*   Updated: 2021/04/28 15:48:25 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/21 23:01:21 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	ft_lstdelone(t_list *head, void (*del)(void *));
 void	ft_lstclear(t_list **head, void (*del)(void *));
 void	ft_lstiter(t_list *head, void (*func)(void *));
 t_list	*ft_lstmap(t_list *head, void *(*func)(void *), void (*del)(void *));
-
 
 void	ft_strtoupper(char *str);
 

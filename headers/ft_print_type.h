@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 18:56:26 by acami             #+#    #+#             */
-/*   Updated: 2021/05/19 18:35:49 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/21 22:04:27 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,30 @@
 
 # include "ft_printf.h"
 
-int			ft_elem_write(char *str, size_t str_len, t_mask *mask);
+int			ft_elem_write(t_cbuffer *cbuffer, char *str, size_t str_len,
+				t_mask *mask);
 
-int			ft_print_signed(va_list *arg_list, t_mask *mask);
+int			ft_print_signed(t_cbuffer *cbuffer, va_list *arg_list,
+				t_mask *mask);
 
-int			ft_print_unsigned(va_list *arg_list, t_mask *mask);
+int			ft_print_unsigned(t_cbuffer *cbuffer, va_list *arg_list,
+				t_mask *mask);
 
-int			ft_print_percent(va_list *arg_list, t_mask *mask);
+int			ft_print_percent(t_cbuffer *cbuffer, va_list *arg_list,
+				t_mask *mask);
 
-int			ft_print_char(va_list *arg_list, t_mask *mask);
+int			ft_print_char(t_cbuffer *cbuffer, va_list *arg_list, t_mask *mask);
 
-int			ft_print_string(va_list *arg_list, t_mask *mask);
+int			ft_print_string(t_cbuffer *cbuffer, va_list *arg_list,
+				t_mask *mask);
 
-int			ft_print_float(va_list *arg_list, t_mask *mask);
+int			ft_print_float(t_cbuffer *cbuffer, va_list *arg_list, t_mask *mask);
 
-int			ft_print_pointer(va_list *arg_list, t_mask *mask);
+int			ft_print_pointer(t_cbuffer *cbuffer, va_list *arg_list,
+				t_mask *mask);
 
-int			ft_save_counter(va_list *arg_list, t_mask *mask);
+int			ft_save_counter(t_cbuffer *cbuffer, va_list *arg_list,
+				t_mask *mask);
 
 char		*ft_put_unsignednbr_base(uintmax_t nbr, int8_t base, t_mask *mask);
 

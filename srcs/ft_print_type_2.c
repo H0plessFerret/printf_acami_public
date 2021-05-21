@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 00:27:25 by acami             #+#    #+#             */
-/*   Updated: 2021/05/21 16:11:38 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/21 22:04:52 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "../headers/ft_printf.h"
 #include "../libft/libft.h"
 
-int	ft_print_char(va_list *arg_list, t_mask *mask)
+int	ft_print_char(t_cbuffer *cbuffer, va_list *arg_list, t_mask *mask)
 {
 	wint_t	character;
 	char	buffer[4];
@@ -33,10 +33,10 @@ int	ft_print_char(va_list *arg_list, t_mask *mask)
 		buffer[0] = (char)character;
 		len = 1;
 	}
-	return (ft_elem_write(buffer, len, mask));
+	return (ft_elem_write(cbuffer, buffer, len, mask));
 }
 
-int	ft_print_string(va_list *arg_list, t_mask *mask)
+int	ft_print_string(t_cbuffer *cbuffer, va_list *arg_list, t_mask *mask)
 {
 	char	*str;
 	char	*buffer;
@@ -54,17 +54,17 @@ int	ft_print_string(va_list *arg_list, t_mask *mask)
 	{
 		buffer = NULL;
 		tmp = ft_wstr_convertion(&buffer, (wchar_t *)str, mask->precision);
-		elems_printed = ft_elem_write(buffer, tmp, mask);
+		elems_printed = ft_elem_write(cbuffer, buffer, tmp, mask);
 		free(buffer);
 		return (elems_printed);
 	}
 	if (mask->precision != NOT_SET
 		&& (uintmax_t)(mask->precision) < ft_strlen(str))
-		return (ft_elem_write(str, mask->precision, mask));
-	return (ft_elem_write(str, ft_strlen(str), mask));
+		return (ft_elem_write(cbuffer, str, mask->precision, mask));
+	return (ft_elem_write(cbuffer, str, ft_strlen(str), mask));
 }
 
-int	ft_print_pointer(va_list *arg_list, t_mask *mask)
+int	ft_print_pointer(t_cbuffer *cbuffer, va_list *arg_list, t_mask *mask)
 {
 	void	*ptr;
 	char	*str;
@@ -75,13 +75,14 @@ int	ft_print_pointer(va_list *arg_list, t_mask *mask)
 	mask->print_sign = false;
 	mask->zero_padding = false;
 	str = ft_put_unsignednbr_base((uintmax_t)ptr, BASE_HEX, mask);
-	return (ft_elem_write(str, ft_strlen(str), mask));
+	return (ft_elem_write(cbuffer, str, ft_strlen(str), mask));
 }
 
-int	ft_save_counter(va_list *arg_list, t_mask *mask)
+int	ft_save_counter(t_cbuffer *cbuffer, va_list *arg_list, t_mask *mask)
 {
 	void	*to_write;
 
+	(void)cbuffer;
 	to_write = ft_pull_pointer(arg_list, &(mask->length_modifiers));
 	if (mask->length_modifiers.is_hh)
 		*(signed char *)to_write = (signed char)(mask->symbols_printed);
@@ -100,7 +101,7 @@ int	ft_save_counter(va_list *arg_list, t_mask *mask)
 	return (0);
 }
 
-int	ft_print_float(va_list *arg_list, t_mask *mask)
+int	ft_print_float(t_cbuffer *cbuffer, va_list *arg_list, t_mask *mask)
 {
 	long double	num;
 	int			base;
@@ -118,5 +119,5 @@ int	ft_print_float(va_list *arg_list, t_mask *mask)
 	}
 	else
 		buff = ft_put_unsignedfloat_base(num, base, mask);
-	return (ft_elem_write(buff, ft_strlen(buff), mask));
+	return (ft_elem_write(cbuffer, buff, ft_strlen(buff), mask));
 }
