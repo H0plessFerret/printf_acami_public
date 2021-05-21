@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 00:27:25 by acami             #+#    #+#             */
-/*   Updated: 2021/05/21 23:38:29 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/21 23:46:01 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int	ft_save_counter(t_cbuffer *cbuffer, va_list *arg_list, t_mask *mask)
 	int		elems_printed;
 
 	elems_printed = ft_print_cbuffer(cbuffer);
+	mask->symbols_printed += elems_printed;
 	to_write = ft_pull_pointer(arg_list, &(mask->length_modifiers));
 	if (mask->length_modifiers.is_hh)
 		*(signed char *)to_write = (signed char)(mask->symbols_printed);
