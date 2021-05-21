@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 17:55:30 by acami             #+#    #+#             */
-/*   Updated: 2021/05/19 20:23:32 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/21 16:05:27 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ size_t	ft_wint_convertion(char *res, wint_t character, int32_t len_allowed)
 	size_t	char_len;
 
 	char_len = ft_wcharlen((wchar_t)character);
-	if (char_len > len_allowed || char_len > MB_CUR_MAX)
+	if (char_len > (size_t)len_allowed || char_len > (size_t)MB_CUR_MAX)
 		return (0);
 	if (char_len == 1)
 		res[0] = character;
@@ -68,7 +68,7 @@ static size_t	ft_wstrlen(wchar_t *str)
 	return (count);
 }
 
-size_t	ft_wstr_convertion(char *res, wchar_t *str, int32_t max_len)
+size_t	ft_wstr_convertion(char **res, wchar_t *str, int32_t max_len)
 {
 	size_t	str_pos;
 	size_t	count;
@@ -77,20 +77,21 @@ size_t	ft_wstr_convertion(char *res, wchar_t *str, int32_t max_len)
 	char	buff[4];
 
 	max_str_len = ft_wstrlen(str);
-	if (max_str_len <max_len)
+	if (max_len != -1 && (size_t)max_len < max_str_len)
 		max_str_len = max_len;
-	res = malloc(max_str_len);
-	if (res == NULL)
+	*res = malloc(max_str_len);
+	if (*res == NULL)
 		return (0);
 	str_pos = 0;
 	count = 0;
 	curr_sym_len = ft_wint_convertion(buff, str[str_pos], max_str_len - count);
 	while (curr_sym_len != 0)
 	{
-		ft_memcpy(res + count, buff, 4);
+		ft_memcpy(*res + count, buff, 4);
 		count += curr_sym_len;
 		++str_pos;
-		curr_sym_len = ft_wint_convertion(buff, str[str_pos], max_str_len - count);
+		curr_sym_len = ft_wint_convertion(buff, str[str_pos],
+				max_str_len - count);
 	}
 	return (count);
 }

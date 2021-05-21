@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 00:27:25 by acami             #+#    #+#             */
-/*   Updated: 2021/05/19 20:22:46 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/21 16:11:38 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,13 @@ int	ft_print_char(va_list *arg_list, t_mask *mask)
 	mask->print_sign = false;
 	mask->zero_padding = false;
 	character = ft_pull_char(arg_list, &(mask->length_modifiers));
-	len = ft_wint_convertion(buffer, character, mask->precision);
+	if (mask->length_modifiers.is_l)
+		len = ft_wint_convertion(buffer, character, mask->precision);
+	else
+	{
+		buffer[0] = (char)character;
+		len = 1;
+	}
 	return (ft_elem_write(buffer, len, mask));
 }
 
@@ -35,6 +41,7 @@ int	ft_print_string(va_list *arg_list, t_mask *mask)
 	char	*str;
 	char	*buffer;
 	int		elems_printed;
+	size_t	tmp;
 
 	str = ft_pull_pointer(arg_list, &(mask->length_modifiers));
 	mask->alternative_mode = false;
@@ -46,8 +53,8 @@ int	ft_print_string(va_list *arg_list, t_mask *mask)
 	else if (mask->length_modifiers.is_l)
 	{
 		buffer = NULL;
-		elems_printed = ft_elem_write(buffer,
-			ft_wstr_convertion(buffer, (wchar_t *)str, mask->precision), mask);
+		tmp = ft_wstr_convertion(&buffer, (wchar_t *)str, mask->precision);
+		elems_printed = ft_elem_write(buffer, tmp, mask);
 		free(buffer);
 		return (elems_printed);
 	}

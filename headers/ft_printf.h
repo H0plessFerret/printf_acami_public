@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:23:08 by acami             #+#    #+#             */
-/*   Updated: 2021/05/19 19:05:57 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/21 15:58:44 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,6 @@ void		ft_generate_constructor(char *str, size_t str_len, t_mask *mask,
 				t_string_constructor *str_const);
 
 size_t		ft_wint_convertion(char *res, wint_t character, int32_t len_allowed);
-size_t		ft_wstr_convertion(char *res, wchar_t *str, int32_t max_len);
+size_t		ft_wstr_convertion(char **res, wchar_t *str, int32_t max_len);
 
 #endif
