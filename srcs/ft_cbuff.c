@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/21 21:10:59 by acami             #+#    #+#             */
-/*   Updated: 2021/05/21 23:02:03 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/22 00:04:27 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ int	ft_insert_cbuffer(t_cbuffer *cbuffer, const char *str, size_t str_len)
 	{
 		cbuffer->data[cbuffer->curr_pos] = str[count];
 		++(cbuffer->curr_pos);
-		if (str[count] == '\n' || cbuffer->curr_pos == cbuffer->size
-			|| count == str_len)
+		if (str[count] == '\n' || cbuffer->curr_pos == cbuffer->size)
 			elems_printed += ft_print_cbuffer(cbuffer);
 		++count;
 	}
