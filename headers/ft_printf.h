@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:23:08 by acami             #+#    #+#             */
-/*   Updated: 2021/05/21 22:01:58 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/25 22:10:00 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,41 +75,45 @@ struct s_string_constructor
 typedef int	(*t_print_fn)(t_cbuffer *, va_list *, t_mask *);
 
 int			ft_printf(const char *format_str, ...);
-//int			ft_dprintf(int fd, const char *format, ...);
-//int			ft_sprintf(char *str, const char *format, ...);
 
 int			ft_vprintf(const char *format_str, va_list *arg_list);
-//int			ft_vdprintf(int fd, const char *format, va_list arg_list);
-//int			ft_svprintf(char *str, const char *format, va_list arg_list);
 
 // Print symbols onto standart output while % was not encountered
 // returns the amount of symbols printed
 int			ft_print_till_percent(t_cbuffer *cbuffer,
 				const char **format_spec);
 
+// Initializes the mask with default field values
 void		ft_initialize_mask(t_mask *mask);
 
-// returns an integer - an amount of symbols read in format_str
+// Modifies the mask with information about flags given by user
+// Returns an integer - an amount of symbols read in format_str
 int			ft_mask_flags(const char *format_str, t_mask *mask);
 
+// Modifies the mask with information about width given by user
 // returns an integer - an amount of symbols read in format_str
 int			ft_mask_width(const char *format_str, t_mask *mask,
 				va_list *arg_list);
 
+// Modifies the mask with information about precision given by user
 // returns an integer - an amount of symbols read in format_str
 int			ft_mask_precision(const char *format_str, t_mask *mask,
 				va_list *arg_list);
 
+// Modifies the mask with information about length given by user
 // returns an integer - an amount of symbols read in format_str
 int			ft_mask_length(const char *format_str, t_mask *mask);
 
+// Generates mask given a specifeir string
 // returns 1 if masking process is successful, 0 otherwise
 bool		ft_generate_mask(const char **format_str, t_mask *mask,
 				va_list *arg_list);
 
-// returns a pointer to a function which will print the requested value
+// Finds a pointer to a function which will print the requested type
+// and returns it
 t_print_fn	ft_find_corresponding_print(t_mask *mask);
 
+// Initializes the string constructor with default field values
 void		ft_initialize_constructor(t_string_constructor *str_const);
 
 void		ft_generate_sign_info(char *str, t_mask *mask,
