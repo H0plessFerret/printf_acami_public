@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 14:23:08 by acami             #+#    #+#             */
-/*   Updated: 2021/05/25 22:10:00 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/03 13:29:01 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@
 typedef struct s_length				t_length;
 typedef struct s_mask				t_mask;
 typedef struct s_string_constructor	t_string_constructor;
+typedef union u_80double			t_80double;
+typedef struct s_80dblmask			t_80dblmask;
+typedef int							(*t_print_fn)(t_cbuffer *,
+									va_list *, t_mask *);
 
 struct s_length
 {
@@ -72,7 +76,19 @@ struct s_string_constructor
 	intmax_t	back_spaces;
 };
 
-typedef int	(*t_print_fn)(t_cbuffer *, va_list *, t_mask *);
+struct s_80dblmask{
+	uint64_t	mant : 63;
+	uint64_t	inte : 1;
+	uint64_t	exp : 15;
+	uint64_t	sig : 1;
+	uint64_t	trash : 48;
+};
+
+union	u_80double
+{
+	t_80dblmask	mask;
+	long double	num;
+};
 
 int			ft_printf(const char *format_str, ...);
 
@@ -115,24 +131,17 @@ t_print_fn	ft_find_corresponding_print(t_mask *mask);
 
 // Initializes the string constructor with default field values
 void		ft_initialize_constructor(t_string_constructor *str_const);
-
+// Generate information about sign of a given type and value
 void		ft_generate_sign_info(char *str, t_mask *mask,
 				t_string_constructor *str_const);
-
-void		ft_generate_right_zeroes(t_mask *mask,
-				t_string_constructor *str_const);
-
+// Generate information about zeroes and spaces on the left side of the number
 void		ft_generate_left_fillers(size_t str_len, t_mask *mask,
 				t_string_constructor *str_const);
-
+// Generate information spaces on the right side of the number
 void		ft_generate_right_spaces(size_t str_len, t_mask *mask,
 				t_string_constructor *str_const);
-
+// Generate full set of information of additional characters to be printed
 void		ft_generate_constructor(char *str, size_t str_len, t_mask *mask,
 				t_string_constructor *str_const);
-
-size_t		ft_wint_convertion(char *res, wint_t character,
-				int32_t len_allowed);
-size_t		ft_wstr_convertion(char **res, wchar_t *str, int32_t max_len);
 
 #endif

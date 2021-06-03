@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 00:27:25 by acami             #+#    #+#             */
-/*   Updated: 2021/05/21 23:46:01 by acami            ###   ########.fr       */
+/*   Updated: 2021/05/25 22:51:34 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,23 +103,11 @@ int	ft_save_counter(t_cbuffer *cbuffer, va_list *arg_list, t_mask *mask)
 	return (elems_printed);
 }
 
-int	ft_print_float(t_cbuffer *cbuffer, va_list *arg_list, t_mask *mask)
+uintmax_t	ft_abs(intmax_t num)
 {
-	long double	num;
-	int			base;
-	char		*buff;
-
-	base = BASE_DECIMAL;
-	if (mask->precision == NOT_SET)
-		mask->precision = 6;
-	num = ft_pull_float(arg_list, &(mask->length_modifiers));
+	if (num == INTMAX_MIN)
+		return ((uintmax_t)INTMAX_MAX + 1);
 	if (num < 0)
-	{
-		mask->is_negative = true;
-		mask->print_sign = true;
-		buff = ft_put_unsignedfloat_base(num * -1, base, mask);
-	}
-	else
-		buff = ft_put_unsignedfloat_base(num, base, mask);
-	return (ft_elem_write(cbuffer, buff, ft_strlen(buff), mask));
+		return (num * -1);
+	return (num);
 }

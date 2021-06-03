@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 19:46:55 by acami             #+#    #+#             */
-/*   Updated: 2021/04/28 16:11:24 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/03 12:52:17 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@ t_print_fn	ft_find_corresponding_print(t_mask *mask)
 		['x'] = ft_print_unsigned,
 		['X'] = ft_print_unsigned,
 		['p'] = ft_print_pointer,
-		['f'] = ft_print_float,
-		['F'] = ft_print_float,
-		['e'] = ft_print_float,
-		['E'] = ft_print_float,
-		['g'] = ft_print_float,
-		['G'] = ft_print_float,
 		['s'] = ft_print_string,
 		['c'] = ft_print_char,
 		['n'] = ft_save_counter

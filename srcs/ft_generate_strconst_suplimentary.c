@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 15:18:16 by acami             #+#    #+#             */
-/*   Updated: 2021/05/19 16:35:19 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/03 12:54:42 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,6 @@ t_string_constructor *str_const)
 		str_const->sign[1] = 'x';
 	}
 	str_const->sign_len = ft_strlen(str_const->sign);
-}
-
-//FIX THIS PLEASE!
-void	ft_generate_right_zeroes(t_mask *mask,
-t_string_constructor *str_const)
-{
-	if (ft_strchr("fFeE", mask->specifier) != NULL
-		&& DLENGTH_MAX < mask->precision)
-		str_const->back_zeros = mask->precision - DLENGTH_MAX;
 }
 
 void	ft_generate_left_fillers(size_t str_len, t_mask *mask,

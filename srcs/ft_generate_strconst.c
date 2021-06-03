@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 16:31:15 by acami             #+#    #+#             */
-/*   Updated: 2021/05/19 16:31:28 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/03 12:54:49 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_string_constructor *str_const)
 {
 	ft_initialize_constructor(str_const);
 	ft_generate_sign_info(str, mask, str_const);
-	ft_generate_right_zeroes(mask, str_const);
 	ft_generate_left_fillers(str_len, mask, str_const);
 	ft_generate_right_spaces(str_len, mask, str_const);
 }
