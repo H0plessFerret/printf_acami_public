@@ -6,7 +6,7 @@
 /*   By: acami <acami@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 16:16:36 by acami             #+#    #+#             */
-/*   Updated: 2021/04/19 14:30:38 by acami            ###   ########.fr       */
+/*   Updated: 2021/06/03 13:54:38 by acami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
-	res = (char *)malloc((s1_len + s2_len + 1)* sizeof(char));
+	res = (char *)malloc((s1_len + s2_len + 1) * sizeof(char));
 	if (res == NULL)
 		return (res);
 	ft_strlcpy(res, s1, s1_len + 1);
