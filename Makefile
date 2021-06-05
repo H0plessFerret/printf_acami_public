@@ -6,7 +6,7 @@
 #    By: acami <acami@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/20 20:01:41 by acami             #+#    #+#              #
-#    Updated: 2021/06/03 13:31:51 by acami            ###   ########.fr        #
+#    Updated: 2021/06/05 18:09:09 by acami            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,13 +46,13 @@ RM			= rm -f
 .c.o:		
 			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -MD
 
-all:		$(NAME)
-
-include $(wildcard $(SRCS_D))
-
 $(NAME):	$(OBJS) $(OBJS_LIB)
 			@make -sC ./libft/ all
 			$(AR) $(ARFLAGS) $(NAME) $?
+
+all:		$(NAME)
+
+include $(wildcard $(SRCS_D))
 
 bonus:		$(NAME)
 
